@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>About Vetiver Agro Farm – Our Story, Vision & Mission | Natural • Pure • Sustainable</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Learn about Vetiver Agro Farm – an Indian farm incorporated on January 10, 2025, dedicated to sustainable vetiver cultivation, natural processing, and global export of premium vetiver products.">
+<meta name="keywords" content="about vetiver agro farm, vetiver farm history, vetiver sustainable farming, vetiver exporter India, organic vetiver story">
+<meta property="og:title" content="About Vetiver Agro Farm – Rooted in Nature Since 2025">
+<meta property="og:description" content="Sustainable vetiver farming. Family-owned, organically certified, globally trusted.">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/favicon.ico">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Owl Carousel -->
+<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Vetiver Design System -->
+<link href="css/vetiver.css" rel="stylesheet">
+
+<style>
+  /* ===== ABOUT PAGE EXTENDED STYLES ===== */
+
+  /* Vision & Mission */
+  .vision-mission-section {
+    background: linear-gradient(135deg, var(--green-dark) 0%, #0d2818 100%);
+    padding: 90px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .vision-mission-section::before {
+    content: '';
+    position: absolute;
+    top: -60%;
+    right: -8%;
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(116,198,157,.09) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .vision-mission-section::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: -6%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(184,134,11,.07) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .vm-card {
+    background: rgba(255,255,255,.07);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: var(--radius-lg);
+    padding: 48px 38px;
+    height: 100%;
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+  .vm-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    transition: var(--transition);
+  }
+  .vm-card.vision::before { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .vm-card.mission::before { background: linear-gradient(90deg, var(--green-light), var(--green-leaf)); }
+  .vm-card:hover {
+    background: rgba(255,255,255,.12);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  }
+  .vm-icon-wrap {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 28px;
+    transition: var(--transition);
+  }
+  .vm-card.vision .vm-icon-wrap { background: rgba(184,134,11,.15); color: var(--gold-light); }
+  .vm-card.mission .vm-icon-wrap { background: rgba(116,198,157,.15); color: var(--green-light); }
+  .vm-card:hover .vm-icon-wrap { transform: scale(1.1) rotate(5deg); }
+  .vm-label {
+    font-size: .72rem; font-weight: 800; letter-spacing: 2.5px;
+    text-transform: uppercase; margin-bottom: 14px; display: block;
+  }
+  .vm-card.vision .vm-label { color: var(--gold-light); }
+  .vm-card.mission .vm-label { color: var(--green-light); }
+  .vm-title {
+    font-size: 1.7rem; font-weight: 800; color: #fff;
+    margin-bottom: 20px; line-height: 1.3;
+  }
+  .vm-title span { color: var(--gold-light); }
+  .vm-card.mission .vm-title span { color: var(--green-light); }
+  .vm-text {
+    font-size: 1rem; color: rgba(255,255,255,.72);
+    line-height: 1.85; margin: 0;
+  }
+
+  /* Values Section */
+  .values-section { background: var(--sand); }
+  .value-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    height: 100%;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  .value-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 0;
+    background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+    transition: height .4s ease;
+    z-index: 0;
+  }
+  .value-card:hover { border-color: var(--green-leaf); transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+  .value-card > * { position: relative; z-index: 1; }
+  .value-icon-wrap {
+    width: 80px; height: 80px;
+    background: var(--green-pale);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; color: var(--green-leaf);
+    margin: 0 auto 22px;
+    transition: var(--transition);
+  }
+  .value-card:hover .value-icon-wrap { background: rgba(116,198,157,.2); color: var(--green-light); transform: scale(1.1); }
+  .value-title {
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--green-dark); margin-bottom: 12px;
+    transition: var(--transition);
+  }
+  .value-card:hover .value-title { color: var(--green-dark); }
+  .value-desc {
+    font-size: .9rem; color: var(--text-muted);
+    line-height: 1.75; margin: 0;
+    transition: var(--transition);
+  }
+  .value-number {
+    position: absolute; top: 18px; right: 22px;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 800;
+    color: var(--green-pale);
+    line-height: 1; z-index: 0;
+    transition: var(--transition);
+  }
+  .value-card:hover .value-number { color: rgba(116,198,157,.15); }
+
+  /* Process Section */
+  .process-section { background: var(--cream); }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 20px;
+  }
+  .process-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 34px 28px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    overflow: hidden;
+  }
+  .process-card:hover {
+    border-color: var(--green-leaf);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+  }
+  .process-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; font-weight: 800;
+    color: var(--green-pale);
+    line-height: 1;
+    margin-bottom: -10px;
+    display: block;
+    transition: var(--transition);
+  }
+  .process-card:hover .process-num { color: rgba(64,145,108,.15); }
+  .process-icon {
+    width: 60px; height: 60px;
+    background: var(--green-pale);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; color: var(--green-leaf);
+    margin-bottom: 16px;
+    transition: var(--transition);
+  }
+  .process-card:hover .process-icon { background: var(--green-leaf); color: #fff; }
+  .process-title {
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--green-dark); margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+  .process-desc {
+    font-size: .86rem; color: var(--text-muted);
+    line-height: 1.7; margin: 0;
+  }
+  .process-arrow {
+    position: absolute; top: 50%; right: -14px;
+    width: 28px; height: 28px;
+    background: var(--green-leaf);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 12px;
+    transform: translateY(-50%);
+    z-index: 5;
+    box-shadow: var(--shadow-sm);
+  }
+  @media (max-width: 991.98px) {
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-arrow { display: none; }
+  }
+  @media (max-width: 575.98px) {
+    .process-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Certifications Section */
+  .cert-section { background: var(--sand); }
+  .cert-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 36px 24px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    height: 100%;
+    border: 2px solid var(--green-pale);
+    position: relative;
+    overflow: hidden;
+  }
+  .cert-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-gold);
+  }
+  .cert-badge-icon {
+    width: 90px; height: 90px;
+    background: linear-gradient(135deg, var(--gold-pale), #fff7e0);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 38px; color: var(--gold);
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 20px rgba(184,134,11,.15);
+    transition: var(--transition);
+  }
+  .cert-card:hover .cert-badge-icon { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #fff; box-shadow: var(--shadow-gold); transform: scale(1.08); }
+  .cert-name {
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--green-dark); margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+  .cert-body {
+    font-size: .84rem; color: var(--text-muted);
+    line-height: 1.7; margin-bottom: 16px;
+  }
+  .cert-tag {
+    display: inline-block;
+    background: var(--green-pale); color: var(--green-leaf);
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; padding: 4px 14px;
+    border-radius: 100px;
+  }
+  .cert-card:hover .cert-tag { background: var(--gold-pale); color: var(--gold); }
+  .cert-verified-ribbon {
+    position: absolute; top: 16px; right: -28px;
+    background: var(--gold); color: #fff;
+    font-size: 10px; font-weight: 800; letter-spacing: 1px;
+    text-transform: uppercase; padding: 5px 36px;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 10px rgba(184,134,11,.3);
+  }
+
+  /* Why Choose Us - About Page version */
+  .why-about-section {
+    background: var(--green-dark);
+    padding: 90px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-about-section::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -6%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(116,198,157,.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .why-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .why-benefit-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    display: flex; align-items: flex-start; gap: 18px;
+    transition: var(--transition);
+  }
+  .why-benefit-card:hover {
+    background: rgba(255,255,255,.11);
+    border-color: rgba(116,198,157,.3);
+    transform: translateY(-4px);
+  }
+  .why-benefit-icon {
+    width: 52px; height: 52px; flex-shrink: 0;
+    background: rgba(116,198,157,.14);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: var(--green-light);
+    transition: var(--transition);
+  }
+  .why-benefit-card:hover .why-benefit-icon { background: var(--green-leaf); color: #fff; }
+  .why-benefit-title {
+    font-family: 'Inter', sans-serif;
+    font-size: .96rem; font-weight: 700;
+    color: #fff; margin-bottom: 6px;
+  }
+  .why-benefit-text {
+    font-size: .84rem; color: rgba(255,255,255,.6);
+    line-height: 1.7; margin: 0;
+  }
+  @media (max-width: 767.98px) {
+    .why-about-grid { grid-template-columns: 1fr; }
+  }
+
+  /* CTA Banner */
+  .about-cta {
+    background: linear-gradient(135deg, #0d2818, var(--green-dark) 40%, var(--green-mid));
+    padding: 90px 0;
+    position: relative; overflow: hidden;
+  }
+  .about-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('img/vetiver_agriculture.jpg') center/cover no-repeat;
+    opacity: .08; pointer-events: none;
+  }
+  .about-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -40%; left: -5%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(184,134,11,.1) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+  }
+
+  /* Story Timeline line */
+  .story-timeline-line {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .timeline-item {
+    display: flex; gap: 20px; padding-bottom: 28px;
+    position: relative;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: 19px; top: 40px; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--green-leaf), var(--green-pale));
+  }
+  .timeline-item:last-child::before { display: none; }
+  .tl-dot {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--green-leaf); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 16px;
+    box-shadow: 0 0 0 6px var(--green-pale);
+    z-index: 1;
+  }
+  .tl-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 800;
+    color: var(--gold); margin-bottom: 4px;
+  }
+  .tl-event { font-size: .88rem; font-weight: 600; color: var(--green-dark); margin-bottom: 2px; }
+  .tl-desc { font-size: .82rem; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+  /* Story section image */
+  .story-img-wrap { position: relative; }
+  .story-img {
+    width: 100%; height: 560px; object-fit: cover;
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  }
+  .story-img-overlay {
+    position: absolute; bottom: -22px; left: -22px;
+    background: #fff; border-radius: var(--radius-md);
+    padding: 20px 26px; box-shadow: var(--shadow-md);
+    display: flex; align-items: center; gap: 16px;
+    max-width: 260px;
+  }
+  .sio-icon {
+    width: 52px; height: 52px; flex-shrink: 0;
+    background: var(--green-pale); border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: var(--green-leaf);
+  }
+  .sio-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 800; color: var(--green-dark); line-height: 1;
+  }
+  .sio-num span { color: var(--gold); }
+  .sio-lbl { font-size: .72rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+  .story-img-badge {
+    position: absolute; top: 24px; right: -18px;
+    background: var(--green-dark); color: #fff;
+    padding: 18px 22px; border-radius: var(--radius-md);
+    text-align: center; box-shadow: var(--shadow-lg);
+  }
+  .story-img-badge .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 800; color: var(--gold-light); line-height: 1;
+  }
+  .story-img-badge .lbl { font-size: .72rem; color: rgba(255,255,255,.6); margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; }
+  @media (max-width: 991.98px) {
+    .story-img-overlay { left: 0; }
+    .story-img-badge { right: 0; top: 16px; }
+    .story-img { height: 420px; }
+  }
+  @media (max-width: 767.98px) {
+    .story-img-overlay { position: static; margin-top: 20px; max-width: 100%; }
+    .story-img-badge { display: none; }
+  }
+
+  /* Stats Bar for About */
+  .about-stats-bar { background: var(--green-dark); padding: 60px 0; }
+  .about-stat-item {
+    text-align: center; padding: 14px 20px;
+    border-right: 1px solid rgba(255,255,255,.1);
+  }
+  .about-stat-item:last-child { border-right: none; }
+</style>
+</head>
+<body>
+
+<!-- ====== FLOATING WHATSAPP ====== -->
+<div class="floating-wa">
+  <span class="floating-wa-tip">Chat on WhatsApp</span>
+  <a href="https://wa.me/919876543210?text=Hello%20Vetiver%20Agro%20Farm%2C%20I%20would%20like%20to%20know%20more%20about%20your%20farm%20and%20products."
+     class="floating-wa-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+<!-- ====== BACK TO TOP ====== -->
+<a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <i class="bi bi-arrow-up"></i>
+</a>
+
+<!-- ====== TOPBAR ====== -->
+<div class="v-topbar d-none d-lg-block">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-9">
+        <div class="d-flex align-items-center flex-wrap" style="gap: 24px;">
+          <span class="v-topbar-company" style="display: inline-flex; align-items: center; gap: 8px; margin-right: 0;"><i class="fas fa-building" style="color: #74C69D;"></i> Mahima Global Entrepreneurs (OPC) Private Limited</span>
+          <a href="tel:+919876543210" style="margin-right: 0;"><i class="fas fa-phone-alt"></i> +91 98765 43210</a>
+          <a href="mailto:info@vetiveragrofarm.com" style="margin-right: 0;"><i class="fas fa-envelope"></i> info@vetiveragrofarm.com</a>
+          <span class="v-topbar-shipping" style="margin-right: 0;"><i class="fas fa-shipping-fast"></i> Worldwide Shipping</span>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="d-flex align-items-center justify-content-end">
+          <div class="v-topbar-social">
+            <span>Follow Us:</span>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="v-navbar navbar navbar-expand-lg" id="mainNavbar">
+  <div class="container">
+    <a href="index.html" class="v-brand" aria-label="Vetiver Agro Farm Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="v-brand-logo-svg">
+        <path d="M50 82 C52 75, 48 35, 12 15 C30 35, 46 65, 48 80 Z" fill="#2D6A4F"/>
+        <path d="M50 82 C53 72, 53 25, 30 5 C42 22, 49 55, 49 80 Z" fill="#40916C"/>
+        <path d="M51 82 C50 72, 47 25, 70 5 C58 22, 51 55, 51 80 Z" fill="#40916C"/>
+        <path d="M52 82 C50 75, 52 35, 88 15 C70 35, 54 65, 52 80 Z" fill="#1B4332"/>
+        <path d="M50 82 C50 70, 50 15, 50 0 C51 15, 51 70, 50 82 Z" fill="#74C69D"/>
+        <path d="M50 82 Q42 90, 36 98 M50 82 Q49 92, 46 100 M50 82 Q51 92, 54 100 M50 82 Q58 90, 64 98" stroke="#1B4332" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="v-brand-text">
+        <span class="v-brand-title">VERTIVER</span>
+        <span class="v-brand-subtitle">FARM</span>
+        <span class="v-brand-tagline">IN AGRO FARM</span>
+      </div>
+    </a>
+    
+    <div class="d-flex align-items-center">
+      <!-- Sticky Action Buttons for Mobile Header -->
+      <div class="mobile-nav-actions d-flex d-lg-none">
+        <a href="tel:+919876543210" class="mobile-nav-btn phone" aria-label="Call Us"><i class="fas fa-phone-alt"></i></a>
+        <a href="https://wa.me/919876543210" class="mobile-nav-btn whatsapp" target="_blank" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      
+      <!-- Hamburger Menu Toggler -->
+      <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <!-- Close button inside mobile menu collapse -->
+      <button class="mobile-menu-close d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="navbar-nav mx-auto">
+        <a href="index.html"    class="nav-item nav-link v-nav-link">Home</a>
+        <a href="about.html"    class="nav-item nav-link v-nav-link active">About Us</a>
+        <a href="product.html"  class="nav-item nav-link v-nav-link">Products</a>
+        <a href="service.html"  class="nav-item nav-link v-nav-link">Applications</a>
+        <a href="gallery.html"  class="nav-item nav-link v-nav-link">Gallery</a>
+        <a href="blog.html"     class="nav-item nav-link v-nav-link">Blog</a>
+        <a href="contact.html"  class="nav-item nav-link v-nav-link">Contact Us</a>
+      </div>
+      <div class="v-nav-cta d-none d-lg-flex">
+        <a href="contact.html#inquiry" class="v-btn-quote" id="navbar-quote-btn">Get Quote</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ====== PAGE HERO ====== -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="section-badge d-inline-flex" style="background:rgba(255,255,255,.12);color:#fff;margin-bottom:16px;">
+        <i class="fas fa-leaf"></i> Our Story
+      </div>
+      <h1>About <span style="color:var(--gold-light);">Vetiver Agro Farm</span></h1>
+      <p>Dedicated to Natural Purity &amp; Sustainable Farming Since 2025</p>
+      <nav class="breadcrumb-v" aria-label="Breadcrumb">
+        <a href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+        <span class="sep"><i class="fas fa-chevron-right" style="font-size:10px;"></i></span>
+        <span class="cur">About Vetiver</span>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- ====== OUR STORY SECTION ====== -->
+<section class="about-section" id="our-story" style="background:var(--cream);">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      <!-- Left: Image with overlays -->
+      <div class="col-lg-5 animate-on-scroll">
+        <div class="story-img-wrap">
+          <img src="img/vetiver_agriculture.jpg" alt="Vetiver Agro Farm – Sustainable Farming Fields" class="story-img">
+          <!-- Year Badge top right -->
+          <div class="story-img-badge">
+            <div class="num">1+</div>
+            <div class="lbl">Year of<br>Excellence</div>
+          </div>
+          <!-- Bottom left card -->
+          <div class="story-img-overlay">
+            <div class="sio-icon"><i class="fas fa-globe-asia"></i></div>
+            <div>
+              <div class="sio-num">40<span>+</span></div>
+              <div class="sio-lbl">Countries Served</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Story Content -->
+      <div class="col-lg-7 animate-on-scroll d2">
+        <div class="section-badge"><i class="fas fa-seedling"></i> Our Story</div>
+        <h2 class="section-title">Rooted in <span>Nature</span>,<br>Grown with Purpose</h2>
+        <p class="section-subtitle mb-4">
+          Vetiver Agro Farm was incorporated on January 10, 2025 — with a vision to harness the extraordinary power of vetiver grass and share it with the world. What started as a focused endeavor in the lush agricultural belt of India has grown into one of the country's most respected vetiver enterprises, exporting to over 40 countries across 5 continents.
+        </p>
+        <p style="font-size:.93rem;color:var(--text-muted);line-height:1.85;margin-bottom:30px;">
+          Founded and directed by entrepreneur <strong style="color:var(--green-dark);">Mr. Sunil Kumar Pynam</strong>, Mahima Global Entrepreneurs (OPC) Private Limited was officially incorporated on <strong style="color:var(--green-dark);">January 10, 2025</strong>, launching our high-tech vetiver agricultural operations.
+          <br><br>
+          Today, under the leadership of Mr. Sunil Kumar Pynam, our farm spans over <strong style="color:var(--green-dark);">250+ acres</strong> of sustainably managed land, employing local farming communities and following strict chemical-free organic practices. Our products reach perfume houses in France, wellness brands in Japan, agricultural agencies in Africa, and Ayurvedic companies across India — proof that nature's best knows no borders.
+        </p>
+
+        <!-- Timeline -->
+        <div class="story-timeline-line">
+          <div class="timeline-item">
+            <div class="tl-dot"><i class="fas fa-flag"></i></div>
+            <div>
+              <div class="tl-year">2025</div>
+              <div class="tl-event">Farm Founded &amp; Incorporated</div>
+              <div class="tl-desc">Mahima Global Entrepreneurs (OPC) Private Limited was incorporated on January 10, 2025, starting with 10 acres and a passionate vision to bring pure vetiver to global markets.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"><i class="fas fa-certificate"></i></div>
+            <div>
+              <div class="tl-year">2025</div>
+              <div class="tl-event">Organic Certification &amp; Quality</div>
+              <div class="tl-desc">Received national organic certification, validating our sustainable and chemical-free farming methods.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"><i class="fas fa-globe"></i></div>
+            <div>
+              <div class="tl-year">2025</div>
+              <div class="tl-event">Global Export Launched</div>
+              <div class="tl-desc">Began exporting premium vetiver products to countries like France, USA, UAE, and Australia.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"><i class="fas fa-star"></i></div>
+            <div>
+              <div class="tl-year">2026</div>
+              <div class="tl-event">250+ Acres, 40+ Countries</div>
+              <div class="tl-desc">Now serving 500+ clients globally — still family-owned, still nature-first.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====== STATS BAR ====== -->
+<div class="about-stats-bar animate-on-scroll">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-6 col-md-3">
+        <div class="about-stat-item">
+          <i class="fas fa-calendar-check stat-icon"></i>
+          <span class="stat-num"><span data-target="1" data-suffix="+"></span></span>
+          <span class="stat-lbl">Year in Business</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="about-stat-item">
+          <i class="fas fa-globe stat-icon"></i>
+          <span class="stat-num"><span data-target="40" data-suffix="+"></span></span>
+          <span class="stat-lbl">Countries Exported</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="about-stat-item">
+          <i class="fas fa-smile-beam stat-icon"></i>
+          <span class="stat-num"><span data-target="500" data-suffix="+"></span></span>
+          <span class="stat-lbl">Happy Clients</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="about-stat-item">
+          <i class="fas fa-seedling stat-icon"></i>
+          <span class="stat-num"><span data-target="250" data-suffix="+"></span></span>
+          <span class="stat-lbl">Acres of Farm Land</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== VISION & MISSION SECTION ====== -->
+<section class="vision-mission-section" id="vision-mission">
+  <div class="container">
+    <div class="text-center mb-5 animate-on-scroll">
+      <div class="section-badge" style="background:rgba(255,255,255,.12);color:var(--green-light);">
+        <i class="fas fa-compass"></i> Our Purpose
+      </div>
+      <h2 class="section-title" style="color:#fff;">Vision &amp; <span>Mission</span></h2>
+      <p class="section-subtitle mx-auto" style="color:rgba(255,255,255,.65);">
+        Every decision we make is guided by a clear vision and an unwavering mission — rooted in nature, powered by purpose.
+      </p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <!-- Vision Card -->
+      <div class="col-lg-5 col-md-6 animate-on-scroll d2">
+        <div class="vm-card vision">
+          <div class="vm-icon-wrap">
+            <i class="fas fa-eye"></i>
+          </div>
+          <span class="vm-label">Our Vision</span>
+          <h3 class="vm-title">The World's Most <span>Trusted</span> Vetiver Source</h3>
+          <p class="vm-text">
+            To be the world's most trusted source of premium natural vetiver products — a name synonymous with purity, sustainability, and excellence in every global market we serve. We envision a world where natural wellness and eco-conscious farming are the standard, not the exception.
+          </p>
+        </div>
+      </div>
+      <!-- Mission Card -->
+      <div class="col-lg-5 col-md-6 animate-on-scroll d3">
+        <div class="vm-card mission">
+          <div class="vm-icon-wrap">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <span class="vm-label">Our Mission</span>
+          <h3 class="vm-title">Pure Vetiver. <span style="color:var(--green-light);">Pure Promise.</span></h3>
+          <p class="vm-text">
+            Delivering 100% pure vetiver to global markets through sustainable farming and ethical practices. We are committed to producing the highest-quality vetiver products while protecting the environment, empowering local farming communities, and building long-term trust with every client worldwide.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== OUR VALUES SECTION ====== -->
+<section class="values-section" id="values">
+  <div class="container">
+    <div class="text-center mb-5 animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-heart"></i> What We Stand For</div>
+      <h2 class="section-title">Our Core <span>Values</span></h2>
+      <p class="section-subtitle mx-auto">
+        These four pillars define every harvest we reap, every product we craft, and every relationship we nurture.
+      </p>
+    </div>
+    <div class="row g-4">
+      <!-- Value 1 -->
+      <div class="col-md-6 col-lg-3 animate-on-scroll d1">
+        <div class="value-card">
+          <span class="value-number">01</span>
+          <div class="value-icon-wrap">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h4 class="value-title">Natural Purity</h4>
+          <p class="value-desc">
+            Every vetiver product we offer is 100% free from synthetic chemicals, preservatives, and artificial additives. Nature's purity is our non-negotiable promise.
+          </p>
+        </div>
+      </div>
+      <!-- Value 2 -->
+      <div class="col-md-6 col-lg-3 animate-on-scroll d2">
+        <div class="value-card">
+          <span class="value-number">02</span>
+          <div class="value-icon-wrap">
+            <i class="fas fa-recycle"></i>
+          </div>
+          <h4 class="value-title">Sustainability</h4>
+          <p class="value-desc">
+            We farm in harmony with nature — conserving water, building soil health, protecting biodiversity, and ensuring our land thrives for future generations.
+          </p>
+        </div>
+      </div>
+      <!-- Value 3 -->
+      <div class="col-md-6 col-lg-3 animate-on-scroll d3">
+        <div class="value-card">
+          <span class="value-number">03</span>
+          <div class="value-icon-wrap">
+            <i class="fas fa-globe-asia"></i>
+          </div>
+          <h4 class="value-title">Global Quality</h4>
+          <p class="value-desc">
+            Our products meet and exceed international standards — ISO certified, organically verified, with full export documentation for 40+ countries worldwide.
+          </p>
+        </div>
+      </div>
+      <!-- Value 4 -->
+      <div class="col-md-6 col-lg-3 animate-on-scroll d4">
+        <div class="value-card">
+          <span class="value-number">04</span>
+          <div class="value-icon-wrap">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h4 class="value-title">Customer Trust</h4>
+          <p class="value-desc">
+            We build relationships, not just transactions. Transparent pricing, consistent quality, and responsive support make us the partner clients return to for years.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== MANUFACTURING PROCESS SECTION ====== -->
+<section class="process-section" id="process">
+  <div class="container">
+    <div class="text-center mb-5 animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-cogs"></i> From Farm to You</div>
+      <h2 class="section-title">Our <span>Manufacturing</span> Process</h2>
+      <p class="section-subtitle mx-auto">
+        From the seed in the soil to the product in your hands — every step of our process is guided by quality, care, and respect for nature.
+      </p>
+    </div>
+    <div class="process-grid animate-on-scroll d1">
+
+      <!-- Step 1 -->
+      <div class="process-card" style="position:relative;">
+        <span class="process-num">01</span>
+        <div class="process-icon">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <div class="process-title">Sustainable Cultivation</div>
+        <p class="process-desc">
+          We plant certified vetiver slips in carefully prepared, chemical-free soil. Using rainwater harvesting and natural composting, we nurture the plants to full maturity — a process that takes 12–18 months for premium quality.
+        </p>
+        <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="process-card" style="position:relative;">
+        <span class="process-num">02</span>
+        <div class="process-icon">
+          <i class="fas fa-hand-holding-seedling"></i>
+        </div>
+        <div class="process-title">Careful Harvesting</div>
+        <p class="process-desc">
+          Our trained farmers hand-harvest vetiver roots at peak maturity, typically during the cool months for maximum aromatic potency. Roots are carefully uprooted to preserve their natural structure and essential oil content.
+        </p>
+        <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="process-card" style="position:relative;">
+        <span class="process-num">03</span>
+        <div class="process-icon">
+          <i class="fas fa-sun"></i>
+        </div>
+        <div class="process-title">Natural Processing</div>
+        <p class="process-desc">
+          Harvested roots are cleaned with pure water and shade-dried naturally — no artificial heat or chemical treatments. This traditional method preserves the full aromatic profile and therapeutic compounds unique to vetiver.
+        </p>
+        <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="process-card" style="position:relative;">
+        <span class="process-num">04</span>
+        <div class="process-icon">
+          <i class="fas fa-microscope"></i>
+        </div>
+        <div class="process-title">Quality Testing</div>
+        <p class="process-desc">
+          Every batch undergoes rigorous quality testing — moisture content analysis, aromatic compound verification, microbial testing, and essential oil yield measurement — ensuring only the finest products proceed to packaging.
+        </p>
+        <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="process-card" style="position:relative;">
+        <span class="process-num">05</span>
+        <div class="process-icon">
+          <i class="fas fa-box-open"></i>
+        </div>
+        <div class="process-title">Export Packaging</div>
+        <p class="process-desc">
+          Products are packed in eco-friendly, moisture-resistant export-grade packaging. Each consignment includes complete documentation — phytosanitary certificates, COA, MSDS, and organic certification copies.
+        </p>
+        <div class="process-arrow"><i class="fas fa-arrow-right"></i></div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="process-card">
+        <span class="process-num">06</span>
+        <div class="process-icon">
+          <i class="fas fa-shipping-fast"></i>
+        </div>
+        <div class="process-title">Global Delivery</div>
+        <p class="process-desc">
+          We handle complete logistics for both domestic and international shipments — sea freight, air cargo, and courier — with real-time tracking and dedicated account managers ensuring your order arrives safely and on time.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====== CERTIFICATIONS SECTION ====== -->
+<section class="cert-section" id="certifications">
+  <div class="container">
+    <div class="text-center mb-5 animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-award"></i> Verified &amp; Trusted</div>
+      <h2 class="section-title">Our <span>Certifications</span></h2>
+      <p class="section-subtitle mx-auto">
+        Our certifications are not just credentials — they are the proof of our commitment to quality, safety, and global compliance.
+      </p>
+    </div>
+    <div class="row g-4 justify-content-center">
+
+      <!-- Cert 1: Organic -->
+      <div class="col-md-6 col-lg-3 animate-on-scroll d1">
+        <div class="cert-card">
+          <div class="cert-verified-ribbon">Verified</div>
+          <div class="cert-badge-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <div class="cert-name">Organic Certified</div>
+          <p class="cert-body">
+            Nationally and internationally recognized organic certification confirming our products are grown without synthetic pesticides, herbicides, or chemical fertilizers.
+          </p>
+          <span class="cert-tag">NPOP &amp; NOP Certified</span>
+        </div>
+      </div>
+
+      <!-- Cert 2: ISO -->
+      <div class="col-md-6 col-lg-3 animate-on-scroll d2">
+        <div class="cert-card">
+          <div class="cert-verified-ribbon">Verified</div>
+          <div class="cert-badge-icon">
+            <i class="fas fa-medal"></i>
+          </div>
+          <div class="cert-name">ISO 9001 Quality</div>
+          <p class="cert-body">
+            ISO 9001:2015 certified quality management system ensuring consistent product quality, traceability, and continuous improvement across all manufacturing operations.
+          </p>
+          <span class="cert-tag">ISO 9001:2015</span>
+        </div>
+      </div>
+
+      <!-- Cert 3: Export License -->
+      <div class="col-md-6 col-lg-3 animate-on-scroll d3">
+        <div class="cert-card">
+          <div class="cert-verified-ribbon">Verified</div>
+          <div class="cert-badge-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="cert-name">Export License</div>
+          <p class="cert-body">
+            Government-registered exporter with all necessary licenses, IEC code, and APEDA registration for lawful export of agricultural and herbal products to global markets.
+          </p>
+          <span class="cert-tag">APEDA Registered</span>
+        </div>
+      </div>
+
+      <!-- Cert 4: Phytosanitary -->
+      <div class="col-md-6 col-lg-3 animate-on-scroll d4">
+        <div class="cert-card">
+          <div class="cert-verified-ribbon">Verified</div>
+          <div class="cert-badge-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="cert-name">Phytosanitary Cert.</div>
+          <p class="cert-body">
+            Every export shipment is accompanied by official phytosanitary certificates issued by the Plant Protection Authority, ensuring our products meet all importing country requirements.
+          </p>
+          <span class="cert-tag">PPA Issued</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====== WHY CHOOSE US SECTION ====== -->
+<section class="why-about-section" id="why-choose-us">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <!-- Left: Image -->
+      <div class="col-lg-5 animate-on-scroll">
+        <div style="position:relative;">
+          <img src="img/vetiver_roots.jpg" alt="Premium Quality Vetiver Roots from Vetiver Agro Farm"
+               style="width:100%;height:480px;object-fit:cover;border-radius:var(--radius-lg);box-shadow:0 20px 60px rgba(0,0,0,.35);">
+          <div style="position:absolute;top:24px;right:-16px;background:var(--gold);color:#fff;padding:16px 20px;border-radius:var(--radius-md);text-align:center;box-shadow:var(--shadow-gold);">
+            <i class="fas fa-award" style="font-size:1.8rem;margin-bottom:4px;display:block;"></i>
+            <span style="font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Certified<br>Organic</span>
+          </div>
+          <div style="position:absolute;bottom:24px;left:-16px;background:#fff;border-radius:var(--radius-md);padding:16px 22px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:14px;">
+            <div style="width:46px;height:46px;background:var(--green-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--green-leaf);flex-shrink:0;">
+              <i class="fas fa-star"></i>
+            </div>
+            <div>
+              <div style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--green-dark);line-height:1;">500+</div>
+              <div style="font-size:.72rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;">Happy Clients</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Benefits -->
+      <div class="col-lg-7 animate-on-scroll d2">
+        <div class="section-badge" style="background:rgba(116,198,157,.15);color:var(--green-light);">
+          <i class="fas fa-star"></i> Why Choose Us
+        </div>
+        <h2 class="section-title" style="color:#fff;">Why <span>Vetiver Agro Farm</span><br>is Your Best Choice</h2>
+        <p style="color:rgba(255,255,255,.65);font-size:.93rem;line-height:1.8;margin-bottom:32px;">
+          In a market full of intermediaries and inconsistent suppliers, Vetiver Agro Farm stands apart as a direct, transparent, and quality-first source for all your vetiver needs.
+        </p>
+        <div class="why-about-grid">
+
+          <div class="why-benefit-card">
+            <div class="why-benefit-icon"><i class="fas fa-seedling"></i></div>
+            <div>
+              <div class="why-benefit-title">100% Organic &amp; Natural</div>
+              <p class="why-benefit-text">Grown without chemicals, pesticides, or synthetic inputs. Pure as nature intended — always.</p>
+            </div>
+          </div>
+
+          <div class="why-benefit-card">
+            <div class="why-benefit-icon"><i class="fas fa-handshake"></i></div>
+            <div>
+              <div class="why-benefit-title">Direct Farm-to-Client</div>
+              <p class="why-benefit-text">No middlemen. Buy directly from our farm for the best quality, pricing, and freshness.</p>
+            </div>
+          </div>
+
+          <div class="why-benefit-card">
+            <div class="why-benefit-icon"><i class="fas fa-globe-asia"></i></div>
+            <div>
+              <div class="why-benefit-title">Global Export Expertise</div>
+              <p class="why-benefit-text">Full documentation, phytosanitary certificates, and compliance for 40+ countries handled seamlessly.</p>
+            </div>
+          </div>
+
+          <div class="why-benefit-card">
+            <div class="why-benefit-icon"><i class="fas fa-boxes"></i></div>
+            <div>
+              <div class="why-benefit-title">Flexible Bulk Orders</div>
+              <p class="why-benefit-text">Small retail to large export shipments — custom packaging and private labeling available.</p>
+            </div>
+          </div>
+
+          <div class="why-benefit-card">
+            <div class="why-benefit-icon"><i class="fas fa-microscope"></i></div>
+            <div>
+              <div class="why-benefit-title">Rigorous Quality Testing</div>
+              <p class="why-benefit-text">Every batch is lab-tested for purity, aroma profile, moisture content, and microbial safety.</p>
+            </div>
+          </div>
+
+          <div class="why-benefit-card">
+            <div class="why-benefit-icon"><i class="fas fa-headset"></i></div>
+            <div>
+              <div class="why-benefit-title">Dedicated Support</div>
+              <p class="why-benefit-text">Personal account managers, WhatsApp support, and post-delivery follow-ups for every client.</p>
+            </div>
+          </div>
+
+          <div class="why-benefit-card">
+            <div class="why-benefit-icon"><i class="fas fa-shipping-fast"></i></div>
+            <div>
+              <div class="why-benefit-title">Reliable On-Time Delivery</div>
+              <p class="why-benefit-text">Proven logistics network for domestic and international shipments with real-time tracking.</p>
+            </div>
+          </div>
+
+          <div class="why-benefit-card">
+            <div class="why-benefit-icon"><i class="fas fa-recycle"></i></div>
+            <div>
+              <div class="why-benefit-title">Eco-Friendly Packaging</div>
+              <p class="why-benefit-text">Biodegradable, recyclable export packaging that reflects our commitment to the planet.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="contact.html#inquiry" class="btn-v-gold">
+            <i class="fas fa-paper-plane"></i> Get a Free Quote
+          </a>
+          <a href="product.html" class="btn-v-outline" style="color:var(--green-light);border-color:var(--green-light);">
+            <i class="fas fa-leaf"></i> Explore Products
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CTA BANNER ====== -->
+<section class="about-cta" id="about-cta">
+  <div class="container">
+    <div class="cta-content text-center" style="position:relative;z-index:1;">
+      <div class="section-badge" style="background:rgba(255,255,255,.12);color:#fff;margin-bottom:18px;">
+        <i class="fas fa-rocket"></i> Begin Your Journey
+      </div>
+      <h2 class="section-title" style="color:#fff;font-size:clamp(1.9rem,4.5vw,3.2rem);margin-bottom:16px;">
+        Start Your <span>Vetiver Journey</span> Today
+      </h2>
+      <p style="color:rgba(255,255,255,.72);max-width:620px;margin:0 auto 40px;font-size:1.05rem;line-height:1.85;">
+        Join 500+ happy clients across 40+ countries who trust Vetiver Agro Farm for pure, premium, and sustainable vetiver products. Get in touch now for a free consultation and quote.
+      </p>
+
+      <!-- Trust badges row -->
+      <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+        <div style="background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);padding:10px 20px;border-radius:100px;color:#fff;font-size:.85rem;font-weight:500;display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-leaf" style="color:var(--green-light);"></i> 100% Organic
+        </div>
+        <div style="background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);padding:10px 20px;border-radius:100px;color:#fff;font-size:.85rem;font-weight:500;display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-shipping-fast" style="color:var(--gold-light);"></i> Fast Global Shipping
+        </div>
+        <div style="background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);padding:10px 20px;border-radius:100px;color:#fff;font-size:.85rem;font-weight:500;display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-certificate" style="color:var(--gold-light);"></i> ISO Certified Quality
+        </div>
+        <div style="background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);padding:10px 20px;border-radius:100px;color:#fff;font-size:.85rem;font-weight:500;display:flex;align-items:center;gap:8px;">
+          <i class="fas fa-headset" style="color:var(--green-light);"></i> 24/7 Support
+        </div>
+      </div>
+
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="contact.html#inquiry" class="btn-v-gold" style="padding:16px 40px;font-size:1rem;">
+          <i class="fas fa-paper-plane"></i> Get Free Quote
+        </a>
+        <a href="https://wa.me/919876543210?text=Hello%20Vetiver%20Agro%20Farm%2C%20I%20am%20interested%20in%20your%20vetiver%20products.%20Please%20share%20more%20details."
+           class="btn-v-whatsapp" target="_blank" style="padding:16px 36px;font-size:1rem;">
+          <i class="fab fa-whatsapp"></i> WhatsApp Us Now
+        </a>
+        <a href="product.html" class="hero-btn-outline" style="padding:16px 34px;font-size:1rem;">
+          <i class="fas fa-leaf"></i> View Our Products
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="v-footer" id="footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand-name">Vetiver Agro Farm</div>
+        <span class="footer-brand-tag">Natural • Pure • Sustainable</span>
+        <p class="footer-desc">Vetiver Agro Farm – Rooted in Nature. Premium quality vetiver products sourced directly from sustainable farms. Mahima Global Entrepreneurs (OPC) Private Limited was incorporated on January 10, 2025.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://wa.me/919876543210" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Vetiver</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Products</a></li>
+          <li><a href="service.html"><i class="fas fa-chevron-right"></i> Applications</a></li>
+          <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+          <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <h4 class="footer-heading">Products</h4>
+        <ul class="footer-links">
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Vetiver Roots</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Essential Oil</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Herbal Powder</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Mats &amp; Fans</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Cooling Products</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Bulk Orders</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <h4 class="footer-heading">Get In Touch</h4>
+        <div class="footer-contact-row"><i class="fas fa-map-marker-alt"></i><span>Mahima Global Entrepreneurs (OPC) Pvt Ltd, Sadha Vari Palem, Navalakh Gardens, Nellore, Andhra Pradesh, 524002</span></div>
+        <div class="footer-contact-row"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
+        <div class="footer-contact-row"><i class="fas fa-envelope"></i><span>info@vetiveragrofarm.com</span></div>
+        <div class="footer-contact-row"><i class="fab fa-whatsapp"></i><span>+91 98765 43210 (WhatsApp)</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p class="mb-0">© 2026 <a href="index.html">Mahima Global Entrepreneurs (OPC) Private Limited</a>. All Rights Reserved. | Vetiver Agro Farm | Built by IIITIHAS UNIVERSAL PVT LTD</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ====== JS LIBS ====== -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="js/vetiver.js"></script>
+
+<script>
+  // ===== ANIMATE ON SCROLL =====
+  (function() {
+    const els = document.querySelectorAll('.animate-on-scroll');
+    if (!els.length) return;
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function(el) { observer.observe(el); });
+  })();
+
+  // ===== COUNTER ANIMATION =====
+  (function() {
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-target'), 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 1800;
+      const start = performance.now();
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target) + (progress >= 1 ? suffix : '');
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+    const counterObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.about-stats-bar, .stats-bar').forEach(function(el) {
+      counterObserver.observe(el);
+    });
+  })();
+
+  // ===== NAVBAR SCROLL EFFECT =====
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('mainNavbar');
+    if (window.scrollY > 60) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+    // Back to top
+    const btt = document.getElementById('back-to-top');
+    if (btt) {
+      if (window.scrollY > 400) btt.classList.add('show');
+      else btt.classList.remove('show');
+    }
+  });
+
+  // ===== BACK TO TOP =====
+  var btt = document.getElementById('back-to-top');
+  if (btt) {
+    btt.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+</script>
+
+</body>
+</html>

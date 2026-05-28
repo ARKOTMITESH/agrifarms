@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore Vetiver Agro Farm's premium range of vetiver products — roots, essential oil, herbal powder, handicrafts, and live agriculture slips. Sustainably harvested, globally certified, naturally pure." />
+  <meta name="keywords" content="vetiver roots, vetiver essential oil, vetiver powder, vetiver mats, vetiver handicrafts, agriculture slips, vetiver products, buy vetiver" />
+  <title>Vetiver Products — Vetiver Agro Farm</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="lib/owlcarousel/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/vetiver.css" />
+
+  <style>
+    /* ===== PRODUCT PAGE EXTRAS ===== */
+
+    /* Filter Section */
+    .products-section { background: var(--sand); }
+    .filter-tabs {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 44px; justify-content: center;
+    }
+    .filter-btn {
+      padding: 10px 24px; border-radius: 100px; font-size: .85rem;
+      font-weight: 600; border: 2px solid var(--green-pale);
+      background: #fff; color: var(--text-muted); cursor: pointer;
+      transition: all .25s ease;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--green-leaf); color: #fff; border-color: var(--green-leaf);
+      box-shadow: 0 4px 14px rgba(64,145,108,.35);
+    }
+
+    /* Product Card */
+    .product-card {
+      background: #fff; border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-sm); transition: var(--transition); height: 100%;
+      display: flex; flex-direction: column;
+    }
+    .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .product-img-wrap { position: relative; overflow: hidden; height: 240px; }
+    .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .product-card:hover .product-img-wrap img { transform: scale(1.09); }
+    .product-cat-tag {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--green-dark); color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
+    }
+    .product-overlay {
+      position: absolute; bottom: -80px; left: 0; right: 0;
+      display: flex; gap: 8px; padding: 20px 14px 14px;
+      justify-content: center;
+      background: linear-gradient(0deg, rgba(27,67,50,.92) 0%, transparent 100%);
+      transition: var(--transition);
+    }
+    .product-card:hover .product-overlay { bottom: 0; }
+    .product-body { padding: 22px 22px 24px; flex: 1; display: flex; flex-direction: column; }
+    .product-name { font-size: 1.13rem; font-weight: 700; color: var(--green-dark); margin-bottom: 8px; }
+    .product-desc { font-size: .875rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; flex: 1; }
+    .product-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .product-tag {
+      background: var(--green-pale); color: var(--green-leaf);
+      font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+    }
+    .product-actions { display: flex; gap: 8px; margin-top: auto; }
+    .btn-inq {
+      flex: 1; padding: 10px 10px; border-radius: 8px; font-size: .8rem;
+      font-weight: 600; text-align: center; cursor: pointer; border: none;
+      transition: all .22s ease; text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-inq.green { background: var(--green-leaf); color: #fff; }
+    .btn-inq.green:hover { background: var(--green-dark); color: #fff; }
+    .btn-inq.wa { background: #25D366; color: #fff; }
+    .btn-inq.wa:hover { background: #1ebe5d; color: #fff; }
+
+    /* Product item hide/show animation */
+    .product-item {
+      transition: opacity .35s ease, transform .35s ease;
+    }
+    .product-item.hidden {
+      display: none;
+    }
+
+    /* ===== BULK ORDER SECTION ===== */
+    .bulk-section {
+      background: linear-gradient(135deg, #0d2818 0%, var(--green-dark) 50%, #1a3d2b 100%);
+      position: relative; overflow: hidden; padding: 90px 0;
+    }
+    .bulk-section::before {
+      content: ''; position: absolute; top: -40%; right: -5%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(116,198,157,.09) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .bulk-section::after {
+      content: ''; position: absolute; bottom: -30%; left: -8%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(184,134,11,.07) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .bulk-content { position: relative; z-index: 1; }
+    .bulk-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.1); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.2); color: #fff;
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 7px 20px; border-radius: 100px;
+      margin-bottom: 18px;
+    }
+    .bulk-badge i { color: var(--gold-light); }
+    .bulk-title {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      color: #fff; font-weight: 800; margin-bottom: 14px;
+    }
+    .bulk-title span { color: var(--gold-light); }
+    .bulk-subtitle { color: rgba(255,255,255,.65); font-size: .97rem; line-height: 1.8; margin-bottom: 32px; }
+    .bulk-features { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 36px; }
+    .bulk-feat-item {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,.08); backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.88);
+      padding: 10px 18px; border-radius: 100px; font-size: .84rem; font-weight: 500;
+    }
+    .bulk-feat-item i { color: var(--green-light); }
+    .bulk-form-card {
+      background: rgba(255,255,255,.07); backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius-lg); padding: 40px;
+      position: relative; z-index: 1;
+    }
+    .bulk-form-title { font-size: 1.3rem; color: #fff; margin-bottom: 6px; }
+    .bulk-form-sub { color: rgba(255,255,255,.55); font-size: .85rem; margin-bottom: 26px; }
+    .bulk-form-inp {
+      width: 100%; padding: 12px 16px;
+      background: rgba(255,255,255,.08);
+      border: 1.5px solid rgba(255,255,255,.18);
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif; font-size: .88rem;
+      color: #fff; transition: all .22s ease; outline: none;
+      margin-bottom: 16px;
+    }
+    .bulk-form-inp:focus {
+      border-color: var(--green-light);
+      background: rgba(255,255,255,.13);
+      box-shadow: 0 0 0 3px rgba(116,198,157,.15);
+    }
+    .bulk-form-inp::placeholder { color: rgba(255,255,255,.38); }
+    textarea.bulk-form-inp { resize: vertical; min-height: 110px; }
+    select.bulk-form-inp { cursor: pointer; }
+    select.bulk-form-inp option { background: var(--green-dark); color: #fff; }
+    .bulk-form-lbl { font-size: .8rem; font-weight: 600; color: rgba(255,255,255,.65); margin-bottom: 6px; display: block; }
+
+    /* ===== WHY OUR PRODUCTS ===== */
+    .why-products-section { background: var(--cream); padding: 90px 0; }
+    .why-prod-card {
+      background: #fff; border-radius: var(--radius-lg);
+      padding: 34px 28px; text-align: center;
+      box-shadow: var(--shadow-sm); transition: var(--transition);
+      border: 2px solid transparent; height: 100%;
+    }
+    .why-prod-card:hover {
+      border-color: var(--green-leaf); transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .why-prod-icon {
+      width: 76px; height: 76px;
+      background: var(--green-pale); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; color: var(--green-leaf);
+      margin: 0 auto 20px; transition: var(--transition);
+    }
+    .why-prod-card:hover .why-prod-icon {
+      background: var(--green-dark); color: var(--green-light);
+    }
+    .why-prod-title {
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--green-dark); margin-bottom: 10px;
+      font-family: 'Inter', sans-serif;
+    }
+    .why-prod-desc {
+      font-size: .86rem; color: var(--text-muted);
+      line-height: 1.75; margin: 0;
+    }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      position: relative; overflow: hidden; padding: 80px 0;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -60%; right: -5%;
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(116,198,157,.14) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .cta-content { position: relative; z-index: 1; }
+
+    /* Responsive */
+    @media (max-width: 767.98px) {
+      .bulk-form-card { padding: 26px 20px; }
+      .filter-tabs { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== TOPBAR ==================== -->
+  <div class="v-topbar d-none d-lg-block">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-9">
+          <div class="d-flex align-items-center flex-wrap" style="gap: 24px;">
+            <span class="v-topbar-company" style="display: inline-flex; align-items: center; gap: 8px; margin-right: 0;"><i class="fas fa-building" style="color: #74C69D;"></i> Mahima Global Entrepreneurs (OPC) Private Limited</span>
+            <a href="tel:+919876543210" style="margin-right: 0;"><i class="fas fa-phone-alt"></i> +91 98765 43210</a>
+            <a href="mailto:info@vetiveragrofarm.com" style="margin-right: 0;"><i class="fas fa-envelope"></i> info@vetiveragrofarm.com</a>
+            <span class="v-topbar-shipping" style="margin-right: 0;"><i class="fas fa-shipping-fast"></i> Worldwide Shipping</span>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="d-flex align-items-center justify-content-end">
+            <div class="v-topbar-social">
+              <span>Follow Us:</span>
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="v-navbar navbar navbar-expand-lg" id="mainNavbar">
+    <div class="container">
+      <a href="index.html" class="v-brand" aria-label="Vetiver Agro Farm Home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="v-brand-logo-svg">
+          <path d="M50 82 C52 75, 48 35, 12 15 C30 35, 46 65, 48 80 Z" fill="#2D6A4F"/>
+          <path d="M50 82 C53 72, 53 25, 30 5 C42 22, 49 55, 49 80 Z" fill="#40916C"/>
+          <path d="M51 82 C50 72, 47 25, 70 5 C58 22, 51 55, 51 80 Z" fill="#40916C"/>
+          <path d="M52 82 C50 75, 52 35, 88 15 C70 35, 54 65, 52 80 Z" fill="#1B4332"/>
+          <path d="M50 82 C50 70, 50 15, 50 0 C51 15, 51 70, 50 82 Z" fill="#74C69D"/>
+          <path d="M50 82 Q42 90, 36 98 M50 82 Q49 92, 46 100 M50 82 Q51 92, 54 100 M50 82 Q58 90, 64 98" stroke="#1B4332" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="v-brand-text">
+          <span class="v-brand-title">VERTIVER</span>
+          <span class="v-brand-subtitle">FARM</span>
+          <span class="v-brand-tagline">IN AGRO FARM</span>
+        </div>
+      </a>
+      
+      <div class="d-flex align-items-center">
+        <!-- Sticky Action Buttons for Mobile Header -->
+        <div class="mobile-nav-actions d-flex d-lg-none">
+          <a href="tel:+919876543210" class="mobile-nav-btn phone" aria-label="Call Us"><i class="fas fa-phone-alt"></i></a>
+          <a href="https://wa.me/919876543210" class="mobile-nav-btn whatsapp" target="_blank" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        
+        <!-- Hamburger Menu Toggler -->
+        <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <!-- Close button inside mobile menu collapse -->
+        <button class="mobile-menu-close d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Close menu">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="navbar-nav mx-auto">
+          <a href="index.html"    class="nav-item nav-link v-nav-link">Home</a>
+          <a href="about.html"    class="nav-item nav-link v-nav-link">About Us</a>
+          <a href="product.html"  class="nav-item nav-link v-nav-link active">Products</a>
+          <a href="service.html"  class="nav-item nav-link v-nav-link">Applications</a>
+          <a href="gallery.html"  class="nav-item nav-link v-nav-link">Gallery</a>
+          <a href="blog.html"     class="nav-item nav-link v-nav-link">Blog</a>
+          <a href="contact.html"  class="nav-item nav-link v-nav-link">Contact Us</a>
+        </div>
+        <div class="v-nav-cta d-none d-lg-flex">
+          <a href="contact.html#inquiry" class="v-btn-quote" id="navbar-quote-btn">Get Quote</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== PAGE HERO ==================== -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-content">
+        <div class="section-badge" style="background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.22);">
+          <i class="fas fa-leaf"></i> Our Premium Collection
+        </div>
+        <h1>Our Premium <span style="color:var(--gold-light);">Vetiver Products</span></h1>
+        <p>Sustainably harvested, globally certified, naturally pure — straight from the heart of our farms to your hands.</p>
+        <nav class="breadcrumb-v" aria-label="breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="sep"><i class="fas fa-chevron-right" style="font-size:10px;"></i></span>
+          <span class="cur">Vetiver Products</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRODUCTS SECTION ==================== -->
+  <section class="products-section" id="products">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="text-center mb-5 animate-on-scroll">
+        <span class="section-badge"><i class="fas fa-seedling"></i> Explore Our Range</span>
+        <h2 class="section-title">Nature's Finest <span>Vetiver Products</span></h2>
+        <p class="section-subtitle mx-auto">From export-grade dried roots to steam-distilled essential oils, every product is a testament to purity, sustainability, and quality craftsmanship.</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs justify-content-center animate-on-scroll d1">
+        <button class="filter-btn active" data-filter="all">
+          <i class="fas fa-th me-1"></i> All Products
+        </button>
+        <button class="filter-btn" data-filter="roots">
+          <i class="fas fa-spa me-1"></i> Vetiver Roots
+        </button>
+        <button class="filter-btn" data-filter="oil">
+          <i class="fas fa-tint me-1"></i> Essential Oil
+        </button>
+        <button class="filter-btn" data-filter="powder">
+          <i class="fas fa-mortar-pestle me-1"></i> Herbal Products
+        </button>
+        <button class="filter-btn" data-filter="handicrafts">
+          <i class="fas fa-hands me-1"></i> Handicrafts
+        </button>
+        <button class="filter-btn" data-filter="agriculture">
+          <i class="fas fa-tractor me-1"></i> Agriculture
+        </button>
+        <button class="filter-btn" data-filter="wellness">
+          <i class="fas fa-heart me-1"></i> Wellness
+        </button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="row g-4 mobile-slider-row" id="productsGrid">
+
+        <!-- Card 1: Vetiver Roots -->
+        <div class="col-lg-4 col-md-6 product-item animate-on-scroll d1" data-category="roots">
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="img/vetiver_roots.jpg" alt="Premium Vetiver Roots" loading="lazy" />
+              <span class="product-cat-tag">Vetiver Roots</span>
+              <div class="product-overlay">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%27m%20interested%20in%20Premium%20Vetiver%20Roots.%20Please%20share%20details." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">Premium Dried Vetiver Roots</h3>
+              <p class="product-desc">Our signature export-quality dried vetiver roots (Chrysopogon zizanioides) are hand-harvested at peak potency, sun-dried to preserve their rich earthy aroma. Widely used in natural fragrance, air cooling systems, potpourri, sachets, and traditional Ayurvedic wellness — prized worldwide for their deep, smoky, grounding scent.</p>
+              <div class="product-tags">
+                <span class="product-tag"><i class="fas fa-check-circle me-1"></i> Export Quality</span>
+                <span class="product-tag"><i class="fas fa-leaf me-1"></i> Organic</span>
+                <span class="product-tag"><i class="fas fa-wind me-1"></i> Aromatic</span>
+                <span class="product-tag"><i class="fas fa-box me-1"></i> Bulk Available</span>
+              </div>
+              <div class="product-actions">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20inquire%20about%20Premium%20Vetiver%20Roots." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Vetiver Essential Oil -->
+        <div class="col-lg-4 col-md-6 product-item animate-on-scroll d2" data-category="oil">
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="img/vetiver_oil.jpg" alt="Vetiver Essential Oil" loading="lazy" />
+              <span class="product-cat-tag">Essential Oil</span>
+              <div class="product-overlay">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%27m%20interested%20in%20Vetiver%20Essential%20Oil.%20Please%20share%20details." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">Pure Vetiver Essential Oil</h3>
+              <p class="product-desc">Cold-process steam-distilled from organically grown vetiver roots, our essential oil carries the authentic, complex aroma profile valued in luxury perfumery, aromatherapy, and cosmetic formulations worldwide. Each batch undergoes rigorous GC-MS laboratory analysis ensuring 100% purity with zero synthetic additives or adulterants.</p>
+              <div class="product-tags">
+                <span class="product-tag"><i class="fas fa-flask me-1"></i> Therapeutic Grade</span>
+                <span class="product-tag"><i class="fas fa-fire me-1"></i> Steam Distilled</span>
+                <span class="product-tag"><i class="fas fa-microscope me-1"></i> Lab Tested</span>
+              </div>
+              <div class="product-actions">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20inquire%20about%20Pure%20Vetiver%20Essential%20Oil." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Vetiver Herbal Powder -->
+        <div class="col-lg-4 col-md-6 product-item animate-on-scroll d3" data-category="powder">
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="img/vetiver_wellness.jpg" alt="Vetiver Herbal Powder" loading="lazy" />
+              <span class="product-cat-tag">Herbal Products</span>
+              <div class="product-overlay">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%27m%20interested%20in%20Vetiver%20Herbal%20Powder.%20Please%20share%20details." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">Vetiver Herbal Powder</h3>
+              <p class="product-desc">Finely milled from select sun-dried vetiver roots, our herbal powder is a staple in Ayurvedic formulations, natural skincare, hair care, and wellness blends. Revered in traditional medicine for its cooling, detoxifying, and anti-inflammatory properties, it blends seamlessly into face packs, body scrubs, hair masks, and herbal decoctions.</p>
+              <div class="product-tags">
+                <span class="product-tag"><i class="fas fa-om me-1"></i> Ayurvedic</span>
+                <span class="product-tag"><i class="fas fa-leaf me-1"></i> Herbal</span>
+                <span class="product-tag"><i class="fas fa-seedling me-1"></i> 100% Natural</span>
+              </div>
+              <div class="product-actions">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20inquire%20about%20Vetiver%20Herbal%20Powder." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Vetiver Wellness Tea -->
+        <div class="col-lg-4 col-md-6 product-item animate-on-scroll d4" data-category="wellness">
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="img/vetiver_wellness.jpg" alt="Vetiver Wellness Tea" loading="lazy" />
+              <span class="product-cat-tag">Wellness</span>
+              <div class="product-overlay">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%27m%20interested%20in%20Vetiver%20Wellness%20Tea.%20Please%20share%20details." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">Organic Vetiver Wellness Tea</h3>
+              <p class="product-desc">A naturally caffeine-free herbal infusion crafted from organically cultivated vetiver roots. Known as "Khus Tea" in traditional practice, each sip delivers a subtly earthy, woody flavour with cooling and detoxifying benefits. Our wellness tea supports digestion, promotes restful sleep, and is a refreshing summer tonic beloved across Asia and the Middle East.</p>
+              <div class="product-tags">
+                <span class="product-tag"><i class="fas fa-leaf me-1"></i> Organic</span>
+                <span class="product-tag"><i class="fas fa-recycle me-1"></i> Detox</span>
+                <span class="product-tag"><i class="fas fa-heart me-1"></i> Wellness</span>
+              </div>
+              <div class="product-actions">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20inquire%20about%20Organic%20Vetiver%20Wellness%20Tea." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Vetiver Mats & Fans -->
+        <div class="col-lg-4 col-md-6 product-item animate-on-scroll d5" data-category="handicrafts">
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="img/vetiver_handicrafts.jpg" alt="Vetiver Mats and Fans" loading="lazy" />
+              <span class="product-cat-tag">Handicrafts</span>
+              <div class="product-overlay">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%27m%20interested%20in%20Vetiver%20Mats%20%26%20Fans.%20Please%20share%20details." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">Vetiver Mats &amp; Cooling Fans</h3>
+              <p class="product-desc">Handcrafted by skilled rural artisans, our woven vetiver mats (khus tatties) and decorative fans are traditional Indian cooling solutions reborn for the modern home. When moistened, they release a refreshing earthy fragrance that naturally lowers room temperature. Perfect for doorways, windows, air cooler pads, home décor, and eco-tourism gifting.</p>
+              <div class="product-tags">
+                <span class="product-tag"><i class="fas fa-hands me-1"></i> Handcrafted</span>
+                <span class="product-tag"><i class="fas fa-recycle me-1"></i> Eco-Friendly</span>
+                <span class="product-tag"><i class="fas fa-snowflake me-1"></i> Cooling</span>
+              </div>
+              <div class="product-actions">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20inquire%20about%20Vetiver%20Mats%20and%20Fans." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: Agriculture Vetiver Slips -->
+        <div class="col-lg-4 col-md-6 product-item animate-on-scroll d6" data-category="agriculture">
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="img/vetiver_agriculture.jpg" alt="Agriculture Vetiver Slips" loading="lazy" />
+              <span class="product-cat-tag">Agriculture</span>
+              <div class="product-overlay">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%27m%20interested%20in%20Agriculture%20Vetiver%20Slips.%20Please%20share%20details." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+            <div class="product-body">
+              <h3 class="product-name">Agriculture Vetiver Slips</h3>
+              <p class="product-desc">Certified live vetiver grass slips for the Vetiver System Technology (VST) — the world's most effective, low-cost solution for soil erosion control, slope stabilisation, water conservation, and land rehabilitation. Endorsed by the World Bank, our robust slips establish quickly and thrive in challenging soils, making them the preferred choice for government projects, farms, and eco-restoration programmes.</p>
+              <div class="product-tags">
+                <span class="product-tag"><i class="fas fa-mountain me-1"></i> Erosion Control</span>
+                <span class="product-tag"><i class="fas fa-globe me-1"></i> Conservation</span>
+                <span class="product-tag"><i class="fas fa-seedling me-1"></i> Live Plants</span>
+              </div>
+              <div class="product-actions">
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20inquire%20about%20Agriculture%20Vetiver%20Slips." class="btn-inq wa" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="contact.html#inquiry" class="btn-inq green">
+                  <i class="fas fa-tag"></i> Get Price
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /#productsGrid -->
+
+    </div>
+  </section>
+
+  <!-- ==================== BULK ORDER SECTION ==================== -->
+  <section class="bulk-section" id="bulk-order">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+
+        <!-- Left Content -->
+        <div class="col-lg-6 bulk-content animate-on-scroll">
+          <div class="bulk-badge">
+            <i class="fas fa-shipping-fast"></i> Wholesale &amp; Export
+          </div>
+          <h2 class="bulk-title">Place a <span>Bulk Order</span><br>or Request a Sample</h2>
+          <p class="bulk-subtitle">
+            We supply premium vetiver products in bulk quantities to perfumers, manufacturers, Ayurvedic brands, government agencies, and international importers. Custom packaging, private labelling, and phytosanitary certification available on request. Minimum order quantities start from just 50 kg.
+          </p>
+          <div class="bulk-features">
+            <div class="bulk-feat-item"><i class="fas fa-globe"></i> Global Export</div>
+            <div class="bulk-feat-item"><i class="fas fa-certificate"></i> Certified Quality</div>
+            <div class="bulk-feat-item"><i class="fas fa-box"></i> Custom Packaging</div>
+            <div class="bulk-feat-item"><i class="fas fa-tags"></i> Private Labelling</div>
+            <div class="bulk-feat-item"><i class="fas fa-flask"></i> Free Samples</div>
+            <div class="bulk-feat-item"><i class="fas fa-headset"></i> Dedicated Support</div>
+          </div>
+          <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20place%20a%20bulk%20order%20for%20Vetiver%20products.%20Please%20assist." class="btn-v-whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp for Bulk Inquiry
+          </a>
+        </div>
+
+        <!-- Right Form -->
+        <div class="col-lg-6 animate-on-scroll d2">
+          <div class="bulk-form-card">
+            <h3 class="bulk-form-title">Send Your Inquiry</h3>
+            <p class="bulk-form-sub">Fill in the form below and our team will respond within 24 hours.</p>
+            <form id="bulkOrderForm" novalidate>
+              <div class="row g-0">
+                <div class="col-sm-6 pe-sm-2">
+                  <label class="bulk-form-lbl" for="b_name">Your Name *</label>
+                  <input type="text" id="b_name" name="name" class="bulk-form-inp" placeholder="e.g. Ahmed Al-Rashid" required />
+                </div>
+                <div class="col-sm-6 ps-sm-2">
+                  <label class="bulk-form-lbl" for="b_company">Company / Organisation</label>
+                  <input type="text" id="b_company" name="company" class="bulk-form-inp" placeholder="e.g. Nature Corp Ltd." />
+                </div>
+              </div>
+              <label class="bulk-form-lbl" for="b_product">Product of Interest *</label>
+              <select id="b_product" name="product" class="bulk-form-inp" required>
+                <option value="" disabled selected>— Select a Product —</option>
+                <option value="roots">Premium Dried Vetiver Roots</option>
+                <option value="oil">Pure Vetiver Essential Oil</option>
+                <option value="powder">Vetiver Herbal Powder</option>
+                <option value="tea">Organic Vetiver Wellness Tea</option>
+                <option value="handicrafts">Vetiver Mats &amp; Cooling Fans</option>
+                <option value="slips">Agriculture Vetiver Slips</option>
+                <option value="multiple">Multiple Products / Mixed Order</option>
+              </select>
+              <div class="row g-0">
+                <div class="col-sm-6 pe-sm-2">
+                  <label class="bulk-form-lbl" for="b_qty">Quantity Required *</label>
+                  <input type="text" id="b_qty" name="quantity" class="bulk-form-inp" placeholder="e.g. 500 kg / 100 bottles" required />
+                </div>
+                <div class="col-sm-6 ps-sm-2">
+                  <label class="bulk-form-lbl" for="b_country">Country *</label>
+                  <input type="text" id="b_country" name="country" class="bulk-form-inp" placeholder="e.g. UAE, USA, UK" required />
+                </div>
+              </div>
+              <label class="bulk-form-lbl" for="b_message">Additional Requirements</label>
+              <textarea id="b_message" name="message" class="bulk-form-inp" placeholder="Packaging preference, certification needs, delivery timeline, sample request, etc."></textarea>
+              <div class="d-flex gap-3 flex-wrap">
+                <button type="submit" class="btn-v-primary flex-fill" style="justify-content:center;">
+                  <i class="fas fa-paper-plane"></i> Submit Inquiry
+                </button>
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20discuss%20a%20bulk%20order%20for%20vetiver%20products." class="btn-v-whatsapp flex-fill" style="justify-content:center;" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHY OUR PRODUCTS ==================== -->
+  <section class="why-products-section">
+    <div class="container">
+
+      <div class="text-center mb-5 animate-on-scroll">
+        <span class="section-badge"><i class="fas fa-award"></i> Why Choose Us</span>
+        <h2 class="section-title">Why Our Products <span>Stand Apart</span></h2>
+        <p class="section-subtitle mx-auto">Every product from Vetiver Agro Farm carries decades of agricultural expertise, rigorous quality protocols, and an unwavering commitment to sustainability.</p>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- Feature 1 -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d1">
+          <div class="why-prod-card">
+            <div class="why-prod-icon"><i class="fas fa-leaf"></i></div>
+            <h4 class="why-prod-title">100% Organically Grown</h4>
+            <p class="why-prod-desc">Our vetiver is cultivated without synthetic pesticides or chemical fertilisers on certified organic farms, ensuring every product is clean, safe, and truly natural from root to shelf.</p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d2">
+          <div class="why-prod-card">
+            <div class="why-prod-icon"><i class="fas fa-certificate"></i></div>
+            <h4 class="why-prod-title">Globally Certified Quality</h4>
+            <p class="why-prod-desc">We hold ISO 9001:2015, GMP, and Organic Certifications. Essential oils are GC-MS tested and ECOCERT compliant, meeting the strict standards of European, US, and Middle Eastern markets.</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d3">
+          <div class="why-prod-card">
+            <div class="why-prod-icon"><i class="fas fa-globe-asia"></i></div>
+            <h4 class="why-prod-title">Trusted Global Exporter</h4>
+            <p class="why-prod-desc">With our expert team's experience since incorporation on January 10, 2025, we serve clients across 30+ countries including UAE, USA, UK, Germany, France, and Singapore with reliable logistics and phytosanitary documentation.</p>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d4">
+          <div class="why-prod-card">
+            <div class="why-prod-icon"><i class="fas fa-recycle"></i></div>
+            <h4 class="why-prod-title">Farm-to-Consumer Traceability</h4>
+            <p class="why-prod-desc">Full supply chain transparency — from our own farms to your facility. Traceability documentation, batch records, and CoA (Certificate of Analysis) are provided for every shipment on request.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Stats Row -->
+      <div class="row g-4 mt-4">
+        <div class="col-12 animate-on-scroll">
+          <div style="background: var(--green-dark); border-radius: var(--radius-lg); padding: 40px;">
+            <div class="row text-center g-4">
+              <div class="col-6 col-md-3">
+                <div style="font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:800; color:var(--gold-light); line-height:1;">1+</div>
+                <div style="color:rgba(255,255,255,.55); font-size:.8rem; text-transform:uppercase; letter-spacing:1.2px; margin-top:6px;">Year of Excellence</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div style="font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:800; color:var(--gold-light); line-height:1;">30+</div>
+                <div style="color:rgba(255,255,255,.55); font-size:.8rem; text-transform:uppercase; letter-spacing:1.2px; margin-top:6px;">Countries Served</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div style="font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:800; color:var(--gold-light); line-height:1;">500+</div>
+                <div style="color:rgba(255,255,255,.55); font-size:.8rem; text-transform:uppercase; letter-spacing:1.2px; margin-top:6px;">Happy Clients</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div style="font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:800; color:var(--gold-light); line-height:1;">200+</div>
+                <div style="color:rgba(255,255,255,.55); font-size:.8rem; text-transform:uppercase; letter-spacing:1.2px; margin-top:6px;">Tonnes Exported</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CTA SECTION ==================== -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content text-center">
+        <div class="animate-on-scroll">
+          <span class="section-badge" style="background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.22); margin-bottom:20px;">
+            <i class="fas fa-phone-alt"></i> Let's Connect
+          </span>
+          <h2 class="section-title" style="color:#fff; font-size:clamp(1.8rem,4vw,2.8rem);">
+            Ready to Order or <span>Need a Sample?</span>
+          </h2>
+          <p style="color:rgba(255,255,255,.68); font-size:1rem; max-width:540px; margin:0 auto 36px; line-height:1.85;">
+            Reach out via WhatsApp for a fast response, or submit an inquiry through our contact page. Our export team is ready to assist you with pricing, documentation, and logistics.
+          </p>
+          <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="https://wa.me/919876543210?text=Hi%2C%20I%27m%20interested%20in%20Vetiver%20Agro%20Farm%20products.%20Please%20assist." class="btn-v-whatsapp" target="_blank">
+              <i class="fab fa-whatsapp"></i> WhatsApp Us Now
+            </a>
+            <a href="contact.html#inquiry" class="btn-v-gold">
+              <i class="fas fa-envelope"></i> Send an Inquiry
+            </a>
+            <a href="tel:+919876543210" class="btn-v-outline" style="border-color:rgba(255,255,255,.4); color:#fff;">
+              <i class="fas fa-phone-alt"></i> Call Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="v-footer" id="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand-name">Vetiver Agro Farm</div>
+          <span class="footer-brand-tag">Natural • Pure • Sustainable</span>
+          <p class="footer-desc">Vetiver Agro Farm – Rooted in Nature. Premium quality vetiver products sourced directly from sustainable farms. Mahima Global Entrepreneurs (OPC) Private Limited was incorporated on January 10, 2025.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/919876543210" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Vetiver</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Products</a></li>
+            <li><a href="service.html"><i class="fas fa-chevron-right"></i> Applications</a></li>
+            <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+            <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h4 class="footer-heading">Products</h4>
+          <ul class="footer-links">
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Vetiver Roots</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Essential Oil</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Herbal Powder</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Mats &amp; Fans</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Cooling Products</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Bulk Orders</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h4 class="footer-heading">Get In Touch</h4>
+          <div class="footer-contact-row"><i class="fas fa-map-marker-alt"></i><span>Mahima Global Entrepreneurs (OPC) Pvt Ltd, Sadha Vari Palem, Navalakh Gardens, Nellore, Andhra Pradesh, 524002</span></div>
+          <div class="footer-contact-row"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
+          <div class="footer-contact-row"><i class="fas fa-envelope"></i><span>info@vetiveragrofarm.com</span></div>
+          <div class="footer-contact-row"><i class="fab fa-whatsapp"></i><span>+91 98765 43210 (WhatsApp)</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="mb-0">© 2026 <a href="index.html">Mahima Global Entrepreneurs (OPC) Private Limited</a>. All Rights Reserved. | Vetiver Agro Farm | Built by IIITIHAS UNIVERSAL PVT LTD</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== FLOATING WHATSAPP + BACK TO TOP ==================== -->
+  <div class="floating-wa">
+    <span class="floating-wa-tip">Chat on WhatsApp</span>
+    <a href="https://wa.me/919876543210" class="floating-wa-btn" target="_blank" aria-label="Chat on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+  <a href="#" class="back-to-top" id="back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="js/vetiver.js"></script>
+
+  <script>
+    /* ===================================================
+       PRODUCT FILTER — Pure JS, no dependencies
+    =================================================== */
+    (function () {
+      'use strict';
+
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const productItems = document.querySelectorAll('.product-item');
+
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          // Update active state
+          filterBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+
+          const filter = btn.getAttribute('data-filter');
+
+          productItems.forEach(function (item) {
+            const cat = item.getAttribute('data-category');
+            if (filter === 'all' || cat === filter) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      /* ===================================================
+         BULK ORDER FORM — Simple submit handler
+      =================================================== */
+      const bulkForm = document.getElementById('bulkOrderForm');
+      if (bulkForm) {
+        bulkForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const name    = document.getElementById('b_name').value.trim();
+          const product = document.getElementById('b_product').value;
+          const qty     = document.getElementById('b_qty').value.trim();
+          const country = document.getElementById('b_country').value.trim();
+
+          if (!name || !product || !qty || !country) {
+            alert('Please fill in all required fields (marked with *).');
+            return;
+          }
+
+          // Build WhatsApp pre-fill message
+          const company = document.getElementById('b_company').value.trim();
+          const message = document.getElementById('b_message').value.trim();
+          const waMsg = encodeURIComponent(
+            'Hi Vetiver Agro Farm,\n\n' +
+            'Bulk Order Inquiry:\n' +
+            'Name: ' + name + '\n' +
+            (company ? 'Company: ' + company + '\n' : '') +
+            'Product: ' + product + '\n' +
+            'Quantity: ' + qty + '\n' +
+            'Country: ' + country + '\n' +
+            (message ? 'Additional Info: ' + message : '')
+          );
+          window.open('https://wa.me/919876543210?text=' + waMsg, '_blank');
+        });
+      }
+
+      /* ===================================================
+         ANIMATE ON SCROLL — Intersection Observer
+      =================================================== */
+      const animEls = document.querySelectorAll('.animate-on-scroll');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        animEls.forEach(function (el) { observer.observe(el); });
+      } else {
+        // Fallback: show all immediately
+        animEls.forEach(function (el) { el.classList.add('visible'); });
+      }
+
+      /* ===================================================
+         BACK TO TOP BUTTON
+      =================================================== */
+      const backBtn = document.getElementById('back-to-top');
+      if (backBtn) {
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 400) {
+            backBtn.classList.add('show');
+          } else {
+            backBtn.classList.remove('show');
+          }
+        });
+        backBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      /* ===================================================
+         NAVBAR SCROLL CLASS
+      =================================================== */
+      const navbar = document.getElementById('mainNavbar');
+      if (navbar) {
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 60) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+      }
+
+    })();
+  </script>
+
+</body>
+</html>

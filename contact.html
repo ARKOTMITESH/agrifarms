@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Vetiver Agro Farm – Get in touch for quotes, bulk orders, export inquiries, or any questions about our premium vetiver products." />
+  <meta name="keywords" content="contact vetiver farm, vetiver bulk order, vetiver export inquiry, vetiver agro farm contact" />
+  <title>Contact Us | Vetiver Agro Farm – Natural • Pure • Sustainable</title>
+
+  <!-- Icons & Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="lib/owlcarousel/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/vetiver.css" />
+
+  <style>
+    /* ===== CONTACT PAGE EXTRAS ===== */
+    .contact-info-quick-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      height: 100%;
+      border-bottom: 4px solid transparent;
+    }
+    .contact-info-quick-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .contact-info-quick-card.accent-green  { border-color: var(--green-leaf); }
+    .contact-info-quick-card.accent-gold   { border-color: var(--gold); }
+    .contact-info-quick-card.accent-blue   { border-color: #3B82F6; }
+    .contact-info-quick-card.accent-wa     { border-color: #25D366; }
+
+    .ciq-icon-wrap {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; margin: 0 auto 16px;
+    }
+    .ciq-icon-wrap.green  { background: var(--green-pale); color: var(--green-leaf); }
+    .ciq-icon-wrap.gold   { background: var(--gold-pale);  color: var(--gold); }
+    .ciq-icon-wrap.blue   { background: #EFF6FF; color: #3B82F6; }
+    .ciq-icon-wrap.wa     { background: #DCFCE7; color: #16A34A; }
+
+    .ciq-title  { font-family: 'Inter', sans-serif; font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 8px; }
+    .ciq-value  { font-size: .95rem; color: var(--green-dark); font-weight: 600; line-height: 1.5; }
+    .ciq-value a { color: var(--green-dark); transition: var(--transition-fast); }
+    .ciq-value a:hover { color: var(--green-leaf); }
+
+    /* Map section */
+    .map-section { background: var(--cream); padding: 0; }
+    .map-section .map-header { padding: 90px 0 40px; }
+    .map-wrapper {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      line-height: 0;
+    }
+    .map-wrapper iframe { width: 100%; height: 420px; border: none; display: block; }
+
+    /* FAQ section */
+    .faq-section { background: var(--sand); }
+    .faq-accordion .accordion-item {
+      border: none;
+      margin-bottom: 12px;
+      border-radius: var(--radius-md) !important;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-accordion .accordion-button {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: .97rem;
+      color: var(--green-dark);
+      background: #fff;
+      padding: 20px 24px;
+      box-shadow: none;
+    }
+    .faq-accordion .accordion-button:not(.collapsed) {
+      color: var(--green-leaf);
+      background: var(--green-pale);
+    }
+    .faq-accordion .accordion-button::after {
+      background-image: none;
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      font-size: .82rem;
+      color: var(--green-leaf);
+      transition: var(--transition-fast);
+    }
+    .faq-accordion .accordion-button:not(.collapsed)::after {
+      transform: rotate(-180deg);
+    }
+    .faq-accordion .accordion-body {
+      background: #fff;
+      color: var(--text-muted);
+      font-size: .92rem;
+      line-height: 1.85;
+      padding: 0 24px 24px;
+      border-top: 1px solid var(--green-pale);
+    }
+    .faq-side-card {
+      background: var(--green-dark);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      color: #fff;
+      position: sticky;
+      top: 100px;
+    }
+    .faq-side-card h4 { color: #fff; margin-bottom: 10px; }
+    .faq-side-card p  { color: rgba(255,255,255,.65); font-size: .9rem; line-height: 1.8; margin-bottom: 24px; }
+    .faq-contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .faq-contact-item i { width: 40px; height: 40px; background: rgba(116,198,157,.16); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; color: var(--green-light); flex-shrink: 0; }
+    .faq-contact-item span { font-size: .88rem; color: rgba(255,255,255,.8); }
+
+    /* Form success alert */
+    .form-success-alert {
+      display: none;
+      background: var(--green-pale);
+      border: 1.5px solid var(--green-leaf);
+      border-radius: var(--radius-sm);
+      color: var(--green-dark);
+      padding: 14px 20px;
+      font-size: .9rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    /* Form tabs styling */
+    .v-form-tabs {
+      background: var(--sand);
+      padding: 6px;
+      border-radius: 50px;
+      display: flex;
+      gap: 5px;
+    }
+    .btn-v-tab {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 12px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .btn-v-tab:hover {
+      color: var(--green-leaf);
+    }
+    .btn-v-tab.active {
+      background: var(--green-dark);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(27,67,50,.15);
+    }
+    
+    /* Exporter notice/callout card */
+    .exporter-notice-card {
+      background: var(--gold-pale);
+      border-left: 5px solid var(--gold);
+      border-radius: var(--radius-sm);
+      padding: 18px 22px;
+      color: var(--green-dark);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .exporter-notice-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .enc-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(184,134,11,.15);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== TOPBAR ===== -->
+  <div class="v-topbar d-none d-lg-block">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-9">
+          <div class="d-flex align-items-center flex-wrap" style="gap: 24px;">
+            <span class="v-topbar-company" style="display: inline-flex; align-items: center; gap: 8px; margin-right: 0;"><i class="fas fa-building" style="color: #74C69D;"></i> Mahima Global Entrepreneurs (OPC) Private Limited</span>
+            <a href="tel:+919876543210" style="margin-right: 0;"><i class="fas fa-phone-alt"></i> +91 98765 43210</a>
+            <a href="mailto:info@vetiveragrofarm.com" style="margin-right: 0;"><i class="fas fa-envelope"></i> info@vetiveragrofarm.com</a>
+            <span class="v-topbar-shipping" style="margin-right: 0;"><i class="fas fa-shipping-fast"></i> Worldwide Shipping</span>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="d-flex align-items-center justify-content-end">
+            <div class="v-topbar-social">
+              <span>Follow Us:</span>
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="v-navbar navbar navbar-expand-lg" id="mainNavbar">
+    <div class="container">
+      <a href="index.html" class="v-brand" aria-label="Vetiver Agro Farm Home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="v-brand-logo-svg">
+          <path d="M50 82 C52 75, 48 35, 12 15 C30 35, 46 65, 48 80 Z" fill="#2D6A4F"/>
+          <path d="M50 82 C53 72, 53 25, 30 5 C42 22, 49 55, 49 80 Z" fill="#40916C"/>
+          <path d="M51 82 C50 72, 47 25, 70 5 C58 22, 51 55, 51 80 Z" fill="#40916C"/>
+          <path d="M52 82 C50 75, 52 35, 88 15 C70 35, 54 65, 52 80 Z" fill="#1B4332"/>
+          <path d="M50 82 C50 70, 50 15, 50 0 C51 15, 51 70, 50 82 Z" fill="#74C69D"/>
+          <path d="M50 82 Q42 90, 36 98 M50 82 Q49 92, 46 100 M50 82 Q51 92, 54 100 M50 82 Q58 90, 64 98" stroke="#1B4332" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="v-brand-text">
+          <span class="v-brand-title">VERTIVER</span>
+          <span class="v-brand-subtitle">FARM</span>
+          <span class="v-brand-tagline">IN AGRO FARM</span>
+        </div>
+      </a>
+      
+      <div class="d-flex align-items-center">
+        <!-- Sticky Action Buttons for Mobile Header -->
+        <div class="mobile-nav-actions d-flex d-lg-none">
+          <a href="tel:+919876543210" class="mobile-nav-btn phone" aria-label="Call Us"><i class="fas fa-phone-alt"></i></a>
+          <a href="https://wa.me/919876543210" class="mobile-nav-btn whatsapp" target="_blank" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        
+        <!-- Hamburger Menu Toggler -->
+        <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <!-- Close button inside mobile menu collapse -->
+        <button class="mobile-menu-close d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Close menu">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="navbar-nav mx-auto">
+          <a href="index.html"    class="nav-item nav-link v-nav-link">Home</a>
+          <a href="about.html"    class="nav-item nav-link v-nav-link">About Us</a>
+          <a href="product.html"  class="nav-item nav-link v-nav-link">Products</a>
+          <a href="service.html"  class="nav-item nav-link v-nav-link">Applications</a>
+          <a href="gallery.html"  class="nav-item nav-link v-nav-link">Gallery</a>
+          <a href="blog.html"     class="nav-item nav-link v-nav-link">Blog</a>
+          <a href="contact.html"  class="nav-item nav-link v-nav-link active">Contact Us</a>
+        </div>
+        <div class="v-nav-cta d-none d-lg-flex">
+          <a href="contact.html#inquiry" class="v-btn-quote" id="navbar-quote-btn">Get Quote</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-content">
+        <span class="section-badge"><i class="fas fa-envelope"></i> Get In Touch</span>
+        <h1>Contact <span style="color:var(--gold-light)">Vetiver Agro Farm</span></h1>
+        <p>We would love to hear from you. Get in touch for quotes, bulk orders, or export inquiries.</p>
+        <nav class="breadcrumb-v" aria-label="breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="sep"><i class="fas fa-chevron-right" style="font-size:.7rem"></i></span>
+          <span class="cur">Contact</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT INFO QUICK CARDS (row of 4) ===== -->
+  <section style="background:var(--sand); padding: 70px 0 0;">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- Address -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d1">
+          <div class="contact-info-quick-card accent-green">
+            <div class="ciq-icon-wrap green">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="ciq-title">Our Location</div>
+            <div class="ciq-value">Mahima Global Entrepreneurs (OPC) Pvt Ltd,<br>Sadha Vari Palem, Navalakh Gardens,<br>Nellore, Andhra Pradesh, 524002</div>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d2">
+          <div class="contact-info-quick-card accent-gold">
+            <div class="ciq-icon-wrap gold">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="ciq-title">Call Us / Exporter Desk</div>
+            <div class="ciq-value">
+              <a href="tel:+919876543210">+91 98765 43210</a><br>
+              <small style="color:var(--text-muted); font-weight:400; font-size:.82rem;">Inquiries &amp; Export Support</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d3">
+          <div class="contact-info-quick-card accent-blue">
+            <div class="ciq-icon-wrap blue">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="ciq-title">Email Us</div>
+            <div class="ciq-value">
+              <a href="mailto:info@vetiveragrofarm.com">info@vetiveragrofarm.com</a><br>
+              <small style="color:var(--text-muted); font-weight:400; font-size:.82rem;">We reply within 24 hours</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d4">
+          <div class="contact-info-quick-card accent-wa">
+            <div class="ciq-icon-wrap wa">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="ciq-title">WhatsApp</div>
+            <div class="ciq-value">
+              <a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a><br>
+              <small style="color:var(--text-muted); font-weight:400; font-size:.82rem;">Instant response available</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN CONTACT SECTION ===== -->
+  <div id="inquiry"></div>
+  <section class="contact-section" style="padding-top: 60px;">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="text-center mb-5 animate-on-scroll d1">
+        <span class="section-badge"><i class="fas fa-paper-plane"></i> Send Your Inquiry</span>
+        <h2 class="section-title">Let's <span>Start a Conversation</span></h2>
+        <p class="section-subtitle mx-auto">Whether you need bulk vetiver roots, essential oil, or custom export packaging, our team is ready to assist you with every detail.</p>
+      </div>
+
+      <div class="row g-5 align-items-start">
+
+        <!-- LEFT: Contact Info Card (dark green) -->
+        <div class="col-lg-5 animate-on-scroll d2">
+          <div class="contact-info-card">
+
+            <h3 style="color:#fff; margin-bottom: 6px;">Vetiver Agro Farm</h3>
+            <p style="color:rgba(255,255,255,.55); font-size:.88rem; margin-bottom:32px; font-style:italic;">Rooted in Nature — Growing for the World</p>
+
+            <!-- Address -->
+            <div class="contact-item">
+              <div class="contact-ico"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="contact-txt">
+                <h6>Address</h6>
+                <p>Mahima Global Entrepreneurs (OPC) Pvt Ltd,<br>Sadha Vari Palem, Navalakh Gardens,<br>Nellore, Andhra Pradesh, 524002</p>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="contact-item">
+              <div class="contact-ico"><i class="fas fa-phone-alt"></i></div>
+              <div class="contact-txt">
+                <h6>Phone / Export Desk</h6>
+                <a href="tel:+919876543210">+91 98765 43210</a>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="contact-item">
+              <div class="contact-ico"><i class="fas fa-envelope"></i></div>
+              <div class="contact-txt">
+                <h6>Email</h6>
+                <a href="mailto:info@vetiveragrofarm.com">info@vetiveragrofarm.com</a>
+              </div>
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="contact-item">
+              <div class="contact-ico"><i class="fab fa-whatsapp"></i></div>
+              <div class="contact-txt">
+                <h6>WhatsApp</h6>
+                <a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a>
+              </div>
+            </div>
+
+            <!-- Working Hours -->
+            <div class="contact-item">
+              <div class="contact-ico"><i class="fas fa-clock"></i></div>
+              <div class="contact-txt">
+                <h6>Working Hours</h6>
+                <p>Mon–Sat: 9 AM – 6 PM IST<br>
+                <span style="font-size:.8rem; color:rgba(255,255,255,.45);">Sunday: Closed</span></p>
+              </div>
+            </div>
+
+            <!-- Social Media -->
+            <div style="margin-top: 8px; margin-bottom: 28px;">
+              <p style="font-size:.78rem; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:1.5px; font-weight:700; margin-bottom:12px;">Follow Us</p>
+              <div class="footer-social">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/919876543210" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              </div>
+            </div>
+
+            <!-- Large WhatsApp CTA -->
+            <a href="https://wa.me/919876543210?text=Hello%20Vetiver%20Agro%20Farm!%20I%20am%20interested%20in%20your%20products.%20Please%20share%20more%20details."
+               class="btn-v-whatsapp d-flex justify-content-center" target="_blank" style="font-size:1rem; padding:16px 28px;">
+              <i class="fab fa-whatsapp"></i>&nbsp; Chat with Us on WhatsApp
+            </a>
+
+          </div>
+        </div>
+
+        <!-- RIGHT: Contact Form Card (white) -->
+        <div class="col-lg-7 animate-on-scroll d3">
+          <!-- Exporter Notice Banner -->
+          <div class="exporter-notice-card mb-4">
+            <div class="d-flex align-items-center gap-3">
+              <div class="enc-icon"><i class="fas fa-globe-americas"></i></div>
+              <div>
+                <h5 class="mb-1" style="font-family:'Playfair Display',serif; font-size: 1.05rem; font-weight: 800; color: var(--green-dark);">Looking for Export Partners!</h5>
+                <p class="mb-0" style="font-size: .88rem; color: var(--text); line-height: 1.5;">
+                  We are looking for exporters who can export our products. You can contact us directly at our number <a href="tel:+919876543210" style="font-weight: 700; color: var(--green-mid); text-decoration: underline;">+91 98765 43210</a> or fill out your contact details in the form below.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-card">
+            <!-- Form Tabs -->
+            <div class="v-form-tabs mb-4">
+              <button type="button" class="btn-v-tab active" id="tab-buyer" onclick="switchContactForm('buyer')">
+                <i class="fas fa-shopping-cart"></i> Buyer Inquiry
+              </button>
+              <button type="button" class="btn-v-tab" id="tab-exporter" onclick="switchContactForm('exporter')">
+                <i class="fas fa-globe-americas"></i> Exporter Registration
+              </button>
+            </div>
+
+            <div class="form-success-alert" id="formSuccess">
+              <i class="fas fa-check-circle me-2"></i> Thank you! Your inquiry has been sent. We'll respond within 24 hours.
+            </div>
+
+            <div class="form-success-alert" id="exporterSuccess">
+              <i class="fas fa-check-circle me-2"></i> Thank you! Your exporter profile has been registered. Our trade desk will contact you within 24 hours.
+            </div>
+
+            <!-- BUYER FORM -->
+            <form id="vetiverContactForm" novalidate>
+              <div class="row g-3">
+
+                <!-- Name -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="contactName">Full Name <span style="color:#e53e3e">*</span></label>
+                  <input type="text" id="contactName" name="name" class="form-inp" placeholder="e.g. Rahul Sharma" required />
+                </div>
+
+                <!-- Phone -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="contactPhone">Phone Number <span style="color:#e53e3e">*</span></label>
+                  <input type="tel" id="contactPhone" name="phone" class="form-inp" placeholder="+91 98765 43210" required />
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="contactEmail">Email Address <span style="color:#e53e3e">*</span></label>
+                  <input type="email" id="contactEmail" name="email" class="form-inp" placeholder="you@example.com" required />
+                </div>
+
+                <!-- Country -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="contactCountry">Country <span style="color:#e53e3e">*</span></label>
+                  <input type="text" id="contactCountry" name="country" class="form-inp" placeholder="e.g. India, UAE, USA" required />
+                </div>
+
+                <!-- Select Product -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="contactProduct">Select Product</label>
+                  <select id="contactProduct" name="product" class="form-inp">
+                    <option value="" disabled selected>-- Choose a product --</option>
+                    <option value="Vetiver Roots">Vetiver Roots (Dried / Fresh)</option>
+                    <option value="Essential Oil">Vetiver Essential Oil</option>
+                    <option value="Herbal Powder">Vetiver Herbal Powder</option>
+                    <option value="Mats & Fans">Vetiver Mats &amp; Fans</option>
+                    <option value="Agriculture Slips">Agriculture Slips / Planting Material</option>
+                    <option value="Other">Other / Custom Requirement</option>
+                  </select>
+                </div>
+
+                <!-- Quantity -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="contactQty">Quantity / Requirement</label>
+                  <input type="text" id="contactQty" name="quantity" class="form-inp" placeholder="e.g. 500 kg, 100 litres" />
+                </div>
+
+                <!-- Message -->
+                <div class="col-12">
+                  <label class="form-lbl" for="contactMsg">Message / Details <span style="color:#e53e3e">*</span></label>
+                  <textarea id="contactMsg" name="message" class="form-inp" rows="5" placeholder="Tell us more about your requirement — intended use, delivery destination, preferred packaging, etc." required></textarea>
+                </div>
+
+                <!-- Buttons -->
+                <div class="col-12">
+                  <button type="submit" class="btn-v-primary w-100 justify-content-center mb-3" style="font-size:1rem; padding:16px;">
+                    <i class="fas fa-paper-plane"></i> Send Inquiry
+                  </button>
+                  <a href="https://wa.me/919876543210?text=Hello%20Vetiver%20Agro%20Farm!%20I%20have%20an%20inquiry%20about%20your%20products."
+                     class="btn-v-whatsapp w-100 justify-content-center" target="_blank" style="font-size:.95rem; padding:14px;">
+                    <i class="fab fa-whatsapp"></i> Or WhatsApp Us Directly
+                  </a>
+                </div>
+
+                <!-- Note -->
+                <div class="col-12">
+                  <p style="font-size:.78rem; color:var(--text-muted); text-align:center; margin:0;">
+                    <i class="fas fa-lock me-1" style="color:var(--green-leaf)"></i>
+                    Your information is secure and will never be shared with third parties.
+                  </p>
+                </div>
+
+              </div>
+            </form>
+
+            <!-- EXPORTER REGISTRATION FORM -->
+            <form id="vetiverExporterForm" class="d-none" novalidate>
+              <div class="row g-3">
+
+                <!-- Name -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="exporterName">Full Name <span style="color:#e53e3e">*</span></label>
+                  <input type="text" id="exporterName" name="name" class="form-inp" placeholder="e.g. Rahul Sharma" required />
+                </div>
+
+                <!-- Company -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="exporterCompany">Company / Export Agency Name <span style="color:#e53e3e">*</span></label>
+                  <input type="text" id="exporterCompany" name="company" class="form-inp" placeholder="e.g. Global Trade LLC" required />
+                </div>
+
+                <!-- Phone -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="exporterPhone">Contact Number <span style="color:#e53e3e">*</span></label>
+                  <input type="tel" id="exporterPhone" name="phone" class="form-inp" placeholder="+91 98765 43210" required />
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="exporterEmail">Email Address <span style="color:#e53e3e">*</span></label>
+                  <input type="email" id="exporterEmail" name="email" class="form-inp" placeholder="trade@company.com" required />
+                </div>
+
+                <!-- Target Countries / Regions -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="exporterCountry">Target Export Countries / Regions <span style="color:#e53e3e">*</span></label>
+                  <input type="text" id="exporterCountry" name="country" class="form-inp" placeholder="e.g. USA, Gulf, Europe" required />
+                </div>
+
+                <!-- Export Experience / Volume -->
+                <div class="col-md-6">
+                  <label class="form-lbl" for="exporterVolume">Expected Monthly/Annual Volume Focus</label>
+                  <input type="text" id="exporterVolume" name="volume" class="form-inp" placeholder="e.g. 5 Tons Roots, 500L Oil" />
+                </div>
+
+                <!-- Message / Credentials -->
+                <div class="col-12">
+                  <label class="form-lbl" for="exporterMsg">Export Credentials &amp; Partnership Details <span style="color:#e53e3e">*</span></label>
+                  <textarea id="exporterMsg" name="message" class="form-inp" rows="5" placeholder="Please describe your export experience, your distribution network, which Vetiver products you want to export, and any trade terms you require." required></textarea>
+                </div>
+
+                <!-- Buttons -->
+                <div class="col-12">
+                  <button type="submit" class="btn-v-primary w-100 justify-content-center mb-3" style="font-size:1rem; padding:16px;">
+                    <i class="fas fa-globe-americas"></i> Submit Exporter Registration
+                  </button>
+                  <a href="tel:+919876543210" class="btn-v-gold w-100 justify-content-center" style="font-size:.95rem; padding:14px;">
+                    <i class="fas fa-phone-alt"></i> Call Our Export Desk Directly
+                  </a>
+                </div>
+
+                <!-- Note -->
+                <div class="col-12">
+                  <p style="font-size:.78rem; color:var(--text-muted); text-align:center; margin:0;">
+                    <i class="fas fa-shield-alt me-1" style="color:var(--gold)"></i>
+                    Trade submissions are processed securely by our global partnerships team.
+                  </p>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GOOGLE MAPS ===== -->
+  <section class="map-section">
+    <div class="map-header">
+      <div class="container text-center animate-on-scroll d1">
+        <span class="section-badge"><i class="fas fa-map-marked-alt"></i> Find Us</span>
+        <h2 class="section-title">Our Farm <span>Location</span></h2>
+        <p class="section-subtitle mx-auto">Nestled in the heart of India's finest vetiver-growing region. Visit us or reach out — we're always happy to welcome partners and buyers.</p>
+      </div>
+    </div>
+    <div class="container pb-5 animate-on-scroll d2">
+      <div class="map-wrapper">
+        <iframe
+          src="https://maps.google.com/maps?q=Sadha%20Vari%20Palem,%20Navalakh%20Gardens,%20Nellore,%20Andhra%20Pradesh%20524002,%20India&t=&z=14&ie=UTF8&iwloc=&output=embed"
+          width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Vetiver Agro Farm Location">
+        </iframe>
+      </div>
+
+      <!-- Location highlights below map -->
+      <div class="row g-4 mt-4">
+        <div class="col-md-4 animate-on-scroll d1">
+          <div class="about-feat">
+            <div class="about-feat-icon"><i class="fas fa-plane-departure"></i></div>
+            <div class="about-feat-text">
+              <h6>Nearest Airport</h6>
+              <p>Chennai International Airport (MAA) — approx. 180 km from our farm</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 animate-on-scroll d2">
+          <div class="about-feat">
+            <div class="about-feat-icon"><i class="fas fa-train"></i></div>
+            <div class="about-feat-text">
+              <h6>Railway Access</h6>
+              <p>Well-connected via Central Railway network — direct freight transport available</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 animate-on-scroll d3">
+          <div class="about-feat">
+            <div class="about-feat-icon"><i class="fas fa-ship"></i></div>
+            <div class="about-feat-text">
+              <h6>Export Port</h6>
+              <p>Krishnapatnam Port (Nellore) / Chennai Port — seamless international cargo dispatch</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ SECTION ===== -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="row g-5 align-items-start">
+
+        <!-- FAQ Accordions -->
+        <div class="col-lg-8 animate-on-scroll d1">
+          <span class="section-badge"><i class="fas fa-question-circle"></i> FAQ</span>
+          <h2 class="section-title mb-2">Frequently Asked <span>Questions</span></h2>
+          <p class="section-subtitle mb-5">Have a question? We've answered the most common queries about our products, ordering process, and export services below.</p>
+
+          <div class="accordion faq-accordion" id="faqAccordion">
+
+            <!-- FAQ 1 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">
+                  <i class="fas fa-leaf me-2" style="color:var(--green-leaf)"></i>
+                  What vetiver products do you offer for export?
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  We offer a comprehensive range of premium vetiver products suitable for global export: <strong>dried vetiver roots</strong> (whole & powdered), <strong>vetiver essential oil</strong> (steam-distilled, pure), <strong>vetiver herbal powder</strong>, <strong>woven vetiver mats &amp; fans</strong>, <strong>agriculture planting slips</strong>, and <strong>custom blended wellness products</strong>. All exports comply with APEDA, FSSAI, and international phytosanitary standards. Custom packaging and labelling are available on request.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false">
+                  <i class="fas fa-boxes me-2" style="color:var(--green-leaf)"></i>
+                  What is the minimum order quantity for bulk orders?
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Minimum order quantities vary by product. For <strong>dried vetiver roots</strong>, the MOQ is 50 kg. For <strong>essential oil</strong>, a minimum of 5 litres is required. <strong>Herbal powder</strong> starts at 25 kg, and <strong>woven mats</strong> start at 100 pieces per order. For agriculture slips, we work with large-scale requirements from 1,000 slips upward. We are flexible for <strong>trial orders</strong> from new buyers — please contact us to discuss your specific needs.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false">
+                  <i class="fas fa-globe me-2" style="color:var(--green-leaf)"></i>
+                  Do you export internationally? Which countries do you ship to?
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Yes, we actively export to <strong>over 30 countries</strong>, including the UAE, USA, UK, France, Germany, Japan, Australia, Canada, Saudi Arabia, and across Southeast Asia. Our experienced logistics team handles all export documentation including <strong>phytosanitary certificates, COA, MSDS, bill of lading</strong>, and customs clearance support. We ship via air freight (for essential oils) and sea freight (for bulk roots and powder).
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false">
+                  <i class="fas fa-certificate me-2" style="color:var(--green-leaf)"></i>
+                  Are your products certified organic?
+                </button>
+              </h2>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Our vetiver is grown using <strong>sustainable, chemical-free farming practices</strong>. We are in the process of obtaining full organic certification (NPOP / NOP). Our essential oil is produced through steam distillation with <strong>no additives, solvents, or adulterants</strong>. Every batch undergoes <strong>third-party laboratory analysis</strong> for purity and quality. We provide full <strong>Certificates of Analysis (COA)</strong> and <strong>MSDS documents</strong> with every order.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false">
+                  <i class="fas fa-credit-card me-2" style="color:var(--green-leaf)"></i>
+                  What are your payment terms and how long does delivery take?
+                </button>
+              </h2>
+              <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  We accept <strong>T/T (bank transfer), LC at sight, and PayPal</strong> for international buyers. For domestic buyers, we accept NEFT/RTGS, UPI, and cheque. Payment terms are typically <strong>50% advance and 50% before shipment</strong> for new buyers, with flexible terms extended to established partners. Delivery times: <strong>7–10 working days</strong> for domestic orders and <strong>15–30 days</strong> for international shipments depending on the destination and shipping mode.
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end accordion -->
+        </div>
+
+        <!-- FAQ Sidebar -->
+        <div class="col-lg-4 animate-on-scroll d3">
+          <div class="faq-side-card">
+            <div style="width:56px;height:56px;background:rgba(116,198,157,.14);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--green-light);margin-bottom:18px;">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h4>Still Have Questions?</h4>
+            <p>Our expert team is standing by to answer all your product, pricing, and export-related queries. Don't hesitate to reach out!</p>
+
+            <div class="faq-contact-item">
+              <i class="fas fa-phone-alt"></i>
+              <span>Call us at <a href="tel:+919876543210" style="color:var(--green-light);font-weight:600;">+91 98765 43210</a></span>
+            </div>
+            <div class="faq-contact-item">
+              <i class="fas fa-envelope"></i>
+              <span><a href="mailto:info@vetiveragrofarm.com" style="color:var(--green-light);font-weight:600;">info@vetiveragrofarm.com</a></span>
+            </div>
+            <div class="faq-contact-item">
+              <i class="fas fa-clock"></i>
+              <span>Mon–Sat: 9 AM – 6 PM IST</span>
+            </div>
+
+            <div style="margin-top: 28px;">
+              <a href="https://wa.me/919876543210?text=Hello%21%20I%20have%20a%20question%20about%20Vetiver%20Agro%20Farm%20products."
+                 class="btn-v-whatsapp d-flex justify-content-center" target="_blank">
+                <i class="fab fa-whatsapp"></i>&nbsp; WhatsApp Us Now
+              </a>
+            </div>
+
+            <!-- Quick Stats -->
+            <div style="margin-top:28px; padding-top:24px; border-top:1px solid rgba(255,255,255,.1);">
+              <div class="row g-2 text-center">
+                <div class="col-6" style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px 8px;">
+                  <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:var(--gold-light);line-height:1;">1+</div>
+                  <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:4px;text-transform:uppercase;letter-spacing:1px;">Year since Incorporation</div>
+                </div>
+                <div class="col-6" style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px 8px;">
+                  <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:var(--gold-light);line-height:1;">30+</div>
+                  <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:4px;text-transform:uppercase;letter-spacing:1px;">Export Countries</div>
+                </div>
+                <div class="col-6" style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px 8px;">
+                  <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:var(--gold-light);line-height:1;">500+</div>
+                  <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:4px;text-transform:uppercase;letter-spacing:1px;">Happy Clients</div>
+                </div>
+                <div class="col-6" style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px 8px;">
+                  <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:var(--gold-light);line-height:1;">24h</div>
+                  <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:4px;text-transform:uppercase;letter-spacing:1px;">Response Time</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="v-footer" id="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand-name">Vetiver Agro Farm</div>
+          <span class="footer-brand-tag">Natural • Pure • Sustainable</span>
+          <p class="footer-desc">Vetiver Agro Farm – Rooted in Nature. Premium quality vetiver products sourced directly from sustainable farms. Mahima Global Entrepreneurs (OPC) Private Limited was incorporated on January 10, 2025.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/919876543210" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Vetiver</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Products</a></li>
+            <li><a href="service.html"><i class="fas fa-chevron-right"></i> Applications</a></li>
+            <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+            <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h4 class="footer-heading">Products</h4>
+          <ul class="footer-links">
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Vetiver Roots</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Essential Oil</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Herbal Powder</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Mats &amp; Fans</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Cooling Products</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Bulk Orders</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h4 class="footer-heading">Get In Touch</h4>
+          <div class="footer-contact-row"><i class="fas fa-map-marker-alt"></i><span>Mahima Global Entrepreneurs (OPC) Pvt Ltd, Sadha Vari Palem, Navalakh Gardens, Nellore, Andhra Pradesh, 524002</span></div>
+          <div class="footer-contact-row"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
+          <div class="footer-contact-row"><i class="fas fa-envelope"></i><span>info@vetiveragrofarm.com</span></div>
+          <div class="footer-contact-row"><i class="fab fa-whatsapp"></i><span>+91 98765 43210 (WhatsApp)</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="mb-0">© 2026 <a href="index.html">Mahima Global Entrepreneurs (OPC) Private Limited</a>. All Rights Reserved. | Vetiver Agro Farm | Built by IIITIHAS UNIVERSAL PVT LTD</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING WHATSAPP ===== -->
+  <div class="floating-wa">
+    <span class="floating-wa-tip">Chat on WhatsApp</span>
+    <a href="https://wa.me/919876543210" class="floating-wa-btn" target="_blank" aria-label="Chat on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+  <a href="#" class="back-to-top" id="back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="js/vetiver.js"></script>
+
+  <script>
+    /* ===== FORM TAB SWITCHER ===== */
+    function switchContactForm(type) {
+      const buyerForm = document.getElementById('vetiverContactForm');
+      const exporterForm = document.getElementById('vetiverExporterForm');
+      const tabBuyer = document.getElementById('tab-buyer');
+      const tabExporter = document.getElementById('tab-exporter');
+      const buyerSuccess = document.getElementById('formSuccess');
+      const exporterSuccess = document.getElementById('exporterSuccess');
+
+      // Clear alerts
+      buyerSuccess.style.display = 'none';
+      exporterSuccess.style.display = 'none';
+
+      if (type === 'buyer') {
+        buyerForm.classList.remove('d-none');
+        exporterForm.classList.add('d-none');
+        tabBuyer.classList.add('active');
+        tabExporter.classList.remove('active');
+      } else {
+        buyerForm.classList.add('d-none');
+        exporterForm.classList.remove('d-none');
+        tabBuyer.classList.remove('active');
+        tabExporter.classList.add('active');
+      }
+    }
+
+    /* ===== CONTACT FORM HANDLER ===== */
+    document.getElementById('vetiverContactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name    = document.getElementById('contactName').value.trim();
+      const phone   = document.getElementById('contactPhone').value.trim();
+      const email   = document.getElementById('contactEmail').value.trim();
+      const country = document.getElementById('contactCountry').value.trim();
+      const msg     = document.getElementById('contactMsg').value.trim();
+
+      if (!name || !phone || !email || !country || !msg) {
+        alert('Please fill in all required fields before submitting.');
+        return;
+      }
+
+      // Show success message
+      const successBox = document.getElementById('formSuccess');
+      successBox.style.display = 'block';
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Reset form after short delay
+      setTimeout(() => {
+        this.reset();
+        setTimeout(() => { successBox.style.display = 'none'; }, 5000);
+      }, 800);
+    });
+
+    /* ===== EXPORTER FORM HANDLER ===== */
+    document.getElementById('vetiverExporterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name    = document.getElementById('exporterName').value.trim();
+      const company = document.getElementById('exporterCompany').value.trim();
+      const phone   = document.getElementById('exporterPhone').value.trim();
+      const email   = document.getElementById('exporterEmail').value.trim();
+      const country = document.getElementById('exporterCountry').value.trim();
+      const msg     = document.getElementById('exporterMsg').value.trim();
+
+      if (!name || !company || !phone || !email || !country || !msg) {
+        alert('Please fill in all required fields before submitting.');
+        return;
+      }
+
+      // Show success message
+      const successBox = document.getElementById('exporterSuccess');
+      successBox.style.display = 'block';
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Reset form after short delay
+      setTimeout(() => {
+        this.reset();
+        setTimeout(() => { successBox.style.display = 'none'; }, 5000);
+      }, 800);
+    });
+  </script>
+
+</body>
+</html>

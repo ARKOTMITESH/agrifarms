@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gallery – Vetiver Agro Farm | Photo Gallery of Vetiver Farm & Products</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore the Vetiver Agro Farm photo gallery – see our lush vetiver fields, harvesting process, premium vetiver roots, essential oil production, and handcrafted products.">
+<meta name="keywords" content="vetiver farm gallery, vetiver photos, vetiver harvesting, vetiver products images, vetiver essential oil, vetiver handicrafts, vetiver agro farm">
+<meta property="og:title" content="Gallery – Vetiver Agro Farm | Our Farm in Pictures">
+<meta property="og:description" content="A visual journey through our vetiver farms, harvesting, and premium natural products.">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/favicon.ico">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Owl Carousel -->
+<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Vetiver Design System -->
+<link href="css/vetiver.css" rel="stylesheet">
+
+<!-- Gallery Page Styles -->
+<style>
+  /* ===== GALLERY MASONRY STYLES ===== */
+  .gallery-masonry {
+    columns: 3;
+    gap: 16px;
+    column-gap: 16px;
+  }
+  .gallery-masonry-item {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    display: block;
+  }
+  .gallery-masonry-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .gallery-masonry-item:hover img {
+    transform: scale(1.06);
+  }
+  .gallery-masonry-item .gm-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.72) 100%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .gallery-masonry-item:hover .gm-overlay {
+    opacity: 1;
+  }
+  .gm-overlay .gm-zoom {
+    width: 52px;
+    height: 52px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2rem;
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+  }
+  .gallery-masonry-item:hover .gm-zoom {
+    transform: scale(1);
+  }
+  .gm-overlay .gm-caption {
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 0 12px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.35s ease 0.05s;
+  }
+  .gallery-masonry-item:hover .gm-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .gallery-masonry-item.hidden {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-masonry { columns: 2; }
+  }
+  @media (max-width: 480px) {
+    .gallery-masonry { columns: 1; }
+  }
+
+  /* ===== GALLERY FILTER BUTTONS ===== */
+  .gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .gf-btn {
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: 2px solid var(--green-mid, #3a8f5f);
+    background: transparent;
+    color: var(--green-mid, #3a8f5f);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.28s ease;
+    letter-spacing: 0.3px;
+  }
+  .gf-btn:hover,
+  .gf-btn.active {
+    background: var(--green-mid, #3a8f5f);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(58,143,95,0.35);
+    transform: translateY(-2px);
+  }
+
+  /* ===== LIGHTBOX ===== */
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.93);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(4px);
+  }
+  .lightbox-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: rgba(255,255,255,0.12);
+    border: 2px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    z-index: 10;
+  }
+  .lightbox-close:hover {
+    background: rgba(255,255,255,0.25);
+    transform: rotate(90deg) scale(1.1);
+  }
+  .lightbox-img {
+    max-width: 92vw;
+    max-height: 88vh;
+    border-radius: 12px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    object-fit: contain;
+    transform: scale(0.92);
+    transition: transform 0.3s ease;
+  }
+  .lightbox-overlay.active .lightbox-img {
+    transform: scale(1);
+  }
+
+  /* ===== VIDEO SECTION ===== */
+  .video-section {
+    padding: 90px 0;
+    background: linear-gradient(135deg, #0f1e14 0%, #1a3322 50%, #0f1e14 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .video-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2374c69d' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+  .video-wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    background: #000;
+    aspect-ratio: 16/9;
+  }
+  .video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+  .video-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(116,198,157,0.15);
+    border: 1px solid rgba(116,198,157,0.3);
+    border-radius: 50px;
+    padding: 6px 18px;
+    color: #74c69d;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .video-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .video-title span { color: #74c69d; }
+  .video-desc {
+    color: rgba(255,255,255,0.68);
+    font-size: 1.02rem;
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+  .video-feat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+  }
+  .video-feat-list li {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.92rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .video-feat-list li i {
+    color: #74c69d;
+    width: 18px;
+    flex-shrink: 0;
+  }
+
+  /* ===== CTA SECTION (gallery page) ===== */
+  .gallery-count-bar {
+    background: var(--green-deep, #0f2d1e);
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(116,198,157,0.12);
+  }
+  .gallery-count-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(116,198,157,0.1);
+    border: 1px solid rgba(116,198,157,0.25);
+    border-radius: 50px;
+    padding: 5px 16px;
+    color: #74c69d;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== LIGHTBOX OVERLAY ====== -->
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox"><i class="bi bi-x"></i></button>
+  <img src="" alt="Gallery" class="lightbox-img" id="lightboxImg">
+</div>
+
+<!-- ====== FLOATING WHATSAPP ====== -->
+<div class="floating-wa">
+  <span class="floating-wa-tip">Chat on WhatsApp</span>
+  <a href="https://wa.me/919876543210" class="floating-wa-btn" target="_blank" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+<!-- ====== BACK TO TOP ====== -->
+<a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <i class="bi bi-arrow-up"></i>
+</a>
+
+<!-- ====== TOPBAR ====== -->
+<div class="v-topbar d-none d-lg-block">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-9">
+        <div class="d-flex align-items-center flex-wrap" style="gap: 24px;">
+          <span class="v-topbar-company" style="display: inline-flex; align-items: center; gap: 8px; margin-right: 0;"><i class="fas fa-building" style="color: #74C69D;"></i> Mahima Global Entrepreneurs (OPC) Private Limited</span>
+          <a href="tel:+919876543210" style="margin-right: 0;"><i class="fas fa-phone-alt"></i> +91 98765 43210</a>
+          <a href="mailto:info@vetiveragrofarm.com" style="margin-right: 0;"><i class="fas fa-envelope"></i> info@vetiveragrofarm.com</a>
+          <span class="v-topbar-shipping" style="margin-right: 0;"><i class="fas fa-shipping-fast"></i> Worldwide Shipping</span>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="d-flex align-items-center justify-content-end">
+          <div class="v-topbar-social">
+            <span>Follow Us:</span>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="v-navbar navbar navbar-expand-lg" id="mainNavbar">
+  <div class="container">
+    <a href="index.html" class="v-brand" aria-label="Vetiver Agro Farm Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="v-brand-logo-svg">
+        <path d="M50 82 C52 75, 48 35, 12 15 C30 35, 46 65, 48 80 Z" fill="#2D6A4F"/>
+        <path d="M50 82 C53 72, 53 25, 30 5 C42 22, 49 55, 49 80 Z" fill="#40916C"/>
+        <path d="M51 82 C50 72, 47 25, 70 5 C58 22, 51 55, 51 80 Z" fill="#40916C"/>
+        <path d="M52 82 C50 75, 52 35, 88 15 C70 35, 54 65, 52 80 Z" fill="#1B4332"/>
+        <path d="M50 82 C50 70, 50 15, 50 0 C51 15, 51 70, 50 82 Z" fill="#74C69D"/>
+        <path d="M50 82 Q42 90, 36 98 M50 82 Q49 92, 46 100 M50 82 Q51 92, 54 100 M50 82 Q58 90, 64 98" stroke="#1B4332" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="v-brand-text">
+        <span class="v-brand-title">VERTIVER</span>
+        <span class="v-brand-subtitle">FARM</span>
+        <span class="v-brand-tagline">IN AGRO FARM</span>
+      </div>
+    </a>
+    
+    <div class="d-flex align-items-center">
+      <!-- Sticky Action Buttons for Mobile Header -->
+      <div class="mobile-nav-actions d-flex d-lg-none">
+        <a href="tel:+919876543210" class="mobile-nav-btn phone" aria-label="Call Us"><i class="fas fa-phone-alt"></i></a>
+        <a href="https://wa.me/919876543210" class="mobile-nav-btn whatsapp" target="_blank" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      
+      <!-- Hamburger Menu Toggler -->
+      <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <!-- Close button inside mobile menu collapse -->
+      <button class="mobile-menu-close d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="navbar-nav mx-auto">
+        <a href="index.html"    class="nav-item nav-link v-nav-link">Home</a>
+        <a href="about.html"    class="nav-item nav-link v-nav-link">About Us</a>
+        <a href="product.html"  class="nav-item nav-link v-nav-link">Products</a>
+        <a href="service.html"  class="nav-item nav-link v-nav-link">Applications</a>
+        <a href="gallery.html"  class="nav-item nav-link v-nav-link active">Gallery</a>
+        <a href="blog.html"     class="nav-item nav-link v-nav-link">Blog</a>
+        <a href="contact.html"  class="nav-item nav-link v-nav-link">Contact Us</a>
+      </div>
+      <div class="v-nav-cta d-none d-lg-flex">
+        <a href="contact.html#inquiry" class="v-btn-quote" id="navbar-quote-btn">Get Quote</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ====== PAGE HERO ====== -->
+<section class="page-hero">
+  <div class="page-hero-content animate-on-scroll">
+    <nav aria-label="breadcrumb" class="breadcrumb-v">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span>Gallery</span>
+    </nav>
+    <div class="section-badge" style="background:rgba(255,255,255,.12);color:#fff;margin-bottom:16px;">
+      <i class="fas fa-images"></i> Photo Gallery
+    </div>
+    <h1 style="font-size:clamp(2rem,5vw,3.2rem);font-weight:800;color:#fff;margin-bottom:14px;">
+      Our <span style="color:#b8e0c6;">Photo Gallery</span>
+    </h1>
+    <p style="color:rgba(255,255,255,.75);font-size:1.1rem;max-width:600px;margin:0 auto;">
+      Explore our vetiver farms, harvesting process, and natural products
+    </p>
+  </div>
+</section>
+
+<!-- ====== GALLERY COUNT BAR ====== -->
+<div class="gallery-count-bar">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div class="d-flex align-items-center gap-3">
+        <span class="gallery-count-badge"><i class="fas fa-images"></i> <span id="visibleCount">12</span> Photos</span>
+        <span style="color:rgba(255,255,255,.45);font-size:0.85rem;">Click any image to view in full screen</span>
+      </div>
+      <div style="color:rgba(255,255,255,.45);font-size:0.82rem;">
+        <i class="fas fa-leaf" style="color:#74c69d;margin-right:6px;"></i>100% Natural Vetiver Agro Farm
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== GALLERY SECTION ====== -->
+<section style="padding: 70px 0 80px; background: #f8fdf9;">
+  <div class="container">
+
+    <!-- Section Header -->
+    <div class="text-center mb-5 animate-on-scroll">
+      <div class="section-badge"><i class="fas fa-camera"></i> Visual Tour</div>
+      <h2 class="section-title">Inside <span>Vetiver Agro Farm</span></h2>
+      <p class="section-subtitle mx-auto" style="max-width:560px;">
+        From lush green fields to the final product — take a visual journey through our sustainable vetiver farm and production process.
+      </p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="gallery-filters animate-on-scroll d2" id="galleryFilters">
+      <button class="gf-btn active" data-filter="all">
+        <i class="fas fa-th me-1"></i> All
+      </button>
+      <button class="gf-btn" data-filter="vetiver-farm">
+        <i class="fas fa-tractor me-1"></i> Vetiver Farm
+      </button>
+      <button class="gf-btn" data-filter="harvesting">
+        <i class="fas fa-cut me-1"></i> Harvesting
+      </button>
+      <button class="gf-btn" data-filter="products">
+        <i class="fas fa-box-open me-1"></i> Products
+      </button>
+      <button class="gf-btn" data-filter="essential-oil">
+        <i class="fas fa-flask me-1"></i> Essential Oil
+      </button>
+      <button class="gf-btn" data-filter="handicrafts">
+        <i class="fas fa-hands me-1"></i> Handicrafts
+      </button>
+    </div>
+
+    <!-- Masonry Gallery Grid -->
+    <div class="gallery-masonry animate-on-scroll d3" id="galleryMasonry">
+
+      <!-- Item 1: Vetiver Farm - Large feature image -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="vetiver-farm"
+           data-img="img/vetiver_hero.jpg"
+           data-caption="Lush Vetiver Fields – Vetiver Agro Farm"
+           style="margin-bottom:16px;">
+        <img src="img/vetiver_hero.jpg" alt="Lush Vetiver Farm Fields" loading="lazy">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">Lush Vetiver Farm Fields</div>
+        </div>
+      </div>
+
+      <!-- Item 2: Vetiver Roots - Products -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="products"
+           data-img="img/vetiver_roots.jpg"
+           data-caption="Premium Dried Vetiver Roots">
+        <img src="img/vetiver_roots.jpg" alt="Premium Dried Vetiver Roots" loading="lazy">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">Premium Dried Vetiver Roots</div>
+        </div>
+      </div>
+
+      <!-- Item 3: Essential Oil -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="essential-oil"
+           data-img="img/vetiver_oil.jpg"
+           data-caption="Pure Vetiver Essential Oil">
+        <img src="img/vetiver_oil.jpg" alt="Vetiver Essential Oil Bottle" loading="lazy">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">Pure Vetiver Essential Oil</div>
+        </div>
+      </div>
+
+      <!-- Item 4: Handicrafts -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="handicrafts"
+           data-img="img/vetiver_handicrafts.jpg"
+           data-caption="Handcrafted Vetiver Mats & Fans">
+        <img src="img/vetiver_handicrafts.jpg" alt="Vetiver Handicrafts Mats and Fans" loading="lazy">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">Handcrafted Vetiver Mats &amp; Fans</div>
+        </div>
+      </div>
+
+      <!-- Item 5: Agriculture / Harvesting -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="harvesting"
+           data-img="img/vetiver_agriculture.jpg"
+           data-caption="Vetiver on Terraced Hillsides – Sustainable Agriculture">
+        <img src="img/vetiver_agriculture.jpg" alt="Vetiver Terraced Agriculture" loading="lazy">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">Sustainable Hillside Agriculture</div>
+        </div>
+      </div>
+
+      <!-- Item 6: Wellness Products -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="products"
+           data-img="img/vetiver_wellness.jpg"
+           data-caption="Vetiver Herbal Wellness Products">
+        <img src="img/vetiver_wellness.jpg" alt="Vetiver Wellness Herbal Products" loading="lazy">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">Vetiver Herbal Wellness Products</div>
+        </div>
+      </div>
+
+      <!-- Item 7: Vetiver Farm wide shot -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="vetiver-farm"
+           data-img="img/vetiver_agriculture.jpg"
+           data-caption="Vetiver Grass Hedgerows – Natural Erosion Control">
+        <img src="img/vetiver_agriculture.jpg" alt="Vetiver Grass Hedgerows" loading="lazy" style="filter:hue-rotate(10deg) brightness(1.05);">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">Vetiver Hedgerows – Erosion Control</div>
+        </div>
+      </div>
+
+      <!-- Item 8: Oil Distillation / Essential Oil production -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="essential-oil"
+           data-img="img/vetiver_wellness.jpg"
+           data-caption="Steam Distillation – Vetiver Oil Extraction Process">
+        <img src="img/vetiver_wellness.jpg" alt="Vetiver Oil Steam Distillation" loading="lazy" style="filter:saturate(1.2);">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">Steam Distillation Process</div>
+        </div>
+      </div>
+
+      <!-- Item 9: Harvesting roots -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="harvesting"
+           data-img="img/vetiver_roots.jpg"
+           data-caption="Hand-Harvested Vetiver Roots – Post Harvest Processing">
+        <img src="img/vetiver_roots.jpg" alt="Hand Harvested Vetiver Roots" loading="lazy" style="filter:contrast(1.05) brightness(0.98);">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">Hand-Harvested Vetiver Roots</div>
+        </div>
+      </div>
+
+      <!-- Item 10: Handicrafts weaving -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="handicrafts"
+           data-img="img/vetiver_handicrafts.jpg"
+           data-caption="Traditional Artisan Weaving – Vetiver Handicrafts">
+        <img src="img/vetiver_handicrafts.jpg" alt="Artisan Vetiver Weaving" loading="lazy" style="filter:saturate(1.15) brightness(1.03);">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">Artisan Weaving – Vetiver Products</div>
+        </div>
+      </div>
+
+      <!-- Item 11: Farm landscape hero -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="vetiver-farm"
+           data-img="img/vetiver_hero.jpg"
+           data-caption="Vetiver Agro Farm – 50 Acres of Organic Vetiver">
+        <img src="img/vetiver_hero.jpg" alt="Vetiver Agro Farm Aerial View" loading="lazy" style="filter:brightness(1.05) saturate(1.1);">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">50 Acres of Organic Vetiver Farm</div>
+        </div>
+      </div>
+
+      <!-- Item 12: Packaged oil products -->
+      <div class="gallery-masonry-item"
+           data-lightbox
+           data-category="products"
+           data-img="img/vetiver_oil.jpg"
+           data-caption="Export-Ready Vetiver Oil – Premium Packaging">
+        <img src="img/vetiver_oil.jpg" alt="Export Grade Vetiver Oil Packaging" loading="lazy" style="filter:contrast(1.08);">
+        <div class="gm-overlay">
+          <div class="gm-zoom"><i class="fas fa-search-plus"></i></div>
+          <div class="gm-caption">Export-Ready Premium Packaging</div>
+        </div>
+      </div>
+
+    </div><!-- /gallery-masonry -->
+
+    <!-- No results message -->
+    <div id="noResults" style="display:none;text-align:center;padding:60px 20px;">
+      <i class="fas fa-search" style="font-size:3rem;color:#ccc;margin-bottom:16px;display:block;"></i>
+      <p style="color:#888;font-size:1.1rem;">No photos found for this category.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== VIDEO SECTION ====== -->
+<section class="video-section" id="farmTour">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 animate-on-scroll">
+        <div class="video-badge">
+          <i class="fas fa-play-circle"></i> Farm Video Tour
+        </div>
+        <h2 class="video-title">
+          Vetiver Farm Tour –<br><span>Watch Our Process</span>
+        </h2>
+        <p class="video-desc">
+          Go behind the scenes at Vetiver Agro Farm. See how we grow, harvest, and process premium vetiver — from seed to finished product — using 100% sustainable and eco-friendly practices.
+        </p>
+        <ul class="video-feat-list">
+          <li><i class="fas fa-check-circle"></i> 50+ acres of organic vetiver cultivation</li>
+          <li><i class="fas fa-check-circle"></i> Traditional hand-harvesting techniques</li>
+          <li><i class="fas fa-check-circle"></i> Steam distillation for pure essential oil</li>
+          <li><i class="fas fa-check-circle"></i> Skilled artisan handicraft production</li>
+          <li><i class="fas fa-check-circle"></i> Export-ready packaging & quality checks</li>
+        </ul>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="https://wa.me/919876543210?text=Hello%2C%20I%20watched%20your%20farm%20tour%20and%20want%20to%20inquire%20about%20vetiver%20products" class="btn-v-whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp Us
+          </a>
+          <a href="contact.html#inquiry" class="btn-v-gold">
+            <i class="fas fa-paper-plane"></i> Get Quote
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-7 animate-on-scroll d3">
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/Bxj87EqAvI0?rel=0&modestbranding=1&color=white&autoplay=0"
+            title="Vetiver Agro Farm – Farm Tour Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+        <!-- Video stats below -->
+        <div class="row g-3 mt-3">
+          <div class="col-4">
+            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(116,198,157,0.2);border-radius:12px;padding:18px;text-align:center;">
+              <div style="font-size:1.6rem;font-weight:800;color:#74c69d;">50+</div>
+              <div style="font-size:0.78rem;color:rgba(255,255,255,.5);margin-top:4px;">Acres Farm</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(116,198,157,0.2);border-radius:12px;padding:18px;text-align:center;">
+              <div style="font-size:1.6rem;font-weight:800;color:#74c69d;">1+</div>
+              <div style="font-size:0.78rem;color:rgba(255,255,255,.5);margin-top:4px;">Year Farming</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(116,198,157,0.2);border-radius:12px;padding:18px;text-align:center;">
+              <div style="font-size:1.6rem;font-weight:800;color:#74c69d;">100%</div>
+              <div style="font-size:0.78rem;color:rgba(255,255,255,.5);margin-top:4px;">Organic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SHARE / FOLLOW SECTION ====== -->
+<section style="padding:55px 0;background:#fff;border-top:1px solid #e8f5ee;">
+  <div class="container">
+    <div class="text-center animate-on-scroll">
+      <div class="section-badge" style="margin-bottom:14px;"><i class="fab fa-instagram"></i> Follow Us</div>
+      <h3 style="font-size:1.6rem;font-weight:700;color:#1a3322;margin-bottom:10px;">
+        Follow Our Farm <span style="color:#3a8f5f;">@VetiverAgroFarm</span>
+      </h3>
+      <p style="color:#6c757d;margin-bottom:28px;max-width:500px;margin-left:auto;margin-right:auto;">
+        Stay connected for daily farm updates, product launches, and vetiver tips. Share your experience with us!
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="#" class="btn-v-outline" style="font-size:0.88rem;">
+          <i class="fab fa-instagram" style="color:#e1306c;"></i> Instagram
+        </a>
+        <a href="#" class="btn-v-outline" style="font-size:0.88rem;">
+          <i class="fab fa-facebook-f" style="color:#1877f2;"></i> Facebook
+        </a>
+        <a href="#" class="btn-v-outline" style="font-size:0.88rem;">
+          <i class="fab fa-youtube" style="color:#ff0000;"></i> YouTube
+        </a>
+        <a href="https://wa.me/919876543210" class="btn-v-whatsapp" style="font-size:0.88rem;" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CTA SECTION ====== -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content text-center">
+      <div class="section-badge" style="background:rgba(255,255,255,.12);color:#fff;margin-bottom:16px;">
+        <i class="fas fa-envelope"></i> Ready to Order?
+      </div>
+      <h2 class="section-title" style="color:#fff;font-size:clamp(1.8rem,4vw,2.8rem);">
+        Love What You See? <span>Let's Work Together</span>
+      </h2>
+      <p style="color:rgba(255,255,255,.72);max-width:580px;margin:0 auto 36px;font-size:1.05rem;line-height:1.8;">
+        Our premium vetiver products are available for bulk orders, wholesale, and direct export. Get your free quote today and experience nature's finest.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="contact.html#inquiry" class="btn-v-gold">
+          <i class="fas fa-paper-plane"></i> Get Free Quote
+        </a>
+        <a href="https://wa.me/919876543210?text=Hello%20Vetiver%20Agro%20Farm%2C%20I%20saw%20your%20gallery%20and%20want%20to%20inquire%20about%20products" class="btn-v-whatsapp" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp Now
+        </a>
+        <a href="product.html" class="hero-btn-outline">
+          <i class="fas fa-leaf"></i> View Products
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="v-footer" id="footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand-name">Vetiver Agro Farm</div>
+        <span class="footer-brand-tag">Natural • Pure • Sustainable</span>
+        <p class="footer-desc">Vetiver Agro Farm – Rooted in Nature. Premium quality vetiver products sourced directly from sustainable farms. Mahima Global Entrepreneurs (OPC) Private Limited was incorporated on January 10, 2025.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://wa.me/919876543210" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Vetiver</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Products</a></li>
+          <li><a href="service.html"><i class="fas fa-chevron-right"></i> Applications</a></li>
+          <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+          <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <h4 class="footer-heading">Products</h4>
+        <ul class="footer-links">
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Vetiver Roots</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Essential Oil</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Herbal Powder</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Mats &amp; Fans</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Cooling Products</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Bulk Orders</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <h4 class="footer-heading">Get In Touch</h4>
+        <div class="footer-contact-row"><i class="fas fa-map-marker-alt"></i><span>Mahima Global Entrepreneurs (OPC) Pvt Ltd, Sadha Vari Palem, Navalakh Gardens, Nellore, Andhra Pradesh, 524002</span></div>
+        <div class="footer-contact-row"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
+        <div class="footer-contact-row"><i class="fas fa-envelope"></i><span>info@vetiveragrofarm.com</span></div>
+        <div class="footer-contact-row"><i class="fab fa-whatsapp"></i><span>+91 98765 43210 (WhatsApp)</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p class="mb-0">© 2026 <a href="index.html">Mahima Global Entrepreneurs (OPC) Private Limited</a>. All Rights Reserved. | Vetiver Agro Farm | Built by IIITIHAS UNIVERSAL PVT LTD</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ====== SCRIPTS ====== -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="js/vetiver.js"></script>
+
+<script>
+  /* ===================================================
+     GALLERY FILTER + LIGHTBOX LOGIC
+  =================================================== */
+  (function () {
+    'use strict';
+
+    const filters   = document.querySelectorAll('.gf-btn');
+    const items     = document.querySelectorAll('.gallery-masonry-item');
+    const countEl   = document.getElementById('visibleCount');
+    const noResults = document.getElementById('noResults');
+    const overlay   = document.getElementById('lightboxOverlay');
+    const lbImg     = document.getElementById('lightboxImg');
+    const lbClose   = document.getElementById('lightboxClose');
+
+    /* ---- FILTER ---- */
+    function updateCount() {
+      const visible = document.querySelectorAll('.gallery-masonry-item:not(.hidden)').length;
+      if (countEl) countEl.textContent = visible;
+      if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    filters.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        // Update active button
+        filters.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        items.forEach(function (item) {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.classList.remove('hidden');
+            item.style.animation = 'none';
+            // Trigger reflow
+            void item.offsetWidth;
+            item.style.animation = 'fadeInUp 0.4s ease forwards';
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+
+        updateCount();
+      });
+    });
+
+    /* ---- LIGHTBOX ---- */
+    function openLightbox(src, caption) {
+      lbImg.src = src;
+      lbImg.alt = caption || 'Gallery Image';
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+      // Delay clearing src for smooth close animation
+      setTimeout(function () { lbImg.src = ''; }, 320);
+    }
+
+    items.forEach(function (item) {
+      item.addEventListener('click', function () {
+        const src     = item.getAttribute('data-img');
+        const caption = item.getAttribute('data-caption');
+        if (src) openLightbox(src, caption);
+      });
+    });
+
+    // Close button
+    if (lbClose) {
+      lbClose.addEventListener('click', closeLightbox);
+    }
+
+    // Click outside image to close
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeLightbox();
+    });
+
+    // ESC key to close
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+
+    /* ---- INITIAL COUNT ---- */
+    updateCount();
+
+  })();
+</script>
+
+<!-- Inline keyframe for filter animation -->
+<style>
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+</body>
+</html>

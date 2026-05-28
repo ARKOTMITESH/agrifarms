@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore the diverse applications and services of Vetiver Agro Farm — from aromatherapy and agriculture to soil conservation, perfumery, Ayurveda, and eco-friendly projects." />
+  <title>Applications & Services | Vetiver Agro Farm</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="img/vetiver_roots.jpg" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="lib/owlcarousel/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/vetiver.css" />
+
+  <style>
+    /* ── Page-specific extras ── */
+
+    /* ── Large Application Cards ── */
+    .svc-app-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      height: 100%;
+    }
+    .svc-app-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .svc-app-img {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    .svc-app-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .svc-app-card:hover .svc-app-img img { transform: scale(1.08); }
+    .svc-app-badge {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--green-dark); color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 100px;
+    }
+    .svc-app-body { padding: 26px 24px 28px; }
+    .svc-app-icon-wrap {
+      width: 54px; height: 54px;
+      background: var(--green-pale);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; color: var(--green-leaf);
+      margin-bottom: 16px;
+      transition: var(--transition);
+    }
+    .svc-app-card:hover .svc-app-icon-wrap {
+      background: var(--green-dark);
+      color: var(--gold-light);
+    }
+    .svc-app-title {
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--green-dark); margin-bottom: 10px;
+    }
+    .svc-app-desc {
+      font-size: .875rem; color: var(--text-muted);
+      line-height: 1.75; margin-bottom: 16px;
+    }
+    .svc-app-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .svc-app-tag {
+      background: var(--green-pale); color: var(--green-leaf);
+      font-size: 11px; font-weight: 600;
+      padding: 4px 12px; border-radius: 100px;
+    }
+
+    /* ── Industries We Serve ── */
+    .industries-section { background: var(--sand); }
+    .industry-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 34px 22px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border-top: 4px solid transparent;
+      height: 100%;
+    }
+    .industry-card:hover {
+      border-top-color: var(--green-leaf);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .industry-icon {
+      width: 74px; height: 74px;
+      background: linear-gradient(135deg, var(--green-pale), #c8ead4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; color: var(--green-leaf);
+      margin: 0 auto 18px;
+      transition: var(--transition);
+    }
+    .industry-card:hover .industry-icon {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      color: #fff;
+    }
+    .industry-name {
+      font-size: .98rem; font-weight: 700;
+      color: var(--green-dark); margin-bottom: 8px;
+      font-family: 'Inter', sans-serif;
+    }
+    .industry-desc {
+      font-size: .82rem; color: var(--text-muted);
+      line-height: 1.65; margin: 0;
+    }
+
+    /* ── Services Offered ── */
+    .services-section { background: var(--cream); }
+    .service-offer-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 34px 28px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    .service-offer-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 5px; height: 100%;
+      background: linear-gradient(180deg, var(--green-leaf), var(--green-dark));
+      transform: scaleY(0); transform-origin: top;
+      transition: transform .4s ease;
+    }
+    .service-offer-card:hover::before { transform: scaleY(1); }
+    .service-offer-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .service-offer-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 800;
+      color: var(--green-pale);
+      line-height: 1; position: absolute;
+      top: 16px; right: 20px;
+      transition: var(--transition);
+    }
+    .service-offer-card:hover .service-offer-num { color: rgba(64,145,108,.12); }
+    .service-offer-icon {
+      width: 56px; height: 56px;
+      background: var(--green-pale);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; color: var(--green-leaf);
+      margin-bottom: 18px;
+      transition: var(--transition);
+    }
+    .service-offer-card:hover .service-offer-icon {
+      background: var(--green-dark);
+      color: var(--gold-light);
+    }
+    .service-offer-title {
+      font-size: 1.12rem; font-weight: 700;
+      color: var(--green-dark); margin-bottom: 10px;
+    }
+    .service-offer-desc {
+      font-size: .875rem; color: var(--text-muted);
+      line-height: 1.75; margin-bottom: 16px;
+    }
+    .service-offer-list { list-style: none; padding: 0; margin: 0; }
+    .service-offer-list li {
+      font-size: .83rem; color: var(--text-muted);
+      padding: 5px 0;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .service-offer-list li i {
+      color: var(--green-leaf); font-size: 12px; flex-shrink: 0;
+    }
+
+    /* ── Process Steps ── */
+    .process-section { background: var(--green-dark); position: relative; overflow: hidden; }
+    .process-section::before {
+      content: '';
+      position: absolute; top: -40%; left: -10%;
+      width: 650px; height: 650px;
+      background: radial-gradient(circle, rgba(116,198,157,.08) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .process-connector {
+      position: absolute; top: 50%; left: calc(100% + 0px);
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, rgba(116,198,157,.35), transparent);
+      transform: translateY(-50%);
+      display: none;
+    }
+    @media (min-width: 992px) { .process-connector { display: block; } }
+    .process-step {
+      position: relative;
+      text-align: center;
+      padding: 36px 24px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(6px);
+      transition: var(--transition);
+      height: 100%;
+    }
+    .process-step:hover {
+      background: rgba(255,255,255,.1);
+      transform: translateY(-6px);
+      border-color: rgba(116,198,157,.4);
+    }
+    .process-step-num {
+      width: 60px; height: 60px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 800; color: #fff;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 18px rgba(184,134,11,.4);
+    }
+    .process-step-icon {
+      font-size: 2rem; color: var(--green-light);
+      margin-bottom: 14px; display: block;
+    }
+    .process-step-title {
+      font-size: 1.05rem; font-weight: 700;
+      color: #fff; margin-bottom: 10px;
+    }
+    .process-step-desc {
+      font-size: .855rem;
+      color: rgba(255,255,255,.6);
+      line-height: 1.75; margin: 0;
+    }
+
+    /* ── CTA section for service page ── */
+    .svc-cta-section {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 60%, var(--green-leaf) 100%);
+      padding: 90px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .svc-cta-section::before {
+      content: '';
+      position: absolute; top: -50%; right: -8%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .svc-cta-section::after {
+      content: '';
+      position: absolute; bottom: -30%; left: -5%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(184,134,11,.12) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+
+    /* ── Responsive tweaks ── */
+    @media (max-width: 767.98px) {
+      .svc-app-img { height: 180px; }
+      .service-offer-card { padding: 26px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ TOPBAR ══════════ -->
+  <div class="v-topbar d-none d-lg-block">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-9">
+          <div class="d-flex align-items-center flex-wrap" style="gap: 24px;">
+            <span class="v-topbar-company" style="display: inline-flex; align-items: center; gap: 8px; margin-right: 0;"><i class="fas fa-building" style="color: #74C69D;"></i> Mahima Global Entrepreneurs (OPC) Private Limited</span>
+            <a href="tel:+919876543210" style="margin-right: 0;"><i class="fas fa-phone-alt"></i> +91 98765 43210</a>
+            <a href="mailto:info@vetiveragrofarm.com" style="margin-right: 0;"><i class="fas fa-envelope"></i> info@vetiveragrofarm.com</a>
+            <span class="v-topbar-shipping" style="margin-right: 0;"><i class="fas fa-shipping-fast"></i> Worldwide Shipping</span>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="d-flex align-items-center justify-content-end">
+            <div class="v-topbar-social">
+              <span>Follow Us:</span>
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <nav class="v-navbar navbar navbar-expand-lg" id="mainNavbar">
+    <div class="container">
+      <a href="index.html" class="v-brand" aria-label="Vetiver Agro Farm Home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="v-brand-logo-svg">
+          <path d="M50 82 C52 75, 48 35, 12 15 C30 35, 46 65, 48 80 Z" fill="#2D6A4F"/>
+          <path d="M50 82 C53 72, 53 25, 30 5 C42 22, 49 55, 49 80 Z" fill="#40916C"/>
+          <path d="M51 82 C50 72, 47 25, 70 5 C58 22, 51 55, 51 80 Z" fill="#40916C"/>
+          <path d="M52 82 C50 75, 52 35, 88 15 C70 35, 54 65, 52 80 Z" fill="#1B4332"/>
+          <path d="M50 82 C50 70, 50 15, 50 0 C51 15, 51 70, 50 82 Z" fill="#74C69D"/>
+          <path d="M50 82 Q42 90, 36 98 M50 82 Q49 92, 46 100 M50 82 Q51 92, 54 100 M50 82 Q58 90, 64 98" stroke="#1B4332" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="v-brand-text">
+          <span class="v-brand-title">VERTIVER</span>
+          <span class="v-brand-subtitle">FARM</span>
+          <span class="v-brand-tagline">IN AGRO FARM</span>
+        </div>
+      </a>
+      
+      <div class="d-flex align-items-center">
+        <!-- Sticky Action Buttons for Mobile Header -->
+        <div class="mobile-nav-actions d-flex d-lg-none">
+          <a href="tel:+919876543210" class="mobile-nav-btn phone" aria-label="Call Us"><i class="fas fa-phone-alt"></i></a>
+          <a href="https://wa.me/919876543210" class="mobile-nav-btn whatsapp" target="_blank" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        
+        <!-- Hamburger Menu Toggler -->
+        <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <!-- Close button inside mobile menu collapse -->
+        <button class="mobile-menu-close d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Close menu">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="navbar-nav mx-auto">
+          <a href="index.html"    class="nav-item nav-link v-nav-link">Home</a>
+          <a href="about.html"    class="nav-item nav-link v-nav-link">About Us</a>
+          <a href="product.html"  class="nav-item nav-link v-nav-link">Products</a>
+          <a href="service.html"  class="nav-item nav-link v-nav-link active">Applications</a>
+          <a href="gallery.html"  class="nav-item nav-link v-nav-link">Gallery</a>
+          <a href="blog.html"     class="nav-item nav-link v-nav-link">Blog</a>
+          <a href="contact.html"  class="nav-item nav-link v-nav-link">Contact Us</a>
+        </div>
+        <div class="v-nav-cta d-none d-lg-flex">
+          <a href="contact.html#inquiry" class="v-btn-quote" id="navbar-quote-btn">Get Quote</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════ PAGE HERO ══════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-content">
+        <div class="section-badge mb-3">
+          <i class="fas fa-leaf"></i> Applications &amp; Services
+        </div>
+        <h1>Vetiver Applications &amp; <span style="color:var(--gold-light);">Services</span></h1>
+        <p>Discover the Versatile Power of Vetiver — from earth to essence, from roots to remedies, vetiver transforms every industry it touches.</p>
+        <nav class="breadcrumb-v mt-3" aria-label="breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="sep"><i class="fas fa-chevron-right" style="font-size:10px;"></i></span>
+          <span class="cur">Applications &amp; Services</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ APPLICATIONS SECTION ══════════ -->
+  <section class="applications-section py-5 py-lg-6" id="applications" style="background:var(--cream); padding: 90px 0;">
+    <div class="container">
+      <!-- Heading -->
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-7 text-center animate-on-scroll">
+          <div class="section-badge"><i class="fas fa-seedling"></i> What Vetiver Does</div>
+          <h2 class="section-title">Remarkable <span>Applications</span> of Vetiver</h2>
+          <p class="section-subtitle mx-auto">Vetiver is one of nature's most versatile gifts — a single plant that spans wellness, agriculture, industry, and ecology. Explore its extraordinary range of uses.</p>
+        </div>
+      </div>
+
+      <!-- Cards Row 1 -->
+      <div class="row g-4 mb-4">
+
+        <!-- 1. Aromatherapy & Wellness -->
+        <div class="col-lg-6 col-xl-3 animate-on-scroll d1">
+          <div class="svc-app-card">
+            <div class="svc-app-img">
+              <img src="img/vetiver_oil.jpg" alt="Vetiver Essential Oil – Aromatherapy" loading="lazy" />
+              <span class="svc-app-badge">Wellness</span>
+            </div>
+            <div class="svc-app-body">
+              <div class="svc-app-icon-wrap"><i class="fas fa-spa"></i></div>
+              <h3 class="svc-app-title">Aromatherapy &amp; Wellness</h3>
+              <p class="svc-app-desc">Vetiver essential oil is celebrated worldwide as the "Oil of Tranquility." Its deep, earthy, smoky aroma calms the nervous system, reduces stress and anxiety, and promotes restful sleep. Used in diffusers, massage blends, and meditation rituals, it anchors the mind and restores emotional balance.</p>
+              <div class="svc-app-tags">
+                <span class="svc-app-tag">Stress Relief</span>
+                <span class="svc-app-tag">Anxiety</span>
+                <span class="svc-app-tag">Meditation</span>
+                <span class="svc-app-tag">Sleep Aid</span>
+                <span class="svc-app-tag">Diffuser Blends</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Sustainable Agriculture -->
+        <div class="col-lg-6 col-xl-3 animate-on-scroll d2">
+          <div class="svc-app-card">
+            <div class="svc-app-img">
+              <img src="img/vetiver_agriculture.jpg" alt="Vetiver in Sustainable Agriculture" loading="lazy" />
+              <span class="svc-app-badge">Agriculture</span>
+            </div>
+            <div class="svc-app-body">
+              <div class="svc-app-icon-wrap"><i class="fas fa-tractor"></i></div>
+              <h3 class="svc-app-title">Sustainable Agriculture</h3>
+              <p class="svc-app-desc">Planted as hedge rows between crop fields, vetiver acts as a natural windbreak, reduces soil temperature, and increases moisture retention. As a companion plant, it repels pests like stem borers while attracting beneficial insects. It eliminates the need for chemical pesticides, supporting fully organic farming ecosystems.</p>
+              <div class="svc-app-tags">
+                <span class="svc-app-tag">Companion Planting</span>
+                <span class="svc-app-tag">Pest Control</span>
+                <span class="svc-app-tag">Organic Farming</span>
+                <span class="svc-app-tag">Windbreak</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Soil Erosion Control -->
+        <div class="col-lg-6 col-xl-3 animate-on-scroll d3">
+          <div class="svc-app-card">
+            <div class="svc-app-img">
+              <img src="img/vetiver_agriculture.jpg" alt="Vetiver for Soil Erosion Control" loading="lazy" />
+              <span class="svc-app-badge">Erosion Control</span>
+            </div>
+            <div class="svc-app-body">
+              <div class="svc-app-icon-wrap"><i class="fas fa-mountain"></i></div>
+              <h3 class="svc-app-title">Soil Erosion Control</h3>
+              <p class="svc-app-desc">Vetiver's root system plunges up to 3–4 metres deep into the soil, creating a living anchor that holds embankments, road slopes, and river banks firmly in place. Planted in contour hedgerows, it forms a vegetative barrier that slows runoff, traps sediment, and steadily rebuilds eroded topsoil over time.</p>
+              <div class="svc-app-tags">
+                <span class="svc-app-tag">Deep Root System</span>
+                <span class="svc-app-tag">Slope Stabilization</span>
+                <span class="svc-app-tag">Roadside Protection</span>
+                <span class="svc-app-tag">Embankment</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Water Conservation -->
+        <div class="col-lg-6 col-xl-3 animate-on-scroll d4">
+          <div class="svc-app-card">
+            <div class="svc-app-img">
+              <img src="img/vetiver_agriculture.jpg" alt="Vetiver for Water Conservation" loading="lazy" />
+              <span class="svc-app-badge">Water</span>
+            </div>
+            <div class="svc-app-body">
+              <div class="svc-app-icon-wrap"><i class="fas fa-tint"></i></div>
+              <h3 class="svc-app-title">Water Conservation</h3>
+              <p class="svc-app-desc">Vetiver hedgerows capture and slow surface runoff, directing water downward to recharge aquifers and restore groundwater levels. Its dense root matrix acts as a natural biofilter, removing heavy metals and agricultural pollutants from water streams. Watershed management projects across Asia rely on vetiver as their first line of ecological defence.</p>
+              <div class="svc-app-tags">
+                <span class="svc-app-tag">Filtration</span>
+                <span class="svc-app-tag">Groundwater Recharge</span>
+                <span class="svc-app-tag">Watershed Mgmt</span>
+                <span class="svc-app-tag">Biofilter</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /row 1 -->
+
+      <!-- Cards Row 2 -->
+      <div class="row g-4">
+
+        <!-- 5. Perfume & Cosmetics -->
+        <div class="col-lg-6 col-xl-3 animate-on-scroll d1">
+          <div class="svc-app-card">
+            <div class="svc-app-img">
+              <img src="img/vetiver_oil.jpg" alt="Vetiver in Perfume and Cosmetics" loading="lazy" />
+              <span class="svc-app-badge">Fragrance</span>
+            </div>
+            <div class="svc-app-body">
+              <div class="svc-app-icon-wrap"><i class="fas fa-flask"></i></div>
+              <h3 class="svc-app-title">Perfume &amp; Cosmetics Industry</h3>
+              <p class="svc-app-desc">Known as "liquid gold" in the fragrance world, vetiver oil is an indispensable base note in more than 36% of all men's fragrances and countless luxury perfumes. Its complex, woody-smoky-earthy profile lends longevity and depth to any composition. Cosmetic brands harness its antioxidant, anti-ageing, and skin-toning properties in premium formulations.</p>
+              <div class="svc-app-tags">
+                <span class="svc-app-tag">Base Note</span>
+                <span class="svc-app-tag">Luxury Fragrances</span>
+                <span class="svc-app-tag">Cosmetic Formulations</span>
+                <span class="svc-app-tag">Anti-Ageing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Natural Cooling Solutions -->
+        <div class="col-lg-6 col-xl-3 animate-on-scroll d2">
+          <div class="svc-app-card">
+            <div class="svc-app-img">
+              <img src="img/vetiver_handicrafts.jpg" alt="Vetiver Natural Cooling Solutions" loading="lazy" />
+              <span class="svc-app-badge">Cooling</span>
+            </div>
+            <div class="svc-app-body">
+              <div class="svc-app-icon-wrap"><i class="fas fa-wind"></i></div>
+              <h3 class="svc-app-title">Natural Cooling Solutions</h3>
+              <p class="svc-app-desc">Woven vetiver mats, curtains, and hand fans have cooled homes across tropical Asia for centuries. When moistened with water, vetiver roots release their characteristic cool fragrance while naturally evaporating to lower ambient temperature by up to 7–10°C. An eco-friendly alternative to air conditioning that requires zero electricity.</p>
+              <div class="svc-app-tags">
+                <span class="svc-app-tag">Mats &amp; Curtains</span>
+                <span class="svc-app-tag">Cooling Water</span>
+                <span class="svc-app-tag">Eco Air Cooling</span>
+                <span class="svc-app-tag">Zero Electricity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Herbal Medicine & Ayurveda -->
+        <div class="col-lg-6 col-xl-3 animate-on-scroll d3">
+          <div class="svc-app-card">
+            <div class="svc-app-img">
+              <img src="img/vetiver_wellness.jpg" alt="Vetiver in Herbal Medicine and Ayurveda" loading="lazy" />
+              <span class="svc-app-badge">Ayurveda</span>
+            </div>
+            <div class="svc-app-body">
+              <div class="svc-app-icon-wrap"><i class="fas fa-mortar-pestle"></i></div>
+              <h3 class="svc-app-title">Herbal Medicine &amp; Ayurveda</h3>
+              <p class="svc-app-desc">Revered in Ayurvedic texts as "Ushira," vetiver roots have been used for millennia to treat fevers, heat stroke, inflammation, and urinary disorders. The roots' cooling property balances Pitta dosha and rejuvenates the body. Modern research validates its anti-inflammatory, antioxidant, and antimicrobial bioactive compounds, opening new doors in integrative medicine.</p>
+              <div class="svc-app-tags">
+                <span class="svc-app-tag">Traditional Medicine</span>
+                <span class="svc-app-tag">Cooling Properties</span>
+                <span class="svc-app-tag">Anti-Inflammatory</span>
+                <span class="svc-app-tag">Pitta Balance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Eco-Friendly Projects -->
+        <div class="col-lg-6 col-xl-3 animate-on-scroll d4">
+          <div class="svc-app-card">
+            <div class="svc-app-img">
+              <img src="img/vetiver_agriculture.jpg" alt="Vetiver for Eco-Friendly Projects" loading="lazy" />
+              <span class="svc-app-badge">Eco Projects</span>
+            </div>
+            <div class="svc-app-body">
+              <div class="svc-app-icon-wrap"><i class="fas fa-recycle"></i></div>
+              <h3 class="svc-app-title">Eco-Friendly Projects</h3>
+              <p class="svc-app-desc">Vetiver is at the heart of green construction and ecological restoration worldwide. Its thatched stems are used as sustainable roofing and mulching material. In bioremediation, vetiver absorbs heavy metals, petroleum hydrocarbons, and nitrate from contaminated soils and water bodies, restoring degraded land to productive health without chemicals.</p>
+              <div class="svc-app-tags">
+                <span class="svc-app-tag">Green Construction</span>
+                <span class="svc-app-tag">Ecological Restoration</span>
+                <span class="svc-app-tag">Bioremediation</span>
+                <span class="svc-app-tag">Thatching</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /row 2 -->
+    </div>
+  </section>
+
+  <!-- ══════════ INDUSTRIES WE SERVE ══════════ -->
+  <section class="industries-section" id="industries">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-7 text-center animate-on-scroll">
+          <div class="section-badge"><i class="fas fa-industry"></i> Our Markets</div>
+          <h2 class="section-title">Industries <span>We Serve</span></h2>
+          <p class="section-subtitle mx-auto">From global perfume houses to village-level organic farmers, Vetiver Agro Farm supplies premium vetiver across a wide spectrum of industries with reliability and expertise.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+
+        <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll d1">
+          <div class="industry-card">
+            <div class="industry-icon"><i class="fas fa-spray-can"></i></div>
+            <h4 class="industry-name">Perfume &amp; Fragrance</h4>
+            <p class="industry-desc">Supplying high-purity vetiver essential oil to premier perfumers, luxury fragrance houses, and essential oil distributors globally.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll d2">
+          <div class="industry-card">
+            <div class="industry-icon"><i class="fas fa-pump-soap"></i></div>
+            <h4 class="industry-name">Cosmetics &amp; Skincare</h4>
+            <p class="industry-desc">Premium vetiver extract and hydrosol for cosmetic formulators crafting anti-ageing serums, skin toners, and luxury skin-care lines.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll d3">
+          <div class="industry-card">
+            <div class="industry-icon"><i class="fas fa-leaf"></i></div>
+            <h4 class="industry-name">Agriculture &amp; Farming</h4>
+            <p class="industry-desc">Vetiver grass slips, roots, and mulch for organic farms, permaculture projects, and agribusiness needing natural soil management solutions.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll d4">
+          <div class="industry-card">
+            <div class="industry-icon"><i class="fas fa-mortar-pestle"></i></div>
+            <h4 class="industry-name">Herbal Medicine</h4>
+            <p class="industry-desc">Certified organic vetiver root powder and dried roots for Ayurvedic pharmacies, herbal supplement brands, and traditional medicine practitioners.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll d1">
+          <div class="industry-card">
+            <div class="industry-icon"><i class="fas fa-hard-hat"></i></div>
+            <h4 class="industry-name">Construction &amp; Civil</h4>
+            <p class="industry-desc">Vetiver systems for road embankment stabilisation, dam protection, and slope engineering projects commissioned by civil contractors and government agencies.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll d2">
+          <div class="industry-card">
+            <div class="industry-icon"><i class="fas fa-spa"></i></div>
+            <h4 class="industry-name">Wellness &amp; Spa</h4>
+            <p class="industry-desc">Vetiver massage oils, bath salts, aromatherapy blends, and cooling wellness products for luxury spas, yoga retreats, and holistic wellness centres.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll d3">
+          <div class="industry-card">
+            <div class="industry-icon"><i class="fas fa-ship"></i></div>
+            <h4 class="industry-name">Export &amp; Trade</h4>
+            <p class="industry-desc">Reliable bulk vetiver export to Europe, the Middle East, Southeast Asia, and the Americas — with complete documentation, phytosanitary compliance, and logistics support.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 animate-on-scroll d4">
+          <div class="industry-card">
+            <div class="industry-icon"><i class="fas fa-globe-asia"></i></div>
+            <h4 class="industry-name">Eco &amp; Green Projects</h4>
+            <p class="industry-desc">Partnering with NGOs, environmental agencies, and CSR programmes to deliver vetiver-based bioremediation, reforestation, and watershed restoration projects.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SERVICES OFFERED ══════════ -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-7 text-center animate-on-scroll">
+          <div class="section-badge"><i class="fas fa-concierge-bell"></i> What We Offer</div>
+          <h2 class="section-title">Our <span>Services</span></h2>
+          <p class="section-subtitle mx-auto">Beyond supplying premium vetiver, we offer end-to-end support tailored to your business needs — from small custom orders to large-scale international export contracts.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+
+        <!-- Wholesale Supply -->
+        <div class="col-lg-4 col-md-6 animate-on-scroll d1">
+          <div class="service-offer-card">
+            <span class="service-offer-num">01</span>
+            <div class="service-offer-icon"><i class="fas fa-boxes"></i></div>
+            <h3 class="service-offer-title">Wholesale Supply</h3>
+            <p class="service-offer-desc">We maintain large standing stocks of all vetiver products — roots, essential oil, powder, and handicrafts — ready for bulk despatch with minimum lead times. Pricing is competitive and scales favourably for large volumes.</p>
+            <ul class="service-offer-list">
+              <li><i class="fas fa-check-circle"></i> Roots, Oil, Powder &amp; Handicrafts</li>
+              <li><i class="fas fa-check-circle"></i> Minimum order: 50 kg / 5 litres</li>
+              <li><i class="fas fa-check-circle"></i> Competitive tiered pricing</li>
+              <li><i class="fas fa-check-circle"></i> Consistent quality every batch</li>
+              <li><i class="fas fa-check-circle"></i> Certificate of Analysis provided</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Export Services -->
+        <div class="col-lg-4 col-md-6 animate-on-scroll d2">
+          <div class="service-offer-card">
+            <span class="service-offer-num">02</span>
+            <div class="service-offer-icon"><i class="fas fa-globe"></i></div>
+            <h3 class="service-offer-title">Export Services</h3>
+            <p class="service-offer-desc">We handle the full export lifecycle — from packaging and labelling to customs clearance, phytosanitary certification, and final-mile freight coordination. We export to 28+ countries with full regulatory compliance and transparency.</p>
+            <ul class="service-offer-list">
+              <li><i class="fas fa-check-circle"></i> Export to 28+ countries</li>
+              <li><i class="fas fa-check-circle"></i> Phytosanitary &amp; quality certificates</li>
+              <li><i class="fas fa-check-circle"></i> Air, sea &amp; courier options</li>
+              <li><i class="fas fa-check-circle"></i> Custom labelling &amp; packaging</li>
+              <li><i class="fas fa-check-circle"></i> Real-time shipment tracking</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Custom Orders -->
+        <div class="col-lg-4 col-md-6 animate-on-scroll d3">
+          <div class="service-offer-card">
+            <span class="service-offer-num">03</span>
+            <div class="service-offer-icon"><i class="fas fa-sliders-h"></i></div>
+            <h3 class="service-offer-title">Custom Orders</h3>
+            <p class="service-offer-desc">Need a specific grade, extraction method, particle size, or packaging format? We work closely with formulators, researchers, and brand owners to deliver bespoke vetiver preparations precisely tuned to their specifications.</p>
+            <ul class="service-offer-list">
+              <li><i class="fas fa-check-circle"></i> Bespoke grades &amp; specifications</li>
+              <li><i class="fas fa-check-circle"></i> White-label &amp; private label options</li>
+              <li><i class="fas fa-check-circle"></i> Sample testing &amp; approval process</li>
+              <li><i class="fas fa-check-circle"></i> Special extraction methods</li>
+              <li><i class="fas fa-check-circle"></i> R&amp;D collaboration welcome</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Farming Support -->
+        <div class="col-lg-4 col-md-6 animate-on-scroll d4">
+          <div class="service-offer-card">
+            <span class="service-offer-num">04</span>
+            <div class="service-offer-icon"><i class="fas fa-seedling"></i></div>
+            <h3 class="service-offer-title">Vetiver Farming Support</h3>
+            <p class="service-offer-desc">We supply certified vetiver grass slips, planting guides, and nursery material to farmers who wish to establish their own vetiver plots. Our agronomy team conducts on-site visits and training to ensure successful establishment and high root yields.</p>
+            <ul class="service-offer-list">
+              <li><i class="fas fa-check-circle"></i> Certified grass slips supply</li>
+              <li><i class="fas fa-check-circle"></i> On-site planting guidance</li>
+              <li><i class="fas fa-check-circle"></i> Soil preparation advice</li>
+              <li><i class="fas fa-check-circle"></i> Harvest &amp; post-harvest support</li>
+              <li><i class="fas fa-check-circle"></i> Buy-back arrangement available</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Consulting -->
+        <div class="col-lg-4 col-md-6 animate-on-scroll d5">
+          <div class="service-offer-card">
+            <span class="service-offer-num">05</span>
+            <div class="service-offer-icon"><i class="fas fa-comments"></i></div>
+            <h3 class="service-offer-title">Vetiver Consulting</h3>
+            <p class="service-offer-desc">Our expert team offers professional consultancy for civil engineers, urban planners, government bodies, and NGOs seeking to deploy the Vetiver System for erosion control, watershed management, or ecological restoration projects at scale.</p>
+            <ul class="service-offer-list">
+              <li><i class="fas fa-check-circle"></i> Site assessment &amp; feasibility</li>
+              <li><i class="fas fa-check-circle"></i> Vetiver System design</li>
+              <li><i class="fas fa-check-circle"></i> Project monitoring &amp; evaluation</li>
+              <li><i class="fas fa-check-circle"></i> Government tender support</li>
+              <li><i class="fas fa-check-circle"></i> Training workshops &amp; seminars</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Agri CTA card -->
+        <div class="col-lg-4 col-md-6 animate-on-scroll d6">
+          <div class="service-offer-card h-100 d-flex flex-column justify-content-center align-items-center text-center"
+               style="background: linear-gradient(135deg, var(--green-dark), var(--green-mid)); border-left: none;">
+            <i class="fas fa-leaf" style="font-size:3rem; color:var(--green-light); margin-bottom:20px;"></i>
+            <h3 class="service-offer-title" style="color:#fff;">Need a Custom Solution?</h3>
+            <p style="font-size:.9rem; color:rgba(255,255,255,.7); line-height:1.75; margin-bottom:24px;">Every business is unique. Let's discuss your specific requirements and craft the perfect vetiver supply or project plan for you.</p>
+            <a href="contact.html#inquiry" class="btn-v-gold mb-3"><i class="fas fa-file-alt"></i> Request a Quote</a>
+            <a href="https://wa.me/919876543210" class="btn-v-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ HOW WE WORK — PROCESS ══════════ -->
+  <section class="process-section" id="process">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-7 text-center animate-on-scroll">
+          <div class="section-badge" style="background:rgba(255,255,255,.1); color:var(--green-light); border: 1px solid rgba(255,255,255,.15);"><i class="fas fa-cogs"></i> How We Work</div>
+          <h2 class="section-title" style="color:#fff;">Our Simple <span>4-Step</span> Process</h2>
+          <p class="section-subtitle mx-auto" style="color:rgba(255,255,255,.65);">From your first enquiry to successful delivery, we keep our process transparent, efficient, and focused entirely on your satisfaction.</p>
+        </div>
+      </div>
+      <div class="row g-4 justify-content-center">
+
+        <!-- Step 1 -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d1">
+          <div class="process-step">
+            <div class="process-step-num">01</div>
+            <i class="fas fa-comments process-step-icon"></i>
+            <h4 class="process-step-title">Enquiry &amp; Consultation</h4>
+            <p class="process-step-desc">Reach out via our contact form, phone, or WhatsApp. Tell us what product, quantity, grade, and timeline you need. Our team responds within 24 hours with expert guidance and initial pricing.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d2">
+          <div class="process-step">
+            <div class="process-step-num">02</div>
+            <i class="fas fa-vial process-step-icon"></i>
+            <h4 class="process-step-title">Sample &amp; Approval</h4>
+            <p class="process-step-desc">We dispatch complimentary product samples with full quality documentation — Certificate of Analysis, batch number, and origin report. You test, evaluate, and approve before committing to any order.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d3">
+          <div class="process-step">
+            <div class="process-step-num">03</div>
+            <i class="fas fa-handshake process-step-icon"></i>
+            <h4 class="process-step-title">Order &amp; Processing</h4>
+            <p class="process-step-desc">Once approved, we confirm your purchase order, agree payment terms, and begin processing. Your order is carefully harvested, processed to specification, quality-checked, and prepared for despatch with all required documentation.</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="col-lg-3 col-md-6 animate-on-scroll d4">
+          <div class="process-step">
+            <div class="process-step-num">04</div>
+            <i class="fas fa-truck process-step-icon"></i>
+            <h4 class="process-step-title">Dispatch &amp; After-Care</h4>
+            <p class="process-step-desc">Your order is dispatched via your preferred logistics channel. We provide real-time tracking, share all shipping documents, and stay in touch until successful delivery. We follow up to ensure your complete satisfaction.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ WHY CHOOSE US STRIP ══════════ -->
+  <section style="background: var(--sand); padding: 90px 0;">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 animate-on-scroll d1">
+          <div class="section-badge"><i class="fas fa-award"></i> Why Choose Us</div>
+          <h2 class="section-title">The Vetiver Agro Farm <span>Difference</span></h2>
+          <p class="section-subtitle mb-4">We are not just suppliers — we are vetiver specialists with hands-on farming and processing expertise since our incorporation on January 10, 2025, committed to quality that you can trust.</p>
+          <div class="why-feat">
+            <div class="why-icon" style="background:var(--green-pale); color:var(--green-leaf);"><i class="fas fa-certificate"></i></div>
+            <div class="why-text">
+              <h5 style="color:var(--green-dark);">Certified Organic &amp; Quality Assured</h5>
+              <p style="color:var(--text-muted);">All our products carry ISO, organic, and phytosanitary certifications. Every batch is third-party lab tested for purity and potency before dispatch.</p>
+            </div>
+          </div>
+          <div class="why-feat">
+            <div class="why-icon" style="background:var(--green-pale); color:var(--green-leaf);"><i class="fas fa-farm"></i></div>
+            <div class="why-text">
+              <h5 style="color:var(--green-dark);">Farm-to-Customer Transparency</h5>
+              <p style="color:var(--text-muted);">We grow, harvest, process, and ship our own vetiver — eliminating middlemen and giving you full traceability from our soil to your facility.</p>
+            </div>
+          </div>
+          <div class="why-feat">
+            <div class="why-icon" style="background:var(--green-pale); color:var(--green-leaf);"><i class="fas fa-globe"></i></div>
+            <div class="why-text">
+              <h5 style="color:var(--green-dark);">Global Export Expertise</h5>
+              <p style="color:var(--text-muted);">With active clients in 28+ countries, we understand diverse import requirements, documentation standards, and cultural business expectations worldwide.</p>
+            </div>
+          </div>
+          <div class="why-feat">
+            <div class="why-icon" style="background:var(--green-pale); color:var(--green-leaf);"><i class="fas fa-headset"></i></div>
+            <div class="why-text">
+              <h5 style="color:var(--green-dark);">Dedicated Support Team</h5>
+              <p style="color:var(--text-muted);">A responsive, knowledgeable team is available 6 days a week via phone, email, and WhatsApp to assist with enquiries, technical questions, and after-sales support.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 animate-on-scroll d3">
+          <div style="position:relative;">
+            <img src="img/vetiver_agriculture.jpg" alt="Vetiver Agro Farm sustainable practices" loading="lazy"
+                 style="width:100%; height:500px; object-fit:cover; border-radius:var(--radius-lg); box-shadow:var(--shadow-lg);" />
+            <!-- Stat overlay -->
+            <div style="position:absolute; bottom:28px; left:28px; right:28px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+              <div style="background:rgba(27,67,50,.92); backdrop-filter:blur(10px); border-radius:var(--radius-md); padding:18px 20px; text-align:center; border:1px solid rgba(255,255,255,.12);">
+                <div style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:800; color:var(--gold-light); line-height:1;">500<sup style="font-size:1rem;">+</sup></div>
+                <div style="font-size:.72rem; color:rgba(255,255,255,.65); margin-top:4px; text-transform:uppercase; letter-spacing:1px;">Happy Clients</div>
+              </div>
+              <div style="background:rgba(27,67,50,.92); backdrop-filter:blur(10px); border-radius:var(--radius-md); padding:18px 20px; text-align:center; border:1px solid rgba(255,255,255,.12);">
+                <div style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:800; color:var(--gold-light); line-height:1;">28<sup style="font-size:1rem;">+</sup></div>
+                <div style="font-size:.72rem; color:rgba(255,255,255,.65); margin-top:4px; text-transform:uppercase; letter-spacing:1px;">Countries Served</div>
+              </div>
+              <div style="background:rgba(27,67,50,.92); backdrop-filter:blur(10px); border-radius:var(--radius-md); padding:18px 20px; text-align:center; border:1px solid rgba(255,255,255,.12);">
+                <div style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:800; color:var(--gold-light); line-height:1;">15<sup style="font-size:1rem;">+</sup></div>
+                <div style="font-size:.72rem; color:rgba(255,255,255,.65); margin-top:4px; text-transform:uppercase; letter-spacing:1px;">Years of Expertise</div>
+              </div>
+              <div style="background:rgba(27,67,50,.92); backdrop-filter:blur(10px); border-radius:var(--radius-md); padding:18px 20px; text-align:center; border:1px solid rgba(255,255,255,.12);">
+                <div style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:800; color:var(--gold-light); line-height:1;">100<sup style="font-size:1rem;">%</sup></div>
+                <div style="font-size:.72rem; color:rgba(255,255,255,.65); margin-top:4px; text-transform:uppercase; letter-spacing:1px;">Organic Certified</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CTA BANNER ══════════ -->
+  <section class="svc-cta-section" id="cta">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center" style="position:relative; z-index:1;">
+          <div class="section-badge mb-3" style="background:rgba(255,255,255,.15); color:#fff; border:1px solid rgba(255,255,255,.25);"><i class="fas fa-paper-plane"></i> Start Today</div>
+          <h2 class="section-title mb-3" style="color:#fff;">Ready to Experience the <span style="color:var(--gold-light);">Power of Vetiver?</span></h2>
+          <p style="color:rgba(255,255,255,.78); font-size:1.05rem; max-width:580px; margin:0 auto 36px; line-height:1.85;">
+            Whether you're a perfumer sourcing your next base note, a farmer seeking sustainable land management, or a wellness brand building a natural product line — we have the vetiver solution for you.
+          </p>
+          <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <a href="contact.html#inquiry" class="btn-v-gold">
+              <i class="fas fa-file-alt"></i> Request a Free Quote
+            </a>
+            <a href="https://wa.me/919876543210" class="btn-v-whatsapp" target="_blank">
+              <i class="fab fa-whatsapp"></i> WhatsApp Us Now
+            </a>
+            <a href="product.html" class="btn-v-outline" style="border-color:rgba(255,255,255,.6); color:#fff;">
+              <i class="fas fa-eye"></i> View Our Products
+            </a>
+          </div>
+          <div class="d-flex flex-wrap gap-4 justify-content-center mt-5">
+            <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.8); font-size:.88rem;">
+              <i class="fas fa-check-circle" style="color:var(--gold-light);"></i> No Minimum Order for Samples
+            </div>
+            <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.8); font-size:.88rem;">
+              <i class="fas fa-check-circle" style="color:var(--gold-light);"></i> Response Within 24 Hours
+            </div>
+            <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.8); font-size:.88rem;">
+              <i class="fas fa-check-circle" style="color:var(--gold-light);"></i> Worldwide Shipping
+            </div>
+            <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.8); font-size:.88rem;">
+              <i class="fas fa-check-circle" style="color:var(--gold-light);"></i> Quality Guaranteed
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="v-footer" id="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand-name">Vetiver Agro Farm</div>
+          <span class="footer-brand-tag">Natural • Pure • Sustainable</span>
+          <p class="footer-desc">Vetiver Agro Farm – Rooted in Nature. Premium quality vetiver products sourced directly from sustainable farms. Mahima Global Entrepreneurs (OPC) Private Limited was incorporated on January 10, 2025.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/919876543210" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Vetiver</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Products</a></li>
+            <li><a href="service.html"><i class="fas fa-chevron-right"></i> Applications</a></li>
+            <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+            <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h4 class="footer-heading">Products</h4>
+          <ul class="footer-links">
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Vetiver Roots</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Essential Oil</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Herbal Powder</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Mats &amp; Fans</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Cooling Products</a></li>
+            <li><a href="product.html"><i class="fas fa-chevron-right"></i> Bulk Orders</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h4 class="footer-heading">Get In Touch</h4>
+          <div class="footer-contact-row"><i class="fas fa-map-marker-alt"></i><span>Mahima Global Entrepreneurs (OPC) Pvt Ltd, Sadha Vari Palem, Navalakh Gardens, Nellore, Andhra Pradesh, 524002</span></div>
+          <div class="footer-contact-row"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
+          <div class="footer-contact-row"><i class="fas fa-envelope"></i><span>info@vetiveragrofarm.com</span></div>
+          <div class="footer-contact-row"><i class="fab fa-whatsapp"></i><span>+91 98765 43210 (WhatsApp)</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="mb-0">© 2026 <a href="index.html">Mahima Global Entrepreneurs (OPC) Private Limited</a>. All Rights Reserved. | Vetiver Agro Farm | Built by IIITIHAS UNIVERSAL PVT LTD</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════ FLOATING WHATSAPP ══════════ -->
+  <div class="floating-wa">
+    <span class="floating-wa-tip">Chat on WhatsApp</span>
+    <a href="https://wa.me/919876543210" class="floating-wa-btn" target="_blank" aria-label="Chat on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+  <a href="#" class="back-to-top" id="back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+  <!-- ══════════ SCRIPTS ══════════ -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="js/vetiver.js"></script>
+
+  <script>
+    // Animate on scroll — simple IntersectionObserver
+    (function () {
+      const els = document.querySelectorAll('.animate-on-scroll');
+      if (!els.length) return;
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+
+    // Back-to-top button
+    (function () {
+      var btn = document.getElementById('back-to-top');
+      if (!btn) return;
+      window.addEventListener('scroll', function () {
+        btn.classList.toggle('show', window.scrollY > 400);
+      });
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+
+    // Sticky navbar scroll class
+    (function () {
+      var nav = document.getElementById('mainNavbar');
+      if (!nav) return;
+      window.addEventListener('scroll', function () {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+      });
+    })();
+  </script>
+</body>
+</html>
