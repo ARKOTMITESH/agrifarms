@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - Mahima Global Agro Farms</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #071911;
+      --panel-bg: rgba(16, 44, 32, 0.6);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --green-leaf: #40916C;
+      --green-dark: #1B4332;
+      --green-light: #52B788;
+      --gold: #D4AF37;
+      --gold-light: #F3E5AB;
+      --text-white: #F5F7F6;
+      --text-muted: #A3B899;
+      --radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: radial-gradient(circle at 10% 20%, rgba(12, 43, 28, 0.4) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(184, 134, 11, 0.08) 0%, transparent 40%);
+      color: var(--text-white);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+
+    /* ====== LOGIN OVERLAY ====== */
+    #loginOverlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-dark);
+      z-index: 1050;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    #loginOverlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .login-card {
+      background: var(--panel-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .login-logo {
+      font-size: 3rem;
+      color: var(--green-light);
+      margin-bottom: 20px;
+      animation: float 4s ease-in-out infinite;
+    }
+    .btn-login {
+      background: linear-gradient(135deg, var(--green-leaf), var(--green-dark));
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 6px;
+      width: 100%;
+      transition: var(--transition);
+    }
+    .btn-login:hover {
+      box-shadow: 0 6px 20px rgba(64,145,108,.3);
+      transform: translateY(-2px);
+      color: #fff;
+    }
+    .passcode-input {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      text-align: center;
+      font-size: 1.2rem;
+      letter-spacing: 4px;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    .passcode-input:focus {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--green-light);
+      outline: none;
+      box-shadow: 0 0 10px rgba(82, 183, 136, 0.3);
+    }
+
+    /* ====== MAIN CONTAINER ====== */
+    .admin-header {
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(7, 25, 17, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .glass-card {
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+    .glass-card:hover {
+      border-color: rgba(82, 183, 136, 0.15);
+    }
+
+    /* ====== QUICK STATS ====== */
+    .stat-box {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 20px;
+    }
+    .stat-icon {
+      font-size: 1.8rem;
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.1);
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ====== FORMS & BUTTONS ====== */
+    .form-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-white);
+      margin-bottom: 6px;
+    }
+    .admin-input, .admin-select, .admin-textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #fff !important;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      width: 100%;
+      transition: var(--transition);
+    }
+    .admin-input:focus, .admin-select:focus, .admin-textarea:focus {
+      background: rgba(255,255,255,0.07);
+      border-color: var(--green-light);
+      box-shadow: 0 0 8px rgba(82, 183, 136, 0.2);
+      outline: none;
+    }
+    .admin-select option {
+      background: var(--bg-dark);
+      color: #fff;
+    }
+    .file-drop-zone {
+      border: 2px dashed rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      background: rgba(255,255,255,0.02);
+      transition: var(--transition);
+    }
+    .file-drop-zone:hover {
+      border-color: var(--green-light);
+      background: rgba(82, 183, 136, 0.03);
+    }
+    .file-drop-zone i {
+      font-size: 2rem;
+      color: var(--green-light);
+      margin-bottom: 10px;
+    }
+    .btn-upload {
+      background: linear-gradient(135deg, var(--gold), #FFD700);
+      color: #071911;
+      font-weight: 700;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      width: 100%;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+    }
+    .btn-upload:hover {
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* ====== MANAGE MEDIA ====== */
+    .media-tabs {
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    .media-tab {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      position: relative;
+      transition: var(--transition);
+    }
+    .media-tab:hover, .media-tab.active {
+      color: var(--green-light);
+    }
+    .media-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--green-light);
+    }
+    
+    .media-item-row {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+      border-radius: 6px;
+    }
+    .media-item-row:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    .media-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-right: 15px;
+    }
+    .media-thumb i {
+      font-size: 1.4rem;
+      color: var(--text-muted);
+    }
+    .media-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .media-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .media-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 12px;
+    }
+    .btn-delete-item {
+      background: transparent;
+      border: none;
+      color: #E63946;
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .btn-delete-item:hover {
+      background: rgba(230, 57, 70, 0.1);
+      color: #FF5A60;
+    }
+
+    /* ====== TOAST/ALERT ====== */
+    .alert-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1060;
+      min-width: 280px;
+      display: none;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== LOGIN OVERLAY ====== -->
+  <div id="loginOverlay">
+    <div class="login-card">
+      <div class="login-logo"><i class="fas fa-lock"></i></div>
+      <h2 class="mb-2">Admin Security</h2>
+      <p class="text-muted small mb-4">Enter portal passcode to manage Agro Farms media assets.</p>
+      
+      <input type="password" id="passcodeInput" class="passcode-input" placeholder="••••••••" maxlength="12">
+      <div id="loginError" class="text-danger small mb-3" style="display:none;"></div>
+      <button class="btn-login" id="loginBtn"><i class="fas fa-sign-in-alt me-2"></i>Access Portal</button>
+    </div>
+  </div>
+
+  <!-- ====== HEADER ====== -->
+  <header class="admin-header">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="d-flex align-items-center text-decoration-none">
+          <i class="fas fa-sliders-h fa-lg text-success me-3"></i>
+          <div>
+            <h4 class="m-0 text-white" style="letter-spacing: 0.5px; font-size:1.15rem;">MAHIMA GLOBAL</h4>
+            <span class="text-muted uppercase font-title" style="font-size:0.68rem; letter-spacing: 2px;">AGRO FARMS &bull; ADMIN</span>
+          </div>
+        </a>
+        <button class="btn btn-outline-light btn-sm px-3" id="logoutBtn" style="border-color:var(--border-color); font-size:0.8rem;"><i class="fas fa-sign-out-alt me-2"></i>Log Out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== DASHBOARD ====== -->
+  <main class="container my-4 py-2">
+    <!-- STATS ROW -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-lg">
+        <div class="glass-card stat-box mb-0">
+          <div class="stat-icon"><i class="fas fa-database"></i></div>
+          <div>
+            <div class="stat-num" id="stat-total">0</div>
+            <div class="stat-label">Total Assets</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg">
+        <div class="glass-card stat-box mb-0">
+          <div class="stat-icon"><i class="fas fa-image"></i></div>
+          <div>
+            <div class="stat-num" id="stat-images">0</div>
+            <div class="stat-label">Pictures</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg">
+        <div class="glass-card stat-box mb-0">
+          <div class="stat-icon"><i class="fas fa-file-pdf"></i></div>
+          <div>
+            <div class="stat-num" id="stat-pdfs">0</div>
+            <div class="stat-label">PDF Docs</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg">
+        <div class="glass-card stat-box mb-0">
+          <div class="stat-icon"><i class="fas fa-video"></i></div>
+          <div>
+            <div class="stat-num" id="stat-videos">0</div>
+            <div class="stat-label">Videos</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg">
+        <div class="glass-card stat-box mb-0">
+          <div class="stat-icon"><i class="fas fa-newspaper text-success"></i></div>
+          <div>
+            <div class="stat-num" id="stat-blogs">0</div>
+            <div class="stat-label">Total Blogs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN PANEL NAVIGATION TABS -->
+    <div class="d-flex mb-4 gap-2">
+      <button class="btn btn-success px-4 py-2 active" id="btn-tab-assets" style="border-radius: var(--radius); font-weight:600;"><i class="fas fa-cubes me-2"></i>Media Assets</button>
+      <button class="btn btn-outline-light px-4 py-2" id="btn-tab-blogs" style="border-radius: var(--radius); border-color: var(--border-color); font-weight:600; color: var(--text-white);"><i class="fas fa-newspaper me-2"></i>Blog Posts</button>
+    </div>
+
+    <!-- MAIN GRID (ASSETS) -->
+    <div class="row g-4" id="assetsPanel">
+      <!-- LEFT COLUMN: UPLOAD FORM -->
+      <div class="col-lg-5">
+        <div class="glass-card h-100">
+          <h3 class="mb-4 text-white" style="font-size: 1.3rem;"><i class="fas fa-cloud-upload-alt text-success me-2"></i>Upload New Asset</h3>
+          
+          <form id="uploadForm">
+            <div class="mb-3">
+              <label class="form-label" for="assetTitle">Asset Title</label>
+              <input type="text" id="assetTitle" class="admin-input" placeholder="e.g. Premium Vetiver Dried Roots" required>
+            </div>
+            
+            <div class="row mb-3">
+              <div class="col-6">
+                <label class="form-label" for="assetType">Media Type</label>
+                <select id="assetType" class="admin-select" required>
+                  <option value="image">Picture (Image)</option>
+                  <option value="pdf">Document (PDF)</option>
+                  <option value="video">Video (MP4)</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label" for="assetCategory">Display Category</label>
+                <select id="assetCategory" class="admin-select">
+                  <option value="all">General (Default)</option>
+                  <option value="vetiver-farm">Vetiver Farm</option>
+                  <option value="harvesting">Harvesting</option>
+                  <option value="products">Products</option>
+                  <option value="essential-oil">Essential Oil</option>
+                  <option value="handicrafts">Handicrafts</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="assetDesc">Short Description</label>
+              <textarea id="assetDesc" class="admin-textarea" rows="3" placeholder="Brief details about the asset…"></textarea>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">File Selection</label>
+              <input type="file" id="fileInput" class="d-none" required>
+              <div class="file-drop-zone" id="dropZone">
+                <i class="fas fa-file-upload"></i>
+                <h5 class="text-white small mb-1" id="fileZoneText">Click or Drag & Drop File Here</h5>
+                <span class="text-muted" style="font-size:0.75rem;" id="fileZoneSubtext">JPEG, PNG, PDF, or MP4 supported</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-upload" id="uploadBtn">
+              <i class="fas fa-paper-plane me-2"></i>Publish to Website
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: MANAGE ASSETS -->
+      <div class="col-lg-7">
+        <div class="glass-card h-100">
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <h3 class="m-0 text-white" style="font-size: 1.3rem;"><i class="fas fa-tasks text-success me-2"></i>Manage Assets</h3>
+            <span class="badge bg-dark border border-secondary text-muted" id="itemsCount">0 Items</span>
+          </div>
+
+          <div class="media-tabs">
+            <button class="media-tab active" data-filter="all">All</button>
+            <button class="media-tab" data-filter="image">Pictures</button>
+            <button class="media-tab" data-filter="pdf">PDFs</button>
+            <button class="media-tab" data-filter="video">Videos</button>
+          </div>
+
+          <!-- LIST CONTAINER -->
+          <div id="mediaList" style="max-height: 520px; overflow-y: auto;">
+            <!-- Dynamic rows will be inserted here -->
+            <div class="text-center py-5 text-muted" id="emptyState">
+              <i class="fas fa-folder-open fa-2x mb-2"></i>
+              <p class="small m-0">No media assets found. Upload some to get started!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN GRID (BLOGS) -->
+    <div class="row g-4" id="blogsPanel" style="display:none;">
+      <!-- LEFT COLUMN: WRITE BLOG -->
+      <div class="col-lg-5">
+        <div class="glass-card h-100">
+          <h3 class="mb-4 text-white" style="font-size: 1.3rem;"><i class="fas fa-pen-nib text-success me-2"></i>Write Blog Post</h3>
+          
+          <form id="blogForm">
+            <input type="hidden" id="blogId">
+            <div class="mb-3">
+              <label class="form-label" for="blogTitle">Blog Title</label>
+              <input type="text" id="blogTitle" class="admin-input" placeholder="e.g. Benefits of Vetiver Oil" required>
+            </div>
+            
+            <div class="row mb-3">
+              <div class="col-6">
+                <label class="form-label" for="blogCategory">Category</label>
+                <select id="blogCategory" class="admin-select" required>
+                  <option value="wellness">Wellness</option>
+                  <option value="farming">Farming</option>
+                  <option value="fragrance">Fragrance</option>
+                  <option value="agriculture">Agriculture</option>
+                  <option value="lifestyle">Lifestyle</option>
+                  <option value="business">Business</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label" for="blogReadTime">Read Time</label>
+                <input type="text" id="blogReadTime" class="admin-input" placeholder="e.g. 5 min" required>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-6">
+                <label class="form-label" for="blogAuthor">Author</label>
+                <input type="text" id="blogAuthor" class="admin-input" placeholder="e.g. Admin" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label" for="blogDate">Publish Date</label>
+                <input type="date" id="blogDate" class="admin-input" placeholder="YYYY-MM-DD">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="blogExcerpt">Short Excerpt</label>
+              <textarea id="blogExcerpt" class="admin-textarea" rows="2" placeholder="Brief summary for list view…" required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="blogContent">Blog Body (Full Text)</label>
+              <textarea id="blogContent" class="admin-textarea" rows="4" placeholder="Write full content here…"></textarea>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">Cover Image File</label>
+              <input type="file" id="blogImageInput" class="d-none">
+              <div class="file-drop-zone" id="blogImageZone">
+                <i class="fas fa-image"></i>
+                <h5 class="text-white small mb-1" id="blogImageText">Select Cover Photo</h5>
+                <span class="text-muted" style="font-size:0.75rem;" id="blogImageSubtext">JPEG or PNG cover image</span>
+              </div>
+              <div class="mt-2">
+                <label class="form-label small text-muted" for="blogImageLink">Or Paste Image URL</label>
+                <input type="text" id="blogImageLink" class="admin-input py-1" style="font-size:0.8rem;" placeholder="e.g. img/vetiver_roots.jpg">
+              </div>
+            </div>
+
+            <button type="submit" class="btn-upload" id="blogSaveBtn">
+              <i class="fas fa-save me-2"></i>Publish Blog Post
+            </button>
+            <button type="button" class="btn btn-outline-light w-100 mt-2" id="blogCancelBtn" style="display:none; border-color:var(--border-color); font-size:0.85rem; color:var(--text-white);">
+              Cancel Edit
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: MANAGE BLOGS -->
+      <div class="col-lg-7">
+        <div class="glass-card h-100">
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <h3 class="m-0 text-white" style="font-size: 1.3rem;"><i class="fas fa-tasks text-success me-2"></i>Manage Blog Posts</h3>
+            <span class="badge bg-dark border border-secondary text-muted" id="blogsCount">0 Blogs</span>
+          </div>
+
+          <!-- BLOG LIST CONTAINER -->
+          <div id="blogsList" style="max-height: 580px; overflow-y: auto;">
+            <!-- Dynamic rows will be inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====== TOAST / NOTIFICATION ====== -->
+  <div class="alert alert-success alert-toast glass-card" id="toastAlert">
+    <div class="d-flex align-items-center">
+      <i class="fas fa-check-circle fa-lg me-3 text-success"></i>
+      <div>
+        <strong id="toastTitle">Notification</strong>
+        <p class="small text-muted m-0" id="toastDesc">Operation finished successfully.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery & Bootstrap Bundle -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+  <script>
+    'use strict';
+
+    $(document).ready(function() {
+      const serverUrl = ''; // relative path since same host
+      let sessionToken = sessionStorage.getItem('adminToken');
+      let mediaItems = [];
+
+      // Check session
+      if (sessionToken === 'mock-token-mahima-2026') {
+        $('#loginOverlay').addClass('hidden');
+        loadMediaList();
+        loadBlogsList();
+      }
+
+      /* ====== LOGIN HANDLER ====== */
+      $('#loginBtn').on('click', executeLogin);
+      $('#passcodeInput').on('keydown', function(e) {
+        if (e.key === 'Enter') executeLogin();
+      });
+
+      function executeLogin() {
+        const pass = $('#passcodeInput').val().strip ? $('#passcodeInput').val().strip() : $('#passcodeInput').val().trim();
+        $('#loginError').hide();
+
+        if (!pass) {
+          showLoginError('Please enter passcode.');
+          return;
+        }
+
+        $.ajax({
+          url: '/api/login',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ passcode: pass }),
+          success: function(res) {
+            if (res.success) {
+              sessionStorage.setItem('adminToken', res.token);
+              $('#loginOverlay').addClass('hidden');
+              showToast('Access Granted', 'Welcome to the Mahima Global Agro Farms admin portal.');
+              loadMediaList();
+              loadBlogsList();
+            } else {
+              showLoginError(res.message || 'Verification failed.');
+            }
+          },
+          error: function(xhr) {
+            const err = xhr.responseJSON ? xhr.responseJSON.message : 'Invalid Passcode';
+            showLoginError(err);
+          }
+        });
+      }
+
+      function showLoginError(msg) {
+        $('#loginError').text(msg).fadeIn();
+        $('#passcodeInput').addClass('is-invalid');
+        setTimeout(() => $('#passcodeInput').removeClass('is-invalid'), 2000);
+      }
+
+      $('#logoutBtn').on('click', function() {
+        sessionStorage.removeItem('adminToken');
+        $('#passcodeInput').val('');
+        $('#loginOverlay').removeClass('hidden');
+      });
+
+      /* ====== DRAG & DROP FILE ZONE ====== */
+      const dropZone = $('#dropZone');
+      const fileInput = $('#fileInput');
+
+      dropZone.on('click', function() {
+        fileInput.click();
+      });
+
+      fileInput.on('change', function() {
+        handleFileSelect(this.files[0]);
+      });
+
+      dropZone.on('dragover', function(e) {
+        e.preventDefault();
+        dropZone.css('border-color', 'var(--green-light)');
+      });
+
+      dropZone.on('dragleave', function() {
+        dropZone.css('border-color', 'rgba(255,255,255,0.12)');
+      });
+
+      dropZone.on('drop', function(e) {
+        e.preventDefault();
+        dropZone.css('border-color', 'rgba(255,255,255,0.12)');
+        if (e.originalEvent.dataTransfer.files.length) {
+          fileInput[0].files = e.originalEvent.dataTransfer.files;
+          handleFileSelect(e.originalEvent.dataTransfer.files[0]);
+        }
+      });
+
+      function handleFileSelect(file) {
+        if (!file) return;
+        $('#fileZoneText').text(file.name);
+        const sizeKB = (file.size / 1024).toFixed(1);
+        $('#fileZoneSubtext').text(`File Size: ${sizeKB} KB — Ready`);
+
+        // Guess media type from file extension
+        const ext = file.name.split('.').pop().toLowerCase();
+        if (ext === 'pdf') {
+          $('#assetType').val('pdf');
+        } else if (['mp4', 'mov', 'webm'].includes(ext)) {
+          $('#assetType').val('video');
+        } else if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext)) {
+          $('#assetType').val('image');
+        }
+      }
+
+      /* ====== ASSET UPLOAD ====== */
+      $('#uploadForm').on('submit', function(e) {
+        e.preventDefault();
+
+        const file = fileInput[0].files[0];
+        if (!file) {
+          showToast('Error', 'Please select a file to upload.', true);
+          return;
+        }
+
+        const btn = $('#uploadBtn');
+        const originalText = btn.html();
+        btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Uploading…');
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('title', $('#assetTitle').val());
+        formData.append('type', $('#assetType').val());
+        formData.append('category', $('#assetCategory').val());
+        formData.append('description', $('#assetDesc').val());
+
+        $.ajax({
+          url: '/api/upload',
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(res) {
+            btn.prop('disabled', false).html(originalText);
+            if (res.success) {
+              showToast('Success', 'Media asset published to main website.');
+              $('#uploadForm')[0].reset();
+              $('#fileZoneText').text('Click or Drag & Drop File Here');
+              $('#fileZoneSubtext').text('JPEG, PNG, PDF, or MP4 supported');
+              loadMediaList();
+            } else {
+              showToast('Upload Failed', res.message || 'Unknown error occurred.', true);
+            }
+          },
+          error: function(xhr) {
+            btn.prop('disabled', false).html(originalText);
+            const err = xhr.responseJSON ? xhr.responseJSON.message : 'Error uploading file.';
+            showToast('Error', err, true);
+          }
+        });
+      });
+
+      /* ====== LOAD & RENDERING ====== */
+      function loadMediaList() {
+        $.ajax({
+          url: '/data/media.json',
+          type: 'GET',
+          cache: false,
+          dataType: 'json',
+          success: function(data) {
+            mediaItems = data || [];
+            updateStats();
+            renderMediaRows($('.media-tab.active').attr('data-filter'));
+          },
+          error: function() {
+            // Probably empty or missing
+            mediaItems = [];
+            updateStats();
+            renderMediaRows('all');
+          }
+        });
+      }
+
+      function updateStats() {
+        const total = mediaItems.length;
+        const images = mediaItems.filter(i => i.type === 'image').length;
+        const pdfs = mediaItems.filter(i => i.type === 'pdf').length;
+        const videos = mediaItems.filter(i => i.type === 'video').length;
+
+        $('#stat-total').text(total);
+        $('#stat-images').text(images);
+        $('#stat-pdfs').text(pdfs);
+        $('#stat-videos').text(videos);
+        $('#itemsCount').text(`${total} Assets`);
+      }
+
+      function renderMediaRows(filterType) {
+        const list = $('#mediaList');
+        list.empty();
+
+        const filtered = filterType === 'all' 
+          ? mediaItems 
+          : mediaItems.filter(item => item.type === filterType);
+
+        if (filtered.length === 0) {
+          list.append(`
+            <div class="text-center py-5 text-muted">
+              <i class="fas fa-folder-open fa-2x mb-2"></i>
+              <p class="small m-0">No media elements match the criteria.</p>
+            </div>
+          `);
+          return;
+        }
+
+        // Sort items newest first
+        filtered.slice().reverse().forEach(item => {
+          let thumbHtml = '';
+          if (item.type === 'image') {
+            thumbHtml = `<img src="${item.url}" class="media-thumb" alt="Preview">`;
+          } else if (item.type === 'pdf') {
+            thumbHtml = `<div class="media-thumb"><i class="fas fa-file-pdf text-danger"></i></div>`;
+          } else if (item.type === 'video') {
+            thumbHtml = `<div class="media-thumb"><i class="fas fa-video text-info"></i></div>`;
+          }
+
+          const row = $(`
+            <div class="media-item-row" data-id="${item.id}">
+              ${thumbHtml}
+              <div class="media-info">
+                <div class="media-title" title="${item.title}">${item.title}</div>
+                <div class="media-meta">
+                  <span>Type: <strong class="text-success">${item.type.toUpperCase()}</strong></span>
+                  <span>Category: <strong>${item.category}</strong></span>
+                  <span>Date: ${item.date}</span>
+                </div>
+              </div>
+              <button class="btn-delete-item" title="Delete Asset" data-id="${item.id}">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          `);
+          list.append(row);
+        });
+
+        // Attach delete handlers
+        $('.btn-delete-item').on('click', function() {
+          const id = $(this).attr('data-id');
+          if (confirm('Are you sure you want to delete this media asset? This action will permanently remove it from the server and the website.')) {
+            deleteMediaItem(id);
+          }
+        });
+      }
+
+      /* ====== FILTER TABS ====== */
+      $('.media-tab').on('click', function() {
+        $('.media-tab').removeClass('active');
+        $(this).addClass('active');
+        renderMediaRows($(this).attr('data-filter'));
+      });
+
+      /* ====== DELETE ASSET ====== */
+      function deleteMediaItem(id) {
+        $.ajax({
+          url: '/api/delete',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ id: id }),
+          success: function(res) {
+            if (res.success) {
+              showToast('Success', 'Asset deleted successfully.');
+              loadMediaList();
+            } else {
+              showToast('Error', res.message || 'Could not delete item.', true);
+            }
+          },
+          error: function(xhr) {
+            const err = xhr.responseJSON ? xhr.responseJSON.message : 'Error connection to backend.';
+            showToast('Error', err, true);
+          }
+        });
+      }
+
+      /* ====== TOAST SYSTEM ====== */
+      function showToast(title, desc, isError = false) {
+        const toast = $('#toastAlert');
+        $('#toastTitle').text(title);
+        $('#toastDesc').text(desc);
+
+        if (isError) {
+          toast.removeClass('alert-success').addClass('alert-danger');
+          toast.find('i').removeClass('text-success').addClass('text-danger').removeClass('fa-check-circle').addClass('fa-exclamation-circle');
+        } else {
+          toast.removeClass('alert-danger').addClass('alert-success');
+          toast.find('i').removeClass('text-danger').addClass('text-success').removeClass('fa-exclamation-circle').addClass('fa-check-circle');
+        }
+
+        toast.fadeIn();
+        setTimeout(() => toast.fadeOut(), 4000);
+      }
+
+      /* ====== BLOG PANEL TAB NAVIGATION ====== */
+      $('#btn-tab-assets').on('click', function() {
+        $('#btn-tab-blogs').removeClass('btn-success active').addClass('btn-outline-light');
+        $(this).removeClass('btn-outline-light').addClass('btn-success active');
+        $('#assetsPanel').show();
+        $('#blogsPanel').hide();
+      });
+      $('#btn-tab-blogs').on('click', function() {
+        $('#btn-tab-assets').removeClass('btn-success active').addClass('btn-outline-light');
+        $(this).removeClass('btn-outline-light').addClass('btn-success active');
+        $('#assetsPanel').hide();
+        $('#blogsPanel').show();
+        loadBlogsList();
+      });
+
+      /* ====== BLOG LOGIC & RENDERING ====== */
+      let blogItems = [];
+
+      function loadBlogsList() {
+        $.ajax({
+          url: '/data/blogs.json',
+          type: 'GET',
+          cache: false,
+          dataType: 'json',
+          success: function(data) {
+            blogItems = data || [];
+            updateBlogsStats();
+            renderBlogsRows();
+          },
+          error: function() {
+            blogItems = [];
+            updateBlogsStats();
+            renderBlogsRows();
+          }
+        });
+      }
+
+      function updateBlogsStats() {
+        const total = blogItems.length;
+        $('#stat-blogs').text(total);
+        $('#blogsCount').text(`${total} Blogs`);
+      }
+
+      function renderBlogsRows() {
+        const list = $('#blogsList');
+        list.empty();
+
+        if (blogItems.length === 0) {
+          list.append(`
+            <div class="text-center py-5 text-muted">
+              <i class="fas fa-folder-open fa-2x mb-2"></i>
+              <p class="small m-0">No blog posts found. Write one to get started!</p>
+            </div>
+          `);
+          return;
+        }
+
+        // Render in reverse order (newest first)
+        blogItems.slice().reverse().forEach(item => {
+          let imgUrl = item.image || 'img/vetiver_roots.jpg';
+          const row = $(`
+            <div class="media-item-row" data-id="${item.id}">
+              <img src="${imgUrl}" class="media-thumb" alt="Cover">
+              <div class="media-info">
+                <div class="media-title" title="${item.title}">${item.title}</div>
+                <div class="media-meta">
+                  <span>Author: <strong class="text-success">${item.author}</strong></span>
+                  <span>Category: <strong>${item.category}</strong></span>
+                  <span>Date: ${item.date}</span>
+                  <span>Read: ${item.readTime}</span>
+                </div>
+              </div>
+              <div class="d-flex gap-1">
+                <button class="btn btn-sm btn-outline-info btn-edit-blog text-info border-info" title="Edit Blog" data-id="${item.id}" style="font-size:0.75rem; padding: 4px 8px; background: transparent;">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn-delete-item btn-delete-blog" title="Delete Blog" data-id="${item.id}" style="padding: 0 8px;">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          `);
+          list.append(row);
+        });
+
+        // Edit handlers
+        $('.btn-edit-blog').on('click', function() {
+          const id = $(this).attr('data-id');
+          editBlogItem(id);
+        });
+
+        // Delete handlers
+        $('.btn-delete-blog').on('click', function() {
+          const id = $(this).attr('data-id');
+          if (confirm('Are you sure you want to delete this blog post? This action will permanently remove it from the website.')) {
+            deleteBlogPost(id);
+          }
+        });
+      }
+
+      function editBlogItem(id) {
+        const item = blogItems.find(b => b.id == id);
+        if (!item) return;
+
+        $('#blogId').val(item.id);
+        $('#blogTitle').val(item.title);
+        $('#blogCategory').val(item.category);
+        $('#blogReadTime').val(item.readTime);
+        $('#blogAuthor').val(item.author);
+        $('#blogDate').val(item.date);
+        $('#blogExcerpt').val(item.excerpt);
+        $('#blogContent').val(item.content || '');
+        
+        if (item.image && !item.image.startsWith('uploads/')) {
+          $('#blogImageLink').val(item.image);
+          $('#blogImageText').text('Select Cover Photo');
+          $('#blogImageSubtext').text('JPEG or PNG cover image');
+        } else if (item.image) {
+          $('#blogImageLink').val('');
+          $('#blogImageText').text(item.image.split('/').pop());
+          $('#blogImageSubtext').text('Image file selected');
+        } else {
+          $('#blogImageLink').val('');
+          $('#blogImageText').text('Select Cover Photo');
+        }
+
+        $('#blogSaveBtn').html('<i class="fas fa-save me-2"></i>Update Blog Post');
+        $('#blogCancelBtn').show();
+        
+        // Scroll form into view
+        $('#blogForm')[0].scrollIntoView({ behavior: 'smooth' });
+      }
+
+      $('#blogCancelBtn').on('click', function() {
+        resetBlogForm();
+      });
+
+      function resetBlogForm() {
+        $('#blogId').val('');
+        $('#blogForm')[0].reset();
+        $('#blogImageText').text('Select Cover Photo');
+        $('#blogImageSubtext').text('JPEG or PNG cover image');
+        $('#blogImageLink').val('');
+        $('#blogSaveBtn').html('<i class="fas fa-save me-2"></i>Publish Blog Post');
+        $('#blogCancelBtn').hide();
+      }
+
+      /* ====== BLOG IMAGE DROP ZONE ====== */
+      const blogImageZone = $('#blogImageZone');
+      const blogImageInput = $('#blogImageInput');
+
+      blogImageZone.on('click', function() {
+        blogImageInput.click();
+      });
+
+      blogImageInput.on('change', function() {
+        const file = this.files[0];
+        if (file) {
+          $('#blogImageText').text(file.name);
+          const sizeKB = (file.size / 1024).toFixed(1);
+          $('#blogImageSubtext').text(`File Size: ${sizeKB} KB — Ready`);
+          $('#blogImageLink').val('');
+        }
+      });
+
+      blogImageZone.on('dragover', function(e) {
+        e.preventDefault();
+        blogImageZone.css('border-color', 'var(--green-light)');
+      });
+
+      blogImageZone.on('dragleave', function() {
+        blogImageZone.css('border-color', 'rgba(255,255,255,0.12)');
+      });
+
+      blogImageZone.on('drop', function(e) {
+        e.preventDefault();
+        blogImageZone.css('border-color', 'rgba(255,255,255,0.12)');
+        if (e.originalEvent.dataTransfer.files.length) {
+          blogImageInput[0].files = e.originalEvent.dataTransfer.files;
+          const file = e.originalEvent.dataTransfer.files[0];
+          $('#blogImageText').text(file.name);
+          const sizeKB = (file.size / 1024).toFixed(1);
+          $('#blogImageSubtext').text(`File Size: ${sizeKB} KB — Ready`);
+          $('#blogImageLink').val('');
+        }
+      });
+
+      /* ====== SAVE BLOG POST ====== */
+      $('#blogForm').on('submit', function(e) {
+        e.preventDefault();
+
+        const file = blogImageInput[0].files[0];
+        const manualUrl = $('#blogImageLink').val().trim();
+        const existingId = $('#blogId').val();
+
+        // If editing and has no new file and no new link, check what image was there
+        let defaultImage = 'img/vetiver_roots.jpg';
+        if (existingId) {
+          const item = blogItems.find(b => b.id == existingId);
+          if (item && item.image) {
+            defaultImage = item.image;
+          }
+        }
+
+        const submitPost = (imageUrl) => {
+          const payload = {
+            id: existingId || undefined,
+            title: $('#blogTitle').val().trim(),
+            category: $('#blogCategory').val(),
+            readTime: $('#blogReadTime').val().trim(),
+            author: $('#blogAuthor').val().trim(),
+            date: $('#blogDate').val() || undefined,
+            excerpt: $('#blogExcerpt').val().trim(),
+            content: $('#blogContent').val().trim(),
+            image: imageUrl || defaultImage
+          };
+
+          $.ajax({
+            url: '/api/blog/save',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(payload),
+            success: function(res) {
+              $('#blogSaveBtn').prop('disabled', false).html('<i class="fas fa-save me-2"></i>Publish Blog Post');
+              if (res.success) {
+                showToast('Success', existingId ? 'Blog post updated.' : 'Blog post published.');
+                resetBlogForm();
+                loadBlogsList();
+              } else {
+                showToast('Save Failed', res.message || 'Unknown error occurred.', true);
+              }
+            },
+            error: function(xhr) {
+              $('#blogSaveBtn').prop('disabled', false).html('<i class="fas fa-save me-2"></i>Publish Blog Post');
+              const err = xhr.responseJSON ? xhr.responseJSON.message : 'Error connection to backend.';
+              showToast('Error', err, true);
+            }
+          });
+        };
+
+        $('#blogSaveBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Saving…');
+
+        if (file) {
+          // Upload file first
+          const formData = new FormData();
+          formData.append('file', file);
+          formData.append('title', $('#blogTitle').val().trim() + ' Cover');
+          formData.append('type', 'image');
+          formData.append('category', 'products');
+
+          $.ajax({
+            url: '/api/upload',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(res) {
+              if (res.success && res.item && res.item.url) {
+                submitPost(res.item.url);
+              } else {
+                $('#blogSaveBtn').prop('disabled', false).html('<i class="fas fa-save me-2"></i>Publish Blog Post');
+                showToast('Upload Failed', 'Failed to upload cover photo.', true);
+              }
+            },
+            error: function(xhr) {
+              $('#blogSaveBtn').prop('disabled', false).html('<i class="fas fa-save me-2"></i>Publish Blog Post');
+              showToast('Upload Error', 'Error uploading cover photo.', true);
+            }
+          });
+        } else if (manualUrl) {
+          submitPost(manualUrl);
+        } else {
+          submitPost(existingId ? defaultImage : undefined);
+        }
+      });
+
+      /* ====== DELETE BLOG POST ====== */
+      function deleteBlogPost(id) {
+        $.ajax({
+          url: '/api/blog/delete',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ id: id }),
+          success: function(res) {
+            if (res.success) {
+              showToast('Success', 'Blog post deleted successfully.');
+              loadBlogsList();
+            } else {
+              showToast('Error', res.message || 'Could not delete blog post.', true);
+            }
+          },
+          error: function(xhr) {
+            const err = xhr.responseJSON ? xhr.responseJSON.message : 'Error connection to backend.';
+            showToast('Error', err, true);
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

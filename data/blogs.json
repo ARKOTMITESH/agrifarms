@@ -1,0 +1,62 @@
+[
+    {
+        "id": "seed-1",
+        "title": "10 Proven Benefits of Vetiver You Never Knew",
+        "category": "wellness",
+        "author": "Admin",
+        "date": "2026-05-15",
+        "readTime": "6 min",
+        "image": "img/vetiver_roots.jpg",
+        "excerpt": "Discover the incredible, science-backed benefits of vetiver \u2014 from deep root aromatherapy and stress relief to skincare properties that rival premium botanicals."
+    },
+    {
+        "id": "seed-2",
+        "title": "How Vetiver Transforms Sustainable Agriculture",
+        "category": "farming",
+        "author": "Farm Team",
+        "date": "2026-05-10",
+        "readTime": "8 min",
+        "image": "img/vetiver_agriculture.jpg",
+        "excerpt": "Vetiver grass is revolutionizing sustainable farming. Learn how its dense root network naturally controls erosion, improves water retention, and boosts crop yields."
+    },
+    {
+        "id": "seed-3",
+        "title": "Vetiver Oil: The Liquid Gold of Perfumery",
+        "category": "fragrance",
+        "author": "Aroma Expert",
+        "date": "2026-05-02",
+        "readTime": "7 min",
+        "image": "img/vetiver_oil.jpg",
+        "excerpt": "Often called \"liquid gold,\" vetiver essential oil anchors some of the world's most iconic fragrances. Explore its earthy, woody profile and global demand in luxury perfumery."
+    },
+    {
+        "id": "seed-4",
+        "title": "Vetiver for Soil Erosion: A Complete Guide",
+        "category": "agriculture",
+        "author": "Soil Scientist",
+        "date": "2026-04-24",
+        "readTime": "10 min",
+        "image": "img/vetiver_agriculture.jpg",
+        "excerpt": "From hillside terraces to riverbanks, vetiver hedgerows are nature's own erosion barrier. This comprehensive guide covers planting density, spacing, and maintenance techniques."
+    },
+    {
+        "id": "seed-5",
+        "title": "Natural Cooling with Vetiver: Summer Tips",
+        "category": "wellness",
+        "author": "Lifestyle Desk",
+        "date": "2026-04-18",
+        "readTime": "5 min",
+        "image": "img/vetiver_handicrafts.jpg",
+        "excerpt": "Beat the heat the natural way! Vetiver mats, fans, and water cooler pads release a refreshingly earthy fragrance while lowering indoor temperatures by up to 6\u00b0C naturally."
+    },
+    {
+        "id": "seed-6",
+        "title": "Export Guide: Vetiver Roots International Trade",
+        "category": "business",
+        "author": "Trade Analyst",
+        "date": "2026-04-10",
+        "readTime": "9 min",
+        "image": "img/vetiver_roots.jpg",
+        "excerpt": "Interested in trading vetiver roots internationally? This detailed guide covers quality grading, FSSAI and phytosanitary certifications, HS codes, and finding global buyers."
+    }
+]

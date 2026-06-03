@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Explore the diverse applications and services of Vetiver Agro Farm — from aromatherapy and agriculture to soil conservation, perfumery, Ayurveda, and eco-friendly projects." />
-  <title>Applications & Services | Vetiver Agro Farm</title>
+  <meta name="description" content="Explore the diverse applications and services of Mahima Global Agro Farms — from aromatherapy and agriculture to soil conservation, perfumery, Ayurveda, and eco-friendly projects." />
+  <title>Applications & Services | Mahima Global Agro Farms</title>
 
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="img/vetiver_roots.jpg" />
@@ -125,7 +125,7 @@
       border-radius: var(--radius-lg);
       padding: 34px 28px;
       box-shadow: var(--shadow-sm);
-      transition: var(--transition);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.4s ease;
       position: relative;
       overflow: hidden;
       height: 100%;
@@ -137,11 +137,35 @@
       background: linear-gradient(180deg, var(--green-leaf), var(--green-dark));
       transform: scaleY(0); transform-origin: top;
       transition: transform .4s ease;
+      z-index: 2;
+    }
+    /* Shimmer glass sweep effect */
+    .service-offer-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.4) 50%,
+          rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-25deg);
+      transition: none;
+      z-index: 1;
+      pointer-events: none;
     }
     .service-offer-card:hover::before { transform: scaleY(1); }
+    .service-offer-card:hover::after {
+      left: 150%;
+      transition: left 0.75s ease-in-out;
+    }
     .service-offer-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-8px);
+      box-shadow: 0 16px 36px rgba(12, 43, 28, 0.08);
     }
     .service-offer-num {
       font-family: 'Playfair Display', serif;
@@ -150,6 +174,7 @@
       line-height: 1; position: absolute;
       top: 16px; right: 20px;
       transition: var(--transition);
+      z-index: 1;
     }
     .service-offer-card:hover .service-offer-num { color: rgba(64,145,108,.12); }
     .service-offer-icon {
@@ -159,15 +184,37 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 24px; color: var(--green-leaf);
       margin-bottom: 18px;
-      transition: var(--transition);
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
     }
     .service-offer-card:hover .service-offer-icon {
       background: var(--green-dark);
       color: var(--gold-light);
+      transform: scale(1.15) rotate(10deg);
+      box-shadow: 0 5px 15px rgba(12, 43, 28, 0.15);
     }
     .service-offer-title {
       font-size: 1.12rem; font-weight: 700;
       color: var(--green-dark); margin-bottom: 10px;
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-block;
+      position: relative;
+    }
+    .service-offer-title::after {
+      content: ' \2192'; /* Unicode arrow */
+      opacity: 0;
+      display: inline-block;
+      transform: translateX(-8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      color: var(--gold-light);
+      font-weight: bold;
+    }
+    .service-offer-card:hover .service-offer-title {
+      color: var(--green-leaf);
+      transform: translateX(4px);
+    }
+    .service-offer-card:hover .service-offer-title::after {
+      opacity: 1;
+      transform: translateX(6px);
     }
     .service-offer-desc {
       font-size: .875rem; color: var(--text-muted);
@@ -277,9 +324,9 @@
       <div class="row align-items-center">
         <div class="col-lg-9">
           <div class="d-flex align-items-center flex-wrap" style="gap: 24px;">
-            <span class="v-topbar-company" style="display: inline-flex; align-items: center; gap: 8px; margin-right: 0;"><i class="fas fa-building" style="color: #74C69D;"></i> Mahima Global Entrepreneurs (OPC) Private Limited</span>
+            <span class="v-topbar-company" style="display: inline-flex; align-items: center; gap: 8px; margin-right: 0;"><i class="fas fa-building" style="color: #74C69D;"></i> Mahima Global Entrepreneurs OPC Pvt Ltd</span>
             <a href="tel:+919876543210" style="margin-right: 0;"><i class="fas fa-phone-alt"></i> +91 98765 43210</a>
-            <a href="mailto:info@vetiveragrofarm.com" style="margin-right: 0;"><i class="fas fa-envelope"></i> info@vetiveragrofarm.com</a>
+            <a href="mailto:info@agrofarmsvetiver.com" style="margin-right: 0;"><i class="fas fa-envelope"></i> info@agrofarmsvetiver.com</a>
             <span class="v-topbar-shipping" style="margin-right: 0;"><i class="fas fa-shipping-fast"></i> Worldwide Shipping</span>
           </div>
         </div>
@@ -301,7 +348,7 @@
   <!-- ══════════ NAVBAR ══════════ -->
   <nav class="v-navbar navbar navbar-expand-lg" id="mainNavbar">
     <div class="container">
-      <a href="index.html" class="v-brand" aria-label="Vetiver Agro Farm Home">
+      <a href="index.html" class="v-brand" aria-label="Mahima Global Agro Farms Home">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="v-brand-logo-svg">
           <path d="M50 82 C52 75, 48 35, 12 15 C30 35, 46 65, 48 80 Z" fill="#2D6A4F"/>
           <path d="M50 82 C53 72, 53 25, 30 5 C42 22, 49 55, 49 80 Z" fill="#40916C"/>
@@ -311,9 +358,9 @@
           <path d="M50 82 Q42 90, 36 98 M50 82 Q49 92, 46 100 M50 82 Q51 92, 54 100 M50 82 Q58 90, 64 98" stroke="#1B4332" stroke-width="2" fill="none" stroke-linecap="round"/>
         </svg>
         <div class="v-brand-text">
-          <span class="v-brand-title">VERTIVER</span>
-          <span class="v-brand-subtitle">FARM</span>
-          <span class="v-brand-tagline">IN AGRO FARM</span>
+          <span class="v-brand-title" style="letter-spacing: 0.5px;">MAHIMA GLOBAL</span>
+          <span class="v-brand-subtitle" style="letter-spacing: 4.5px;">AGRO FARMS</span>
+          <span class="v-brand-tagline">Sustainable Agriculture</span>
         </div>
       </a>
       
@@ -345,9 +392,10 @@
           <a href="blog.html"     class="nav-item nav-link v-nav-link">Blog</a>
           <a href="contact.html"  class="nav-item nav-link v-nav-link">Contact Us</a>
         </div>
-        <div class="v-nav-cta d-none d-lg-flex">
-          <a href="contact.html#inquiry" class="v-btn-quote" id="navbar-quote-btn">Get Quote</a>
-        </div>
+              <div class="v-nav-cta d-none d-lg-flex">
+        <a href="contact.html#partner-form" class="v-btn-quote" id="navbar-partner-btn">Partner Program</a>
+        <a href="contact.html#inquiry" class="v-btn-quote-outline" id="navbar-quote-btn">Get Quote</a>
+      </div>
       </div>
     </div>
   </nav>
@@ -569,7 +617,7 @@
         <div class="col-lg-7 text-center animate-on-scroll">
           <div class="section-badge"><i class="fas fa-industry"></i> Our Markets</div>
           <h2 class="section-title">Industries <span>We Serve</span></h2>
-          <p class="section-subtitle mx-auto">From global perfume houses to village-level organic farmers, Vetiver Agro Farm supplies premium vetiver across a wide spectrum of industries with reliability and expertise.</p>
+          <p class="section-subtitle mx-auto">From global perfume houses to village-level organic farmers, Mahima Global Agro Farms supplies premium vetiver across a wide spectrum of industries with reliability and expertise.</p>
         </div>
       </div>
       <div class="row g-4">
@@ -643,111 +691,78 @@
   </section>
 
   <!-- ══════════ SERVICES OFFERED ══════════ -->
-  <section class="services-section" id="services">
+  <section class="services-section" id="services" style="padding: 90px 0;">
     <div class="container">
       <div class="row justify-content-center mb-5">
         <div class="col-lg-7 text-center animate-on-scroll">
           <div class="section-badge"><i class="fas fa-concierge-bell"></i> What We Offer</div>
-          <h2 class="section-title">Our <span>Services</span></h2>
-          <p class="section-subtitle mx-auto">Beyond supplying premium vetiver, we offer end-to-end support tailored to your business needs — from small custom orders to large-scale international export contracts.</p>
+          <h2 class="section-title">Our <span>Agricultural Services</span></h2>
+          <p class="section-subtitle mx-auto">Mahima Global Agro Farms provides end-to-end support for Vetiver cultivation, ensuring high yield, environmental sustainability, and secure market access.</p>
         </div>
       </div>
       <div class="row g-4">
 
-        <!-- Wholesale Supply -->
-        <div class="col-lg-4 col-md-6 animate-on-scroll d1">
-          <div class="service-offer-card">
+        <!-- Service 1 -->
+        <div class="col-lg-6 col-md-6 animate-on-scroll d1">
+          <div class="service-offer-card h-100">
             <span class="service-offer-num">01</span>
-            <div class="service-offer-icon"><i class="fas fa-boxes"></i></div>
-            <h3 class="service-offer-title">Wholesale Supply</h3>
-            <p class="service-offer-desc">We maintain large standing stocks of all vetiver products — roots, essential oil, powder, and handicrafts — ready for bulk despatch with minimum lead times. Pricing is competitive and scales favourably for large volumes.</p>
-            <ul class="service-offer-list">
-              <li><i class="fas fa-check-circle"></i> Roots, Oil, Powder &amp; Handicrafts</li>
-              <li><i class="fas fa-check-circle"></i> Minimum order: 50 kg / 5 litres</li>
-              <li><i class="fas fa-check-circle"></i> Competitive tiered pricing</li>
-              <li><i class="fas fa-check-circle"></i> Consistent quality every batch</li>
-              <li><i class="fas fa-check-circle"></i> Certificate of Analysis provided</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Export Services -->
-        <div class="col-lg-4 col-md-6 animate-on-scroll d2">
-          <div class="service-offer-card">
-            <span class="service-offer-num">02</span>
-            <div class="service-offer-icon"><i class="fas fa-globe"></i></div>
-            <h3 class="service-offer-title">Export Services</h3>
-            <p class="service-offer-desc">We handle the full export lifecycle — from packaging and labelling to customs clearance, phytosanitary certification, and final-mile freight coordination. We export to 28+ countries with full regulatory compliance and transparency.</p>
-            <ul class="service-offer-list">
-              <li><i class="fas fa-check-circle"></i> Export to 28+ countries</li>
-              <li><i class="fas fa-check-circle"></i> Phytosanitary &amp; quality certificates</li>
-              <li><i class="fas fa-check-circle"></i> Air, sea &amp; courier options</li>
-              <li><i class="fas fa-check-circle"></i> Custom labelling &amp; packaging</li>
-              <li><i class="fas fa-check-circle"></i> Real-time shipment tracking</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Custom Orders -->
-        <div class="col-lg-4 col-md-6 animate-on-scroll d3">
-          <div class="service-offer-card">
-            <span class="service-offer-num">03</span>
-            <div class="service-offer-icon"><i class="fas fa-sliders-h"></i></div>
-            <h3 class="service-offer-title">Custom Orders</h3>
-            <p class="service-offer-desc">Need a specific grade, extraction method, particle size, or packaging format? We work closely with formulators, researchers, and brand owners to deliver bespoke vetiver preparations precisely tuned to their specifications.</p>
-            <ul class="service-offer-list">
-              <li><i class="fas fa-check-circle"></i> Bespoke grades &amp; specifications</li>
-              <li><i class="fas fa-check-circle"></i> White-label &amp; private label options</li>
-              <li><i class="fas fa-check-circle"></i> Sample testing &amp; approval process</li>
-              <li><i class="fas fa-check-circle"></i> Special extraction methods</li>
-              <li><i class="fas fa-check-circle"></i> R&amp;D collaboration welcome</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Farming Support -->
-        <div class="col-lg-4 col-md-6 animate-on-scroll d4">
-          <div class="service-offer-card">
-            <span class="service-offer-num">04</span>
             <div class="service-offer-icon"><i class="fas fa-seedling"></i></div>
-            <h3 class="service-offer-title">Vetiver Farming Support</h3>
-            <p class="service-offer-desc">We supply certified vetiver grass slips, planting guides, and nursery material to farmers who wish to establish their own vetiver plots. Our agronomy team conducts on-site visits and training to ensure successful establishment and high root yields.</p>
+            <h3 class="service-offer-title">Vetiver Plantation Development</h3>
+            <p class="service-offer-desc">Complete support for establishing and managing Vetiver cultivation projects. We offer direct technical setup, nursery sourcing, and land prep support.</p>
             <ul class="service-offer-list">
-              <li><i class="fas fa-check-circle"></i> Certified grass slips supply</li>
-              <li><i class="fas fa-check-circle"></i> On-site planting guidance</li>
-              <li><i class="fas fa-check-circle"></i> Soil preparation advice</li>
-              <li><i class="fas fa-check-circle"></i> Harvest &amp; post-harvest support</li>
-              <li><i class="fas fa-check-circle"></i> Buy-back arrangement available</li>
+              <li><i class="fas fa-check-circle"></i> On-site land preparation guidance</li>
+              <li><i class="fas fa-check-circle"></i> High-density planting design patterns</li>
+              <li><i class="fas fa-check-circle"></i> Nursery coordination and premium slip delivery</li>
+              <li><i class="fas fa-check-circle"></i> Tailored irrigation system layouts</li>
             </ul>
           </div>
         </div>
 
-        <!-- Consulting -->
-        <div class="col-lg-4 col-md-6 animate-on-scroll d5">
-          <div class="service-offer-card">
-            <span class="service-offer-num">05</span>
-            <div class="service-offer-icon"><i class="fas fa-comments"></i></div>
-            <h3 class="service-offer-title">Vetiver Consulting</h3>
-            <p class="service-offer-desc">Our expert team offers professional consultancy for civil engineers, urban planners, government bodies, and NGOs seeking to deploy the Vetiver System for erosion control, watershed management, or ecological restoration projects at scale.</p>
+        <!-- Service 2 -->
+        <div class="col-lg-6 col-md-6 animate-on-scroll d2">
+          <div class="service-offer-card h-100">
+            <span class="service-offer-num">02</span>
+            <div class="service-offer-icon"><i class="fas fa-hands-helping"></i></div>
+            <h3 class="service-offer-title">Farmer Partnership Program</h3>
+            <p class="service-offer-desc">Long-term collaboration model providing premium planting materials, technical guidance, and structured technical assistance.</p>
             <ul class="service-offer-list">
-              <li><i class="fas fa-check-circle"></i> Site assessment &amp; feasibility</li>
-              <li><i class="fas fa-check-circle"></i> Vetiver System design</li>
-              <li><i class="fas fa-check-circle"></i> Project monitoring &amp; evaluation</li>
-              <li><i class="fas fa-check-circle"></i> Government tender support</li>
-              <li><i class="fas fa-check-circle"></i> Training workshops &amp; seminars</li>
+              <li><i class="fas fa-check-circle"></i> High-quality certified Vetiver slips</li>
+              <li><i class="fas fa-check-circle"></i> Long-term secure contract terms</li>
+              <li><i class="fas fa-check-circle"></i> Guaranteed crop buy-back pricing</li>
+              <li><i class="fas fa-check-circle"></i> Community-level farmer network groups</li>
             </ul>
           </div>
         </div>
 
-        <!-- Agri CTA card -->
-        <div class="col-lg-4 col-md-6 animate-on-scroll d6">
-          <div class="service-offer-card h-100 d-flex flex-column justify-content-center align-items-center text-center"
-               style="background: linear-gradient(135deg, var(--green-dark), var(--green-mid)); border-left: none;">
-            <i class="fas fa-leaf" style="font-size:3rem; color:var(--green-light); margin-bottom:20px;"></i>
-            <h3 class="service-offer-title" style="color:#fff;">Need a Custom Solution?</h3>
-            <p style="font-size:.9rem; color:rgba(255,255,255,.7); line-height:1.75; margin-bottom:24px;">Every business is unique. Let's discuss your specific requirements and craft the perfect vetiver supply or project plan for you.</p>
-            <a href="contact.html#inquiry" class="btn-v-gold mb-3"><i class="fas fa-file-alt"></i> Request a Quote</a>
-            <a href="https://wa.me/919876543210" class="btn-v-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        <!-- Service 3 -->
+        <div class="col-lg-6 col-md-6 animate-on-scroll d3">
+          <div class="service-offer-card h-100">
+            <span class="service-offer-num">03</span>
+            <div class="service-offer-icon"><i class="fas fa-file-invoice"></i></div>
+            <h3 class="service-offer-title">Field Monitoring &amp; Reporting</h3>
+            <p class="service-offer-desc">Monthly farm inspections, crop health assessments, growth tracking, and professional progress reports by our agronomists.</p>
+            <ul class="service-offer-list">
+              <li><i class="fas fa-check-circle"></i> Periodic scheduled agronomist visits</li>
+              <li><i class="fas fa-check-circle"></i> Root health and moisture level checks</li>
+              <li><i class="fas fa-check-circle"></i> Systematic monthly progress reporting sheets</li>
+              <li><i class="fas fa-check-circle"></i> Yield estimation and analysis reporting</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="col-lg-6 col-md-6 animate-on-scroll d4">
+          <div class="service-offer-card h-100">
+            <span class="service-offer-num">04</span>
+            <div class="service-offer-icon"><i class="fas fa-leaf"></i></div>
+            <h3 class="service-offer-title">Sustainable Agriculture Solutions</h3>
+            <p class="service-offer-desc">Environmentally responsible farming practices designed for long-term profitability, carbon capture, and soil protection.</p>
+            <ul class="service-offer-list">
+              <li><i class="fas fa-check-circle"></i> Chemical-free, 100% organic fertilizer methods</li>
+              <li><i class="fas fa-check-circle"></i> Ecological soil erosion barriers</li>
+              <li><i class="fas fa-check-circle"></i> Land reclamation and heavy metal absorption</li>
+              <li><i class="fas fa-check-circle"></i> Multi-season crop rotation strategies</li>
+            </ul>
           </div>
         </div>
 
@@ -755,58 +770,162 @@
     </div>
   </section>
 
-  <!-- ══════════ HOW WE WORK — PROCESS ══════════ -->
+  <!-- ══════════ OUR SUPPLY CHAIN SECTION (6-STEP) ══════════ -->
   <section class="process-section" id="process">
     <div class="container">
       <div class="row justify-content-center mb-5">
         <div class="col-lg-7 text-center animate-on-scroll">
-          <div class="section-badge" style="background:rgba(255,255,255,.1); color:var(--green-light); border: 1px solid rgba(255,255,255,.15);"><i class="fas fa-cogs"></i> How We Work</div>
-          <h2 class="section-title" style="color:#fff;">Our Simple <span>4-Step</span> Process</h2>
-          <p class="section-subtitle mx-auto" style="color:rgba(255,255,255,.65);">From your first enquiry to successful delivery, we keep our process transparent, efficient, and focused entirely on your satisfaction.</p>
+          <div class="section-badge" style="background:rgba(255,255,255,.1); color:var(--green-light); border: 1px solid rgba(255,255,255,.15);"><i class="fas fa-cogs"></i> Supply Chain</div>
+          <h2 class="section-title" style="color:#fff;">How Our <span>Supply Chain Works</span></h2>
+          <p class="section-subtitle mx-auto" style="color:rgba(255,255,255,.65);">Connecting growers, ensuring quality control, and streamlining procurement for domestic and global buyers.</p>
         </div>
       </div>
       <div class="row g-4 justify-content-center">
 
         <!-- Step 1 -->
-        <div class="col-lg-3 col-md-6 animate-on-scroll d1">
+        <div class="col-lg-2 col-md-6 animate-on-scroll d1">
           <div class="process-step">
             <div class="process-step-num">01</div>
-            <i class="fas fa-comments process-step-icon"></i>
-            <h4 class="process-step-title">Enquiry &amp; Consultation</h4>
-            <p class="process-step-desc">Reach out via our contact form, phone, or WhatsApp. Tell us what product, quantity, grade, and timeline you need. Our team responds within 24 hours with expert guidance and initial pricing.</p>
+            <i class="fas fa-user-plus process-step-icon"></i>
+            <h4 class="process-step-title">Farmer Onboarding</h4>
+            <p class="process-step-desc">Growers join our network under secure contract terms.</p>
           </div>
         </div>
 
         <!-- Step 2 -->
-        <div class="col-lg-3 col-md-6 animate-on-scroll d2">
+        <div class="col-lg-2 col-md-6 animate-on-scroll d2">
           <div class="process-step">
             <div class="process-step-num">02</div>
-            <i class="fas fa-vial process-step-icon"></i>
-            <h4 class="process-step-title">Sample &amp; Approval</h4>
-            <p class="process-step-desc">We dispatch complimentary product samples with full quality documentation — Certificate of Analysis, batch number, and origin report. You test, evaluate, and approve before committing to any order.</p>
+            <i class="fas fa-seedling process-step-icon"></i>
+            <h4 class="process-step-title">Plantation Development</h4>
+            <p class="process-step-desc">We supply premium planting slips and technical support.</p>
           </div>
         </div>
 
         <!-- Step 3 -->
-        <div class="col-lg-3 col-md-6 animate-on-scroll d3">
+        <div class="col-lg-2 col-md-6 animate-on-scroll d3">
           <div class="process-step">
             <div class="process-step-num">03</div>
-            <i class="fas fa-handshake process-step-icon"></i>
-            <h4 class="process-step-title">Order &amp; Processing</h4>
-            <p class="process-step-desc">Once approved, we confirm your purchase order, agree payment terms, and begin processing. Your order is carefully harvested, processed to specification, quality-checked, and prepared for despatch with all required documentation.</p>
+            <i class="fas fa-binoculars process-step-icon"></i>
+            <h4 class="process-step-title">Crop Monitoring</h4>
+            <p class="process-step-desc">On-site agronomist inspections and monthly reports.</p>
           </div>
         </div>
 
         <!-- Step 4 -->
-        <div class="col-lg-3 col-md-6 animate-on-scroll d4">
+        <div class="col-lg-2 col-md-6 animate-on-scroll d4">
           <div class="process-step">
             <div class="process-step-num">04</div>
-            <i class="fas fa-truck process-step-icon"></i>
-            <h4 class="process-step-title">Dispatch &amp; After-Care</h4>
-            <p class="process-step-desc">Your order is dispatched via your preferred logistics channel. We provide real-time tracking, share all shipping documents, and stay in touch until successful delivery. We follow up to ensure your complete satisfaction.</p>
+            <i class="fas fa-check-double process-step-icon"></i>
+            <h4 class="process-step-title">Quality Verification</h4>
+            <p class="process-step-desc">Harvest is graded and verified for industrial standards.</p>
           </div>
         </div>
 
+        <!-- Step 5 -->
+        <div class="col-lg-2 col-md-6 animate-on-scroll d5">
+          <div class="process-step">
+            <div class="process-step-num">05</div>
+            <i class="fas fa-shopping-cart process-step-icon"></i>
+            <h4 class="process-step-title">Buyer Procurement</h4>
+            <p class="process-step-desc">Consistent bulk products are shipped to corporate buyers.</p>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="col-lg-2 col-md-6 animate-on-scroll d6">
+          <div class="process-step">
+            <div class="process-step-num">06</div>
+            <i class="fas fa-handshake process-step-icon"></i>
+            <h4 class="process-step-title">Long-Term Relations</h4>
+            <p class="process-step-desc">Sustainable sourcing partnerships built on trust.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FARMER BENEFITS SECTION ══════════ -->
+  <section class="farmer-benefits-section" id="farmer-benefits" style="background: var(--cream); padding: 90px 0; border-top: 1px solid #e8f5ee;">
+    <div class="container">
+      <div class="text-center mb-5 animate-on-scroll">
+        <span class="section-badge" style="background:rgba(116,198,157,.15);color:var(--green-leaf);"><i class="fas fa-handshake"></i> Farmer Advantages</span>
+        <h2 class="section-title">Benefits for <span>Our Farmers</span></h2>
+        <p class="section-subtitle mx-auto" style="max-width:560px;">We ensure our contract farming partners get professional support and maximum value from their harvest.</p>
+      </div>
+      
+      <div class="row g-4 justify-content-center">
+        <!-- Benefit 1 -->
+        <div class="col-md-6 col-lg-4 animate-on-scroll d1">
+          <div class="about-feat" style="height: 100%;">
+            <div class="about-feat-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div class="about-feat-text">
+              <h6>Expert Guidance</h6>
+              <p>Access to professional agricultural experts advising on land preparation and crop management.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Benefit 2 -->
+        <div class="col-md-6 col-lg-4 animate-on-scroll d2">
+          <div class="about-feat" style="height: 100%;">
+            <div class="about-feat-icon"><i class="fas fa-eye"></i></div>
+            <div class="about-feat-text">
+              <h6>Regular Farm Visits</h6>
+              <p>Periodic field inspections by our agronomy desk to check root health and growth progress.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Benefit 3 -->
+        <div class="col-md-6 col-lg-4 animate-on-scroll d3">
+          <div class="about-feat" style="height: 100%;">
+            <div class="about-feat-icon"><i class="fas fa-file-invoice"></i></div>
+            <div class="about-feat-text">
+              <h6>Monthly Performance Reports</h6>
+              <p>Transparent progress reporting to track crops and optimize yield parameters.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Benefit 4 -->
+        <div class="col-md-6 col-lg-4 animate-on-scroll d1 mt-lg-3">
+          <div class="about-feat" style="height: 100%;">
+            <div class="about-feat-icon"><i class="fas fa-seedling"></i></div>
+            <div class="about-feat-text">
+              <h6>Improved Cultivation Practices</h6>
+              <p>Training in scientific organic methods to protect crops and enhance soil health.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Benefit 5 -->
+        <div class="col-md-6 col-lg-4 animate-on-scroll d2 mt-lg-3">
+          <div class="about-feat" style="height: 100%;">
+            <div class="about-feat-icon"><i class="fas fa-globe-asia"></i></div>
+            <div class="about-feat-text">
+              <h6>Market Access</h6>
+              <p>Direct linkage to premium industries and global exporters, removing middlemen.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Benefit 6 -->
+        <div class="col-md-6 col-lg-4 animate-on-scroll d3 mt-lg-3">
+          <div class="about-feat" style="height: 100%;">
+            <div class="about-feat-icon"><i class="fas fa-hand-holding-usd"></i></div>
+            <div class="about-feat-text">
+              <h6>Sustainable Income Generation</h6>
+              <p>Guaranteed buy-back price that ensures reliable cash flow and agricultural profitability.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Benefit 7 -->
+        <div class="col-md-6 col-lg-4 animate-on-scroll d1 mt-lg-3">
+          <div class="about-feat" style="height: 100%;">
+            <div class="about-feat-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="about-feat-text">
+              <h6>Long-Term Support</h6>
+              <p>Continuous collaboration, guidance, and assistance across multiple harvest seasons.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -817,8 +936,8 @@
       <div class="row align-items-center g-5">
         <div class="col-lg-6 animate-on-scroll d1">
           <div class="section-badge"><i class="fas fa-award"></i> Why Choose Us</div>
-          <h2 class="section-title">The Vetiver Agro Farm <span>Difference</span></h2>
-          <p class="section-subtitle mb-4">We are not just suppliers — we are vetiver specialists with hands-on farming and processing expertise since our incorporation on January 10, 2025, committed to quality that you can trust.</p>
+          <h2 class="section-title">The Mahima Global Agro Farms <span>Difference</span></h2>
+          <p class="section-subtitle mb-4">We are not just suppliers — we are vetiver specialists with hands-on contract farming and processing expertise since our incorporation on January 10, 2025, committed to quality that you can trust.</p>
           <div class="why-feat">
             <div class="why-icon" style="background:var(--green-pale); color:var(--green-leaf);"><i class="fas fa-certificate"></i></div>
             <div class="why-text">
@@ -850,7 +969,7 @@
         </div>
         <div class="col-lg-6 animate-on-scroll d3">
           <div style="position:relative;">
-            <img src="img/vetiver_agriculture.jpg" alt="Vetiver Agro Farm sustainable practices" loading="lazy"
+            <img src="img/vetiver_agriculture.jpg" alt="Mahima Global Agro Farms sustainable practices" loading="lazy"
                  style="width:100%; height:500px; object-fit:cover; border-radius:var(--radius-lg); box-shadow:var(--shadow-lg);" />
             <!-- Stat overlay -->
             <div style="position:absolute; bottom:28px; left:28px; right:28px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
@@ -922,9 +1041,9 @@
     <div class="container">
       <div class="row g-5">
         <div class="col-lg-4 col-md-6">
-          <div class="footer-brand-name">Vetiver Agro Farm</div>
-          <span class="footer-brand-tag">Natural • Pure • Sustainable</span>
-          <p class="footer-desc">Vetiver Agro Farm – Rooted in Nature. Premium quality vetiver products sourced directly from sustainable farms. Mahima Global Entrepreneurs (OPC) Private Limited was incorporated on January 10, 2025.</p>
+          <div class="footer-brand-name">Mahima Global Agro Farms</div>
+          <span class="footer-brand-tag">"Growing Vetiver. Empowering Farmers. Building Sustainable Agriculture."</span>
+          <p class="footer-desc">Mahima Global Agro Farms is an agro-farming and contract farming company promoting sustainable Vetiver (Khus Grass) cultivation across India. Sourced directly from our partner farms.</p>
           <div class="footer-social">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -958,16 +1077,16 @@
         </div>
         <div class="col-lg-4 col-md-6">
           <h4 class="footer-heading">Get In Touch</h4>
-          <div class="footer-contact-row"><i class="fas fa-map-marker-alt"></i><span>Mahima Global Entrepreneurs (OPC) Pvt Ltd, Sadha Vari Palem, Navalakh Gardens, Nellore, Andhra Pradesh, 524002</span></div>
+          <div class="footer-contact-row"><i class="fas fa-map-marker-alt"></i><span>Mahima Global Entrepreneurs OPC Pvt Ltd, Sadha Vari Palem, Navalakh Gardens, Nellore, Andhra Pradesh, 524002</span></div>
           <div class="footer-contact-row"><i class="fas fa-phone-alt"></i><span>+91 98765 43210</span></div>
-          <div class="footer-contact-row"><i class="fas fa-envelope"></i><span>info@vetiveragrofarm.com</span></div>
+          <div class="footer-contact-row"><i class="fas fa-envelope"></i><span>info@agrofarmsvetiver.com</span></div>
           <div class="footer-contact-row"><i class="fab fa-whatsapp"></i><span>+91 98765 43210 (WhatsApp)</span></div>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p class="mb-0">© 2026 <a href="index.html">Mahima Global Entrepreneurs (OPC) Private Limited</a>. All Rights Reserved. | Vetiver Agro Farm | Built by IIITIHAS UNIVERSAL PVT LTD</p>
+        <p class="mb-0">© 2026 <a href="index.html">Mahima Global Entrepreneurs OPC Pvt Ltd</a>. All Rights Reserved. | Built by IIITIHAS UNIVERSAL PVT LTD</p>
       </div>
     </div>
   </footer>
