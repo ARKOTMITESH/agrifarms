@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Portal - Mahima Global Agro Farms</title>
+  <title>Admin Portal - Mahima Agro Farms</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
   <!-- FontAwesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <style>
     :root {
@@ -415,12 +417,22 @@
           </div>
         </div>
       </div>
+      <div class="col-6 col-lg">
+        <div class="glass-card stat-box mb-0">
+          <div class="stat-icon"><i class="fas fa-users text-warning"></i></div>
+          <div>
+            <div class="stat-num" id="stat-growers">0</div>
+            <div class="stat-label">Growers</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- MAIN PANEL NAVIGATION TABS -->
     <div class="d-flex mb-4 gap-2">
       <button class="btn btn-success px-4 py-2 active" id="btn-tab-assets" style="border-radius: var(--radius); font-weight:600;"><i class="fas fa-cubes me-2"></i>Media Assets</button>
       <button class="btn btn-outline-light px-4 py-2" id="btn-tab-blogs" style="border-radius: var(--radius); border-color: var(--border-color); font-weight:600; color: var(--text-white);"><i class="fas fa-newspaper me-2"></i>Blog Posts</button>
+      <button class="btn btn-outline-light px-4 py-2" id="btn-tab-growers" style="border-radius: var(--radius); border-color: var(--border-color); font-weight:600; color: var(--text-white);"><i class="fas fa-users me-2"></i>Growers Network</button>
     </div>
 
     <!-- MAIN GRID (ASSETS) -->
@@ -456,6 +468,14 @@
                   <option value="handicrafts">Handicrafts</option>
                 </select>
               </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="assetGrower">Link to Client/Grower (Optional)</label>
+              <select id="assetGrower" class="admin-select">
+                <option value="">-- General / No Grower --</option>
+                <!-- Dynamic options loaded from growers.json -->
+              </select>
             </div>
 
             <div class="mb-3">
@@ -599,6 +619,89 @@
         </div>
       </div>
     </div>
+
+    <!-- MAIN GRID (GROWERS) -->
+    <div class="row g-4" id="growersPanel" style="display:none;">
+      <!-- LEFT COLUMN: ADD GROWER & ANALYTICS -->
+      <div class="col-lg-5">
+        <!-- ADD GROWER CARD -->
+        <div class="glass-card mb-4">
+          <h3 class="mb-4 text-white" style="font-size: 1.3rem;"><i class="fas fa-user-plus text-success me-2"></i>Add Client / Grower</h3>
+          
+          <form id="growerForm">
+            <div class="mb-3">
+              <label class="form-label" for="growerName">Grower Name</label>
+              <input type="text" id="growerName" class="admin-input" placeholder="e.g. Ramesh Kumar" required>
+            </div>
+            
+            <div class="row mb-3">
+              <div class="col-6">
+                <label class="form-label" for="growerLocation">Location / Village</label>
+                <input type="text" id="growerLocation" class="admin-input" placeholder="e.g. Nellore, AP" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label" for="growerAcres">Land Size (Acres)</label>
+                <input type="number" step="0.1" id="growerAcres" class="admin-input" placeholder="e.g. 5.5" required>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-6">
+                <label class="form-label" for="growerPhone">Phone Number</label>
+                <input type="text" id="growerPhone" class="admin-input" placeholder="e.g. 9381706785" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label" for="growerCrop">Primary Crop Type</label>
+                <input type="text" id="growerCrop" class="admin-input" placeholder="e.g. Vetiver Grass" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="growerDetails">Farming Details / Remarks</label>
+              <textarea id="growerDetails" class="admin-textarea" rows="3" placeholder="Mention crops grown, methods used, or other highlights..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-upload" id="growerSaveBtn">
+              <i class="fas fa-save me-2"></i>Register Grower
+            </button>
+          </form>
+        </div>
+
+        <!-- ANALYTICS CARD -->
+        <div class="glass-card">
+          <h3 class="mb-4 text-white" style="font-size: 1.3rem;"><i class="fas fa-chart-pie text-success me-2"></i>Land Distribution</h3>
+          <div style="position: relative; height: 260px; display: flex; justify-content: center;">
+            <canvas id="landPieChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: MANAGE GROWERS & MEDIA STATS -->
+      <div class="col-lg-7">
+        <div class="glass-card mb-4">
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <h3 class="m-0 text-white" style="font-size: 1.3rem;"><i class="fas fa-users text-success me-2"></i>Registered Growers</h3>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-sm btn-outline-warning" id="btnExportCSV" style="border-radius: 6px; font-weight:600;"><i class="fas fa-download me-2"></i>Download Report (CSV)</button>
+              <span class="badge bg-dark border border-secondary text-muted" id="growersCount" style="display:flex; align-items:center;">0 Growers</span>
+            </div>
+          </div>
+
+          <!-- GROWERS LIST CONTAINER -->
+          <div id="growersList" style="max-height: 380px; overflow-y: auto;">
+            <!-- Dynamic rows will be inserted here -->
+          </div>
+        </div>
+
+        <!-- MEDIA STATS CHART -->
+        <div class="glass-card">
+          <h3 class="mb-4 text-white" style="font-size: 1.3rem;"><i class="fas fa-chart-bar text-success me-2"></i>Media Assets per Grower</h3>
+          <div style="position: relative; height: 260px;">
+            <canvas id="mediaBarChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- ====== TOAST / NOTIFICATION ====== -->
@@ -622,12 +725,15 @@
       const serverUrl = ''; // relative path since same host
       let sessionToken = sessionStorage.getItem('adminToken');
       let mediaItems = [];
+      let growersItems = [];
 
       // Check session
       if (sessionToken === 'mock-token-mahima-2026') {
         $('#loginOverlay').addClass('hidden');
-        loadMediaList();
-        loadBlogsList();
+        loadGrowersList(function() {
+          loadMediaList();
+          loadBlogsList();
+        });
       }
 
       /* ====== LOGIN HANDLER ====== */
@@ -654,9 +760,11 @@
             if (res.success) {
               sessionStorage.setItem('adminToken', res.token);
               $('#loginOverlay').addClass('hidden');
-              showToast('Access Granted', 'Welcome to the Mahima Global Agro Farms admin portal.');
-              loadMediaList();
-              loadBlogsList();
+              showToast('Access Granted', 'Welcome to the Mahima Agro Farms admin portal.');
+              loadGrowersList(function() {
+                loadMediaList();
+                loadBlogsList();
+              });
             } else {
               showLoginError(res.message || 'Verification failed.');
             }
@@ -747,6 +855,7 @@
         formData.append('type', $('#assetType').val());
         formData.append('category', $('#assetCategory').val());
         formData.append('description', $('#assetDesc').val());
+        formData.append('growerId', $('#assetGrower').val() || '');
 
         $.ajax({
           url: '/api/upload',
@@ -785,12 +894,14 @@
             mediaItems = data || [];
             updateStats();
             renderMediaRows($('.media-tab.active').attr('data-filter'));
+            updateCharts();
           },
           error: function() {
             // Probably empty or missing
             mediaItems = [];
             updateStats();
             renderMediaRows('all');
+            updateCharts();
           }
         });
       }
@@ -837,6 +948,8 @@
             thumbHtml = `<div class="media-thumb"><i class="fas fa-video text-info"></i></div>`;
           }
 
+          const growerName = getGrowerName(item.growerId);
+          const growerTag = growerName ? `<span>Grower: <strong class="text-warning">${growerName}</strong></span>` : '';
           const row = $(`
             <div class="media-item-row" data-id="${item.id}">
               ${thumbHtml}
@@ -846,6 +959,7 @@
                   <span>Type: <strong class="text-success">${item.type.toUpperCase()}</strong></span>
                   <span>Category: <strong>${item.category}</strong></span>
                   <span>Date: ${item.date}</span>
+                  ${growerTag}
                 </div>
               </div>
               <button class="btn-delete-item" title="Delete Asset" data-id="${item.id}">
@@ -912,19 +1026,26 @@
         setTimeout(() => toast.fadeOut(), 4000);
       }
 
-      /* ====== BLOG PANEL TAB NAVIGATION ====== */
+      /* ====== TAB NAVIGATION ====== */
       $('#btn-tab-assets').on('click', function() {
-        $('#btn-tab-blogs').removeClass('btn-success active').addClass('btn-outline-light');
-        $(this).removeClass('btn-outline-light').addClass('btn-success active');
+        $('#btn-tab-blogs, #btn-tab-growers').removeClass('btn-success active').addClass('btn-outline-light').css('color', 'var(--text-white)');
+        $(this).removeClass('btn-outline-light').addClass('btn-success active').css('color', '');
         $('#assetsPanel').show();
-        $('#blogsPanel').hide();
+        $('#blogsPanel, #growersPanel').hide();
       });
       $('#btn-tab-blogs').on('click', function() {
-        $('#btn-tab-assets').removeClass('btn-success active').addClass('btn-outline-light');
-        $(this).removeClass('btn-outline-light').addClass('btn-success active');
-        $('#assetsPanel').hide();
+        $('#btn-tab-assets, #btn-tab-growers').removeClass('btn-success active').addClass('btn-outline-light').css('color', 'var(--text-white)');
+        $(this).removeClass('btn-outline-light').addClass('btn-success active').css('color', '');
+        $('#assetsPanel, #growersPanel').hide();
         $('#blogsPanel').show();
         loadBlogsList();
+      });
+      $('#btn-tab-growers').on('click', function() {
+        $('#btn-tab-assets, #btn-tab-blogs').removeClass('btn-success active').addClass('btn-outline-light').css('color', 'var(--text-white)');
+        $(this).removeClass('btn-outline-light').addClass('btn-success active').css('color', '');
+        $('#assetsPanel, #blogsPanel').hide();
+        $('#growersPanel').show();
+        loadGrowersList();
       });
 
       /* ====== BLOG LOGIC & RENDERING ====== */
@@ -1208,6 +1329,286 @@
             showToast('Error', err, true);
           }
         });
+      }
+
+      /* ====== GROWER NETWORK LOGIC ====== */
+      function getGrowerName(growerId) {
+        if (!growerId) return '';
+        const g = growersItems.find(item => item.id === growerId);
+        return g ? g.name : 'Unknown Grower';
+      }
+
+      function loadGrowersList(callback) {
+        $.ajax({
+          url: '/data/growers.json',
+          type: 'GET',
+          cache: false,
+          dataType: 'json',
+          success: function(data) {
+            growersItems = data || [];
+            updateGrowersStats();
+            renderGrowersRows();
+            populateGrowerDropdowns();
+            updateCharts();
+            if (callback) callback();
+          },
+          error: function() {
+            growersItems = [];
+            updateGrowersStats();
+            renderGrowersRows();
+            populateGrowerDropdowns();
+            updateCharts();
+            if (callback) callback();
+          }
+        });
+      }
+
+      function updateGrowersStats() {
+        const total = growersItems.length;
+        $('#stat-growers').text(total);
+        $('#growersCount').text(`${total} Growers`);
+      }
+
+      function populateGrowerDropdowns() {
+        const select = $('#assetGrower');
+        select.empty();
+        select.append('<option value="">-- General / No Grower --</option>');
+        growersItems.forEach(g => {
+          select.append(`<option value="${g.id}">${g.name} (${g.location})</option>`);
+        });
+      }
+
+      function renderGrowersRows() {
+        const list = $('#growersList');
+        list.empty();
+
+        if (growersItems.length === 0) {
+          list.append(`
+            <div class="text-center py-5 text-muted">
+              <i class="fas fa-folder-open fa-2x mb-2"></i>
+              <p class="small m-0">No growers registered. Add a grower to get started!</p>
+            </div>
+          `);
+          return;
+        }
+
+        growersItems.slice().reverse().forEach(g => {
+          const row = $(`
+            <div class="media-item-row" data-id="${g.id}">
+              <div class="media-thumb"><i class="fas fa-user text-warning"></i></div>
+              <div class="media-info">
+                <div class="media-title" title="${g.name}">${g.name}</div>
+                <div class="media-meta">
+                  <span>Location: <strong class="text-success">${g.location}</strong></span>
+                  <span>Acres: <strong>${g.acres || '0'} Acres</strong></span>
+                  <span>Phone: <strong>${g.phone || 'N/A'}</strong></span>
+                  <span>Crop: <strong>${g.crop || 'N/A'}</strong></span>
+                </div>
+              </div>
+              <button class="btn-delete-item btn-delete-grower" title="Delete Grower" data-id="${g.id}">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          `);
+          list.append(row);
+        });
+
+        // Delete handlers
+        $('.btn-delete-grower').on('click', function() {
+          const id = $(this).attr('data-id');
+          if (confirm('Are you sure you want to delete this grower? The grower profile will be deleted, and all media assets linked to this grower will be unlinked (moved to General).')) {
+            deleteGrowerItem(id);
+          }
+        });
+      }
+
+      function deleteGrowerItem(id) {
+        $.ajax({
+          url: '/api/grower/delete',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ id: id }),
+          success: function(res) {
+            if (res.success) {
+              showToast('Success', 'Grower profile deleted.');
+              loadGrowersList(function() {
+                loadMediaList(); // Reload media lists to update grower names or unlinks
+              });
+            } else {
+              showToast('Error', res.message || 'Could not delete grower.', true);
+            }
+          },
+          error: function(xhr) {
+            const err = xhr.responseJSON ? xhr.responseJSON.message : 'Error connection to backend.';
+            showToast('Error', err, true);
+          }
+        });
+      }
+
+      // Add grower form submission
+      $('#growerForm').on('submit', function(e) {
+        e.preventDefault();
+
+        const btn = $('#growerSaveBtn');
+        const originalText = btn.html();
+        btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Registering…');
+
+        const payload = {
+          name: $('#growerName').val().trim(),
+          location: $('#growerLocation').val().trim(),
+          acres: $('#growerAcres').val().trim(),
+          phone: $('#growerPhone').val().trim(),
+          crop: $('#growerCrop').val().trim(),
+          details: $('#growerDetails').val().trim()
+        };
+
+        $.ajax({
+          url: '/api/grower/add',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(payload),
+          success: function(res) {
+            btn.prop('disabled', false).html(originalText);
+            if (res.success) {
+              showToast('Success', 'Grower registered successfully.');
+              $('#growerForm')[0].reset();
+              loadGrowersList();
+            } else {
+              showToast('Register Failed', res.message || 'Unknown error occurred.', true);
+            }
+          },
+          error: function(xhr) {
+            btn.prop('disabled', false).html(originalText);
+            const err = xhr.responseJSON ? xhr.responseJSON.message : 'Error adding grower.';
+            showToast('Error', err, true);
+          }
+        });
+      });
+
+      // Export report in CSV
+      $(document).on('click', '#btnExportCSV', function() {
+        downloadGrowersCSV();
+      });
+
+      function downloadGrowersCSV() {
+        let csvRows = [];
+        // CSV Headers
+        csvRows.push("Grower ID,Grower Name,Location,Land Size (Acres),Phone Number,Crop Type,Remarks,Total Associated Files");
+        
+        growersItems.forEach(g => {
+          const filesCount = mediaItems.filter(item => item.growerId === g.id).length;
+          const name = `"${(g.name || '').replace(/"/g, '""')}"`;
+          const loc = `"${(g.location || '').replace(/"/g, '""')}"`;
+          const phone = `"${(g.phone || '').replace(/"/g, '""')}"`;
+          const crop = `"${(g.crop || '').replace(/"/g, '""')}"`;
+          const remarks = `"${(g.details || '').replace(/"/g, '""')}"`;
+          
+          csvRows.push(`${g.id},${name},${loc},${g.acres || 0},${phone},${crop},${remarks},${filesCount}`);
+        });
+
+        const csvString = csvRows.join("\n");
+        const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.setAttribute("href", url);
+        link.setAttribute("download", `mahima_agro_growers_report_${new Date().toISOString().slice(0,10)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      /* ====== CHART.JS VISUALIZATIONS ====== */
+      let landChartInstance = null;
+      let mediaChartInstance = null;
+
+      function updateCharts() {
+        // 1. Land Pie Chart
+        const labels = growersItems.map(g => g.name);
+        const landData = growersItems.map(g => parseFloat(g.acres) || 0);
+
+        const colors = [
+          '#40916C', '#52B788', '#74C69D', '#95D5B2', 
+          '#D4AF37', '#F3E5AB', '#B8860B', '#E63946',
+          '#457B9D', '#1D3557', '#A8DADC', '#F1FAEE'
+        ];
+
+        const ctxPie = document.getElementById('landPieChart');
+        if (ctxPie) {
+          if (landChartInstance) {
+            landChartInstance.destroy();
+          }
+          landChartInstance = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+              labels: labels.length > 0 ? labels : ['No Growers'],
+              datasets: [{
+                data: landData.length > 0 ? landData : [0],
+                backgroundColor: colors.slice(0, Math.max(labels.length, 1)),
+                borderWidth: 1,
+                borderColor: 'rgba(255, 255, 255, 0.1)'
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'right',
+                  labels: {
+                    color: '#F5F7F6',
+                    font: { size: 10, family: 'Inter' }
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        // 2. Media Bar Chart
+        const mediaCounts = growersItems.map(g => {
+          return mediaItems.filter(item => item.growerId === g.id).length;
+        });
+        const generalCount = mediaItems.filter(item => !item.growerId).length;
+        
+        const barLabels = ['General', ...labels];
+        const barData = [generalCount, ...mediaCounts];
+
+        const ctxBar = document.getElementById('mediaBarChart');
+        if (ctxBar) {
+          if (mediaChartInstance) {
+            mediaChartInstance.destroy();
+          }
+          mediaChartInstance = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+              labels: barLabels,
+              datasets: [{
+                label: 'Files Count',
+                data: barData,
+                backgroundColor: '#D4AF37',
+                borderWidth: 0,
+                borderRadius: 4
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  grid: { display: false },
+                  ticks: { color: '#A3B899', font: { family: 'Inter' } }
+                },
+                y: {
+                  grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                  ticks: { color: '#A3B899', stepSize: 1, font: { family: 'Inter' } }
+                }
+              },
+              plugins: {
+                legend: { display: false }
+              }
+            }
+          });
+        }
       }
     });
   </script>

@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Our Grower & Client Network | Mahima Agro Farms – Sustainable Vetiver Farming</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore the grower and client network of Mahima Agro Farms. View contract farming updates, grower details, land records, photos, videos, and documents.">
+<meta name="keywords" content="grower network, vetiver farming clients, contract farming, agriculture photos, farming videos, Mahima Agro Farms">
+<meta property="og:title" content="Mahima Agro Farms - Grower & Client Network">
+<meta property="og:description" content="Explore our grower network, contract farming updates, and cultivation media galleries.">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/favicon.ico">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Owl Carousel -->
+<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Vetiver Design System -->
+<link href="css/vetiver.css" rel="stylesheet">
+
+<style>
+  /* ===== GROWERS PAGE STYLES ===== */
+  .growers-grid-section {
+    background: var(--cream);
+    padding: 80px 0 50px;
+  }
+  
+  .grower-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 2px solid transparent;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .grower-card:hover, .grower-card.active {
+    border-color: var(--green-leaf);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .grower-card.active {
+    background: linear-gradient(185deg, #fff 0%, var(--green-pale) 100%);
+  }
+  
+  .grower-avatar {
+    width: 65px;
+    height: 65px;
+    background: var(--green-pale);
+    color: var(--green-leaf);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+    transition: var(--transition);
+  }
+  
+  .grower-card:hover .grower-avatar, .grower-card.active .grower-avatar {
+    background: var(--green-leaf);
+    color: #fff;
+  }
+  
+  .grower-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 6px;
+  }
+  
+  .grower-meta-item {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .grower-meta-item i {
+    color: var(--gold);
+    width: 16px;
+  }
+  
+  .grower-details {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-top: 15px;
+    border-top: 1px dashed var(--green-pale);
+    padding-top: 15px;
+  }
+  
+  .grower-badge-active {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--gold);
+    color: #071911;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    display: none;
+  }
+  
+  .grower-card.active .grower-badge-active {
+    display: block;
+  }
+  
+  /* Media Showcase Section */
+  .media-showcase-section {
+    background: var(--sand);
+    padding: 70px 0 90px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+  
+  .filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+  
+  .filter-tab-btn {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    color: var(--green-dark);
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 50px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .filter-tab-btn:hover, .filter-tab-btn.active {
+    background: var(--green-leaf);
+    color: #fff;
+    border-color: var(--green-leaf);
+  }
+  
+  /* Grid layouts */
+  .media-card {
+    background: #fff;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0,0,0,0.05);
+    height: 100%;
+    transition: var(--transition);
+  }
+  
+  .media-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .media-card-img-wrap {
+    position: relative;
+    height: 230px;
+    overflow: hidden;
+    background: #000;
+  }
+  
+  .media-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+  }
+  
+  .media-card:hover .media-card-img {
+    transform: scale(1.06);
+    opacity: 0.9;
+  }
+  
+  .media-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 40, 24, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+  }
+  
+  .media-card:hover .media-card-overlay {
+    opacity: 1;
+  }
+  
+  .media-card-view-btn {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    color: var(--green-leaf);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  
+  .media-card-body {
+    padding: 20px;
+  }
+  
+  .media-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .media-card-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Video styles */
+  .media-video-container {
+    position: relative;
+    height: 230px;
+    background: #000;
+  }
+  
+  .media-video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Document card */
+  .doc-card {
+    background: #fff;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0,0,0,0.06);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .doc-card:hover {
+    border-color: var(--gold);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+  
+  .doc-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(230, 57, 70, 0.1);
+    color: #e63946;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  
+  .doc-info {
+    flex-grow: 1;
+    min-width: 0;
+  }
+  
+  .doc-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .doc-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  
+  .doc-dl-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    color: var(--green-leaf);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+  
+  .doc-card:hover .doc-dl-btn {
+    background: var(--green-leaf);
+    color: #fff;
+  }
+  
+  /* Loader & Empty states */
+  .gallery-loader, .gallery-empty {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--text-muted);
+  }
+  
+  .gallery-empty i {
+    font-size: 3rem;
+    color: var(--green-pale);
+    margin-bottom: 15px;
+  }
+  
+  /* Image Lightbox Modal */
+  .lightbox-modal .modal-content {
+    background: transparent;
+    border: none;
+  }
+  
+  .lightbox-modal .modal-body {
+    position: relative;
+    padding: 0;
+  }
+  
+  .lightbox-img {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  
+  .lightbox-close {
+    position: absolute;
+    top: -45px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+  }
+</head>
+<body>
+
+<!-- ====== FLOATING WHATSAPP ====== -->
+<div class="floating-wa">
+  <span class="floating-wa-tip">Chat on WhatsApp</span>
+  <a href="https://wa.me/919381706785?text=Hello%20Agro%20Farms%2C%20I%20would%20like%20to%20know%20more%20about%20your%20farm%20network."
+     class="floating-wa-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+<!-- ====== BACK TO TOP ====== -->
+<a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <i class="bi bi-arrow-up"></i>
+ </a>
+
+<!-- ====== TOPBAR ====== -->
+<div class="v-topbar d-none d-lg-block">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-9">
+        <div class="d-flex align-items-center flex-wrap" style="gap: 24px;">
+          <span class="v-topbar-company" style="display: inline-flex; align-items: center; gap: 8px; margin-right: 0;"><i class="fas fa-building" style="color: #74C69D;"></i> Mahima Agro Farms</span>
+          <a href="tel:+919381706785" style="margin-right: 0;"><i class="fas fa-phone-alt"></i> +91 93817 06785</a>
+          <a href="mailto:mahimaagrofarm@gmail.com" style="margin-right: 0;"><i class="fas fa-envelope"></i> mahimaagrofarm@gmail.com</a>
+          <span class="v-topbar-shipping" style="margin-right: 0;"><i class="fas fa-shipping-fast"></i> Worldwide Shipping</span>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="d-flex align-items-center justify-content-end">
+          <div class="v-topbar-social">
+            <span>Follow Us:</span>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="v-navbar navbar navbar-expand-lg" id="mainNavbar">
+  <div class="container">
+    <a href="index.html" class="v-brand" aria-label="Mahima Agro Farms Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="v-brand-logo-svg">
+        <path d="M50 82 C52 75, 48 35, 12 15 C30 35, 46 65, 48 80 Z" fill="#2D6A4F"/>
+        <path d="M50 82 C53 72, 53 25, 30 5 C42 22, 49 55, 49 80 Z" fill="#40916C"/>
+        <path d="M51 82 C50 72, 47 25, 70 5 C58 22, 51 55, 51 80 Z" fill="#40916C"/>
+        <path d="M52 82 C50 75, 52 35, 88 15 C70 35, 54 65, 52 80 Z" fill="#1B4332"/>
+        <path d="M50 82 C50 70, 50 15, 50 0 C51 15, 51 70, 50 82 Z" fill="#74C69D"/>
+        <path d="M50 82 Q42 90, 36 98 M50 82 Q49 92, 46 100 M50 82 Q51 92, 54 100 M50 82 Q58 90, 64 98" stroke="#1B4332" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+        <div class="v-brand-text">
+          <span class="v-brand-title" style="letter-spacing: 2px;">MAHIMA</span>
+          <span class="v-brand-subtitle" style="letter-spacing: 4.5px;">AGRO FARMS</span>
+          <span class="v-brand-tagline">Sustainable Agriculture</span>
+        </div>
+    </a>
+    
+    <div class="d-flex align-items-center">
+      <!-- Sticky Action Buttons for Mobile Header -->
+      <div class="mobile-nav-actions d-flex d-lg-none">
+        <a href="tel:+919381706785" class="mobile-nav-btn phone" aria-label="Call Us"><i class="fas fa-phone-alt"></i></a>
+        <a href="https://wa.me/919381706785" class="mobile-nav-btn whatsapp" target="_blank" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      
+      <!-- Hamburger Menu Toggler -->
+      <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <!-- Close button inside mobile menu collapse -->
+      <button class="mobile-menu-close d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="navbar-nav mx-auto">
+        <a href="index.html"    class="nav-item nav-link v-nav-link">Home</a>
+        <a href="about.html"    class="nav-item nav-link v-nav-link">About Us</a>
+        <a href="product.html"  class="nav-item nav-link v-nav-link">Products</a>
+        <a href="service.html"  class="nav-item nav-link v-nav-link">Applications</a>
+        <a href="growers.html"  class="nav-item nav-link v-nav-link active" id="nav-growers-link">Growers</a>
+        <a href="gallery.html"  class="nav-item nav-link v-nav-link">Gallery</a>
+        <a href="blog.html"     class="nav-item nav-link v-nav-link">Blog</a>
+        <a href="contact.html"  class="nav-item nav-link v-nav-link">Contact Us</a>
+      </div>
+      <div class="v-nav-cta d-none d-lg-flex">
+        <a href="contact.html#partner-form" class="v-btn-quote" id="navbar-partner-btn">Partner Program</a>
+        <a href="contact.html#inquiry" class="v-btn-quote-outline" id="navbar-quote-btn">Get Quote</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ====== PAGE HERO ====== -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="section-badge d-inline-flex" style="background:rgba(255,255,255,.12);color:#fff;margin-bottom:16px;">
+        <i class="fas fa-users"></i> Client/Grower Network
+      </div>
+      <h1>Growers <span style="color:var(--gold-light);">Network</span></h1>
+      <p>Empowering local farmers, tracing crops, and sharing real-time cultivation updates.</p>
+      <nav class="breadcrumb-v" aria-label="Breadcrumb">
+        <a href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+        <span class="sep"><i class="fas fa-chevron-right" style="font-size:10px;"></i></span>
+        <span class="cur">Growers Network</span>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- ====== REGISTERED GROWERS SECTION ====== -->
+<section class="growers-grid-section">
+  <div class="container">
+    <div class="text-center mx-auto mb-5 animate-on-scroll" style="max-width: 600px;">
+      <div class="section-badge"><i class="fas fa-seedling"></i> Our Partners</div>
+      <h2 class="section-title" style="font-size: 2.2rem; color: var(--green-dark);">Registered <span>Growers &amp; Lands</span></h2>
+      <p class="section-subtitle">
+        We support a network of dedicated growers cultivating premium Vetiver grass under strict sustainable protocols. Select a grower to view their location, cultivation details, and specific media updates.
+      </p>
+    </div>
+
+    <!-- Growers Grid -->
+    <div class="row g-4" id="growersGrid">
+      <!-- Dynamic list loaded from growers.json -->
+      <div class="col-12 text-center py-5 text-muted" id="growersLoader">
+        <div class="spinner-border text-success mb-2" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="small">Fetching grower network details...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== MEDIA SHOWCASE SECTION ====== -->
+<section class="media-showcase-section" id="mediaShowcase">
+  <div class="container">
+    <div class="text-center mx-auto mb-4 animate-on-scroll" style="max-width: 600px;">
+      <div class="section-badge"><i class="fas fa-photo-video"></i> Cultivation Gallery</div>
+      <h2 class="section-title" style="font-size: 2.2rem; color: var(--green-dark);" id="gallerySectionTitle">Cultivation <span>Updates</span></h2>
+      <p class="section-subtitle" id="gallerySectionSubtitle">
+        Browse real-time pictures, educational videos, and analytical documentations linked to our farming processes.
+      </p>
+    </div>
+
+    <!-- Media Filter Tabs -->
+    <div class="filter-tabs animate-on-scroll">
+      <button class="filter-tab-btn active" data-type="image"><i class="fas fa-image"></i> Photos</button>
+      <button class="filter-tab-btn" data-type="video"><i class="fas fa-video"></i> Videos</button>
+      <button class="filter-tab-btn" data-type="pdf"><i class="fas fa-file-pdf"></i> Documents</button>
+    </div>
+
+    <!-- Media Content Display -->
+    <div class="row g-4" id="mediaShowcaseGrid">
+      <!-- Dynamic media files rendered here -->
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="v-footer" id="footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand-name">Mahima Agro Farms</div>
+        <span class="footer-brand-tag">"From Farm to Industry — Trusted Vetiver Supply Solutions."</span>
+        <p class="footer-desc">Mahima Agro Farms connects farmers, essential oil manufacturers, landscaping companies, and environmental restoration projects with high-quality, sustainably produced Vetiver.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://wa.me/919381706785" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Vetiver</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Products</a></li>
+          <li><a href="service.html"><i class="fas fa-chevron-right"></i> Applications</a></li>
+          <li><a href="growers.html" id="footer-growers-link"><i class="fas fa-chevron-right"></i> Growers Network</a></li>
+          <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+          <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          <li><a href="admin.html" target="_blank"><i class="fas fa-chevron-right"></i> Admin Portal</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <h4 class="footer-heading">Products</h4>
+        <ul class="footer-links">
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Vetiver Roots</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Essential Oil</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Herbal Powder</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Mats &amp; Fans</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Cooling Products</a></li>
+          <li><a href="product.html"><i class="fas fa-chevron-right"></i> Bulk Orders</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <h4 class="footer-heading">Get In Touch</h4>
+        <div class="footer-contact-row"><i class="fas fa-map-marker-alt"></i><span>Mahima Agro Farms, Sadha Vari Palem, Navalakh Gardens, Nellore, Andhra Pradesh, 524002</span></div>
+        <div class="footer-contact-row"><i class="fas fa-phone-alt"></i><span>+91 93817 06785</span></div>
+        <div class="footer-contact-row"><i class="fas fa-envelope"></i><span>mahimaagrofarm@gmail.com</span></div>
+        <div class="footer-contact-row"><i class="fab fa-whatsapp"></i><span>+91 93817 06785 (WhatsApp)</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p class="mb-0">© 2026 <a href="index.html">Mahima Agro Farms</a>. All Rights Reserved. | Mahima Agro Farms | Built by IIITIHAS UNIVERSAL PVT LTD</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox Modal -->
+<div class="modal fade lightbox-modal" id="lightboxModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="lightbox-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+        <img src="" id="lightboxImage" class="lightbox-img" alt="Enlarged View">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery & Bootstrap Bundle -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="js/vetiver.js"></script>
+
+<script>
+  'use strict';
+  
+  $(document).ready(function() {
+    let growersList = [];
+    let mediaList = [];
+    let selectedGrowerId = 'all'; // 'all' displays general / all media, otherwise filters by growerId
+    let activeMediaType = 'image'; // 'image', 'video', 'pdf'
+    
+    // Load database
+    loadGrowersData();
+    
+    function loadGrowersData() {
+      // Fetch growers
+      $.ajax({
+        url: '/data/growers.json',
+        type: 'GET',
+        cache: false,
+        dataType: 'json',
+        success: function(growers) {
+          growersList = growers || [];
+          
+          // Fetch media
+          $.ajax({
+            url: '/data/media.json',
+            type: 'GET',
+            cache: false,
+            dataType: 'json',
+            success: function(media) {
+              mediaList = media || [];
+              renderGrowersList();
+              renderMediaShowcase();
+            },
+            error: function() {
+              mediaList = [];
+              renderGrowersList();
+              renderMediaShowcase();
+            }
+          });
+        },
+        error: function() {
+          $('#growersGrid').html(`
+            <div class="col-12 text-center py-5 text-muted">
+              <i class="fas fa-exclamation-triangle fa-2x text-warning mb-2"></i>
+              <p class="small">Could not load grower data at this moment. Please try again later.</p>
+            </div>
+          `);
+        }
+      });
+    }
+    
+    function renderGrowersList() {
+      const container = $('#growersGrid');
+      container.empty();
+      
+      // Add "All Growers / General Gallery" Card
+      const generalCard = $(`
+        <div class="col-lg-3 col-md-6 animate-on-scroll">
+          <div class="grower-card active" data-id="all">
+            <div class="grower-badge-active">Selected</div>
+            <div class="grower-avatar"><i class="fas fa-globe"></i></div>
+            <h3 class="grower-name">General / All</h3>
+            <div class="grower-meta-item"><i class="fas fa-map-marker-alt"></i> <span>Global Farm Network</span></div>
+            <div class="grower-meta-item"><i class="fas fa-seedling"></i> <span>500+ Acres Combined</span></div>
+            <p class="grower-details">Browse unified updates, documents, and media uploads from all contract farming plots across Nellore and southern regions.</p>
+          </div>
+        </div>
+      `);
+      container.append(generalCard);
+      
+      if (growersList.length > 0) {
+        growersList.forEach(g => {
+          // Count linked files for this grower
+          const imgCount = mediaList.filter(item => item.growerId === g.id && item.type === 'image').length;
+          const vidCount = mediaList.filter(item => item.growerId === g.id && item.type === 'video').length;
+          const docCount = mediaList.filter(item => item.growerId === g.id && item.type === 'pdf').length;
+          
+          const phoneHtml = g.phone ? `<div class="grower-meta-item"><i class="fas fa-phone-alt"></i> <span>${g.phone}</span></div>` : '';
+          const cropHtml = g.crop ? `<div class="grower-meta-item"><i class="fas fa-leaf"></i> <span>Crop: ${g.crop}</span></div>` : '';
+          
+          const growerCard = $(`
+            <div class="col-lg-3 col-md-6 animate-on-scroll">
+              <div class="grower-card" data-id="${g.id}">
+                <div class="grower-badge-active">Selected</div>
+                <div class="grower-avatar"><i class="fas fa-user"></i></div>
+                <h3 class="grower-name">${g.name}</h3>
+                <div class="grower-meta-item"><i class="fas fa-map-marker-alt"></i> <span>${g.location}</span></div>
+                <div class="grower-meta-item"><i class="fas fa-seedling"></i> <span>${g.acres || 'Multiple'} Acres</span></div>
+                ${phoneHtml}
+                ${cropHtml}
+                <div class="grower-meta-item" style="font-size:0.8rem; margin-top:5px; color:var(--green-leaf);">
+                  <i class="fas fa-file-invoice"></i> 
+                  <span>${imgCount} Photos &bull; ${vidCount} Videos &bull; ${docCount} Docs</span>
+                </div>
+                <p class="grower-details">${g.details || 'Registered grower participating in sustainable Vetiver contract farming operations with full technical guidance.'}</p>
+              </div>
+            </div>
+          `);
+          container.append(growerCard);
+        });
+      }
+      
+      // Wire click handler
+      $('.grower-card').on('click', function() {
+        $('.grower-card').removeClass('active');
+        $(this).addClass('active');
+        selectedGrowerId = $(this).attr('data-id');
+        
+        // Update gallery headings
+        updateGalleryHeadings();
+        renderMediaShowcase();
+        
+        // Smooth scroll to showcase
+        document.getElementById('mediaShowcase').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      
+      triggerScrollAnimations();
+    }
+    
+    function updateGalleryHeadings() {
+      const titleSpan = $('#gallerySectionTitle span');
+      const subtitle = $('#gallerySectionSubtitle');
+      
+      if (selectedGrowerId === 'all') {
+        $('#gallerySectionTitle').html('Cultivation <span>Updates</span>');
+        subtitle.text('Browse real-time pictures, educational videos, and analytical documentations linked to our farming processes.');
+      } else {
+        const grower = growersList.find(g => g.id === selectedGrowerId);
+        if (grower) {
+          $('#gallerySectionTitle').html(`Farming: <span>${grower.name}</span>`);
+          subtitle.html(`Displaying updates for farm plot located in <strong>${grower.location}</strong> (${grower.acres || 'N/A'} Acres).`);
+        }
+      }
+    }
+    
+    function renderMediaShowcase() {
+      const container = $('#mediaShowcaseGrid');
+      container.empty();
+      
+      // Filter media by grower ID and type
+      let filtered = mediaList.filter(item => item.type === activeMediaType);
+      
+      if (selectedGrowerId !== 'all') {
+        filtered = filtered.filter(item => item.growerId === selectedGrowerId);
+      }
+      
+      if (filtered.length === 0) {
+        let textMsg = `No pictures uploaded for this selection.`;
+        if (activeMediaType === 'video') textMsg = `No videos uploaded for this selection.`;
+        if (activeMediaType === 'pdf') textMsg = `No documents or PDFs uploaded for this selection.`;
+        
+        container.append(`
+          <div class="col-12">
+            <div class="gallery-empty">
+              <i class="fas fa-folder-open"></i>
+              <h4>No Media Found</h4>
+              <p class="small">${textMsg}</p>
+            </div>
+          </div>
+        `);
+        return;
+      }
+      
+      // Render based on media type
+      filtered.slice().reverse().forEach(item => {
+        let colHtml = '';
+        
+        if (activeMediaType === 'image') {
+          colHtml = `
+            <div class="col-lg-4 col-md-6 animate-on-scroll">
+              <div class="media-card">
+                <div class="media-card-img-wrap">
+                  <img src="${item.url}" class="media-card-img" alt="${item.title}">
+                  <div class="media-card-overlay">
+                    <a href="#" class="media-card-view-btn lightbox-trigger" data-img="${item.url}"><i class="fas fa-expand"></i></a>
+                  </div>
+                </div>
+                <div class="media-card-body">
+                  <h4 class="media-card-title" title="${item.title}">${item.title}</h4>
+                  <p class="media-card-desc">${item.description || 'Farming plot snapshot and crop growth tracking.'}</p>
+                </div>
+              </div>
+            </div>
+          `;
+        } else if (activeMediaType === 'video') {
+          colHtml = `
+            <div class="col-lg-4 col-md-6 animate-on-scroll">
+              <div class="media-card">
+                <div class="media-video-container">
+                  <video src="${item.url}" controls poster="img/vetiver_agriculture.jpg"></video>
+                </div>
+                <div class="media-card-body">
+                  <h4 class="media-card-title" title="${item.title}">${item.title}</h4>
+                  <p class="media-card-desc">${item.description || 'Cultivation method walk-through and educational guide.'}</p>
+                </div>
+              </div>
+            </div>
+          `;
+        } else if (activeMediaType === 'pdf') {
+          // Calculate arbitrary size for aesthetics
+          const mockSize = ((item.id % 200) / 10 + 1.2).toFixed(1) + ' MB';
+          colHtml = `
+            <div class="col-md-6 animate-on-scroll">
+              <div class="doc-card">
+                <div class="doc-icon"><i class="fas fa-file-pdf"></i></div>
+                <div class="doc-info">
+                  <h4 class="doc-title" title="${item.title}">${item.title}</h4>
+                  <div class="doc-meta">
+                    <span>PDF Document &bull; ${mockSize} &bull; Published ${item.date}</span>
+                  </div>
+                </div>
+                <a href="${item.url}" class="doc-dl-btn" download title="Download Document">
+                  <i class="fas fa-download"></i>
+                </a>
+              </div>
+            </div>
+          `;
+        }
+        
+        container.append(colHtml);
+      });
+      
+      // Wire Lightbox
+      $('.lightbox-trigger').on('click', function(e) {
+        e.preventDefault();
+        const src = $(this).attr('data-img');
+        $('#lightboxImage').attr('src', src);
+        const myModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+        myModal.show();
+      });
+      
+      triggerScrollAnimations();
+    }
+    
+    // Tab filtering click handlers
+    $('.filter-tab-btn').on('click', function() {
+      $('.filter-tab-btn').removeClass('active');
+      $(this).addClass('active');
+      activeMediaType = $(this).attr('data-type');
+      renderMediaShowcase();
+    });
+    
+    function triggerScrollAnimations() {
+      const els = document.querySelectorAll('.animate-on-scroll');
+      els.forEach(function(el) {
+        el.classList.add('visible');
+      });
+    }
+  });
+
+  // ===== NAVBAR SCROLL EFFECT =====
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('mainNavbar');
+    if (window.scrollY > 60) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+    // Back to top
+    const btt = document.getElementById('back-to-top');
+    if (btt) {
+      if (window.scrollY > 400) btt.classList.add('show');
+      else btt.classList.remove('show');
+    }
+  });
+
+  // ===== BACK TO TOP =====
+  var btt = document.getElementById('back-to-top');
+  if (btt) {
+    btt.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+</script>
+
+</body>
+</html>
