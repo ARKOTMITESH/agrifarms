@@ -11,6 +11,7 @@ PORT = 8000
 PUBLIC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'organic-farm-website-template'))
 DATA_FILE = os.path.join(PUBLIC_DIR, 'data', 'media.json')
 GROWERS_FILE = os.path.join(PUBLIC_DIR, 'data', 'growers.json')
+BLOGS_FILE = os.path.join(PUBLIC_DIR, 'data', 'blogs.json')
 
 class CustomAPIRequestHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -34,6 +35,10 @@ class CustomAPIRequestHandler(SimpleHTTPRequestHandler):
             self.handle_grower_add()
         elif self.path == '/api/grower/delete':
             self.handle_grower_delete()
+        elif self.path == '/api/blog/save':
+            self.handle_blog_save()
+        elif self.path == '/api/blog/delete':
+            self.handle_blog_delete()
         else:
             self.send_response(404)
             self.send_header('Content-Type', 'application/json')
@@ -299,6 +304,120 @@ class CustomAPIRequestHandler(SimpleHTTPRequestHandler):
                 print(f"Could not unlink media for grower {grower_id}: {e}")
 
         self.send_json_response(200, {"success": True, "message": "Grower deleted successfully"})
+
+    def handle_blog_save(self):
+        content_length = int(self.headers.get('Content-Length', 0))
+        body = self.rfile.read(content_length).decode('utf-8')
+        
+        try:
+            data = json.loads(body)
+        except Exception:
+            self.send_json_response(400, {"success": False, "message": "Invalid JSON body"})
+            return
+
+        blog_id = data.get('id')
+        title = data.get('title')
+        content = data.get('content')
+        category = data.get('category', 'General')
+        author = data.get('author', 'Admin')
+        image = data.get('image', '')
+        read_time = data.get('readTime', '5 min')
+        excerpt = data.get('excerpt', '')
+        date = data.get('date')
+
+        if not title or not content:
+            self.send_json_response(400, {"success": False, "message": "Missing required fields (title, content)"})
+            return
+
+        # Load database
+        try:
+            if os.path.exists(BLOGS_FILE):
+                with open(BLOGS_FILE, 'r', encoding='utf-8') as f:
+                    blogs_list = json.load(f)
+            else:
+                blogs_list = []
+        except Exception:
+            blogs_list = []
+
+        new_post = None
+        if blog_id:
+            # Update existing
+            for b in blogs_list:
+                if str(b.get('id')) == str(blog_id):
+                    b['title'] = title
+                    b['content'] = content
+                    b['category'] = category
+                    b['author'] = author
+                    b['image'] = image
+                    b['readTime'] = read_time
+                    b['excerpt'] = excerpt
+                    if date:
+                        b['date'] = date
+                    new_post = b
+                    break
+            
+            if not new_post:
+                # ID provided but not found, create new with this ID
+                new_post = {
+                    "id": blog_id,
+                    "title": title,
+                    "content": content,
+                    "category": category,
+                    "author": author,
+                    "image": image,
+                    "readTime": read_time,
+                    "excerpt": excerpt,
+                    "date": date or time.strftime("%Y-%m-%d")
+                }
+                blogs_list.append(new_post)
+        else:
+            # Create new
+            new_id = str(int(time.time() * 1000))
+            new_post = {
+                "id": new_id,
+                "title": title,
+                "content": content,
+                "category": category,
+                "author": author,
+                "image": image,
+                "readTime": read_time,
+                "excerpt": excerpt,
+                "date": date or time.strftime("%Y-%m-%d")
+            }
+            blogs_list.append(new_post)
+
+        with open(BLOGS_FILE, 'w', encoding='utf-8') as f:
+            json.dump(blogs_list, f, indent=4)
+
+        self.send_json_response(200, {"success": True, "post": new_post})
+
+    def handle_blog_delete(self):
+        content_length = int(self.headers.get('Content-Length', 0))
+        body = self.rfile.read(content_length).decode('utf-8')
+        
+        try:
+            data = json.loads(body)
+        except Exception:
+            self.send_json_response(400, {"success": False, "message": "Invalid JSON body"})
+            return
+
+        blog_id = data.get('id')
+        if not blog_id:
+            self.send_json_response(400, {"success": False, "message": "Missing blog ID"})
+            return
+
+        if not os.path.exists(BLOGS_FILE):
+            self.send_json_response(404, {"success": False, "message": "No blogs database found"})
+            return
+
+        with open(BLOGS_FILE, 'r', encoding='utf-8') as f:
+            blogs_list = json.load(f)
+
+        updated_blogs = [b for b in blogs_list if str(b.get('id')) != str(blog_id)]
+        with open(BLOGS_FILE, 'w', encoding='utf-8') as f:
+            json.dump(updated_blogs, f, indent=4)
+
+        self.send_json_response(200, {"success": True, "message": "Blog post deleted successfully"})
 
     def send_json_response(self, status, payload):
         self.send_response(status)
